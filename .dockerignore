@@ -1,0 +1,16 @@
+cypress/videos
+node_modules
+__mocks__
+__tests__
+.husky
+.next
+.vscode
+.idea
+.gitignore
+README.md
+*.DS_Store
+.dockerignore
+LICENSE
+.docker
+.gitlab
+.git

@@ -1,0 +1,30 @@
+image: gitlab/dind
+
+variables:
+  DOCKER_DRIVER: overlay2
+  APP_IMAGE: asam-front/app
+  APP_TAG: latest
+
+stages:
+  - deploy
+
+deploy-job:
+  image: docker:20.10.16
+  stage: deploy
+  services:
+    - name: docker:dind
+  script:
+    - echo "Start script deploying ..."
+    - if [ "$(docker ps -q -f name=$APP_IMAGE)" ]; then
+      echo "Stopping and removing the running container $APP_IMAGE...";
+      docker stop $APP_IMAGE;
+      docker rm $APP_IMAGE;
+      docker rmi $APP_IMAGE:$APP_TAG;
+      else
+      echo "No running container found with the name $APP_IMAGE.";
+      fi
+    - docker-compose -f ./docker-compose.yml build --no-cache
+    - docker-compose -f ./docker-compose.yml up -d
+    - echo "Script deployed successfully."
+  only:
+    - develop

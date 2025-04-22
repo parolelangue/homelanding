@@ -1,0 +1,47 @@
+{
+    "name": "ASAM",
+    "short_name": "ASAM",
+    "description": "ASAM Asset Management",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#00A650",
+    "icons": [
+        {
+            "src": "/favicon-32.png",
+            "sizes": "any",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon-48.png",
+            "sizes": "any",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon-192.png",
+            "sizes": "any",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon-512.png",
+            "sizes": "any",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "asam_screen_mobile.png",
+            "form_factor": "narrow",
+            "sizes": "200x2787",
+            "type": "image/png",
+            "label": "cards page"
+        },
+        {
+            "src": "/asam_screen_desktop.png",
+            "form_factor": "wide",
+            "sizes": "379x1280",
+            "type": "image/png",
+            "label": "fullscreen card view"
+        }
+    ]
+}

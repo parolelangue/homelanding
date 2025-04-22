@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: http://uathomepage.asamvn.com.vn
+
+# Sitemaps
+Sitemap: http://uathomepage.asamvn.com.vn/sitemap.xml

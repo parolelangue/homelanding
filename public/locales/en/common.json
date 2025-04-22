@@ -1,0 +1,56 @@
+{
+  "common": {
+    "shares": "Share",
+    "followUs": "Follow Us",
+    "aboutUs": "About Us",
+    "addressAsam": "03 Le Thanh Ton St, Ben Nghe Ward, District 1, Ho Chi Minh City.",
+    "hotline": "Hotline",
+    "copyright": "Copyright@2024 ASAM Securities Corporation. Copyright Registered.",
+    "email": "contact@asamvn.com.vn",
+    "lookFor": "Search",
+    "home": "Home",
+    "share": "Share",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "zalo": "Zalo",
+    "notDataFound": "No data found",
+    "source": "Source",
+    "relatedKeywords": "Related keywords: ",
+    "copyArticleLinkSuccess": "Copy article link successfully!",
+    "relatedNews": "<span>Related</span> news",
+    "description": "Description",
+    "getStarted": "Get Started",
+    "seeMore": "See More"
+  },
+  "navLinks": {
+    "aboutAsam": "About ASAM",
+    "services": "Services",
+    "news": "News",
+    "contact": "Contact",
+    "support": "Support",
+    "asamSecuritiesCo": "ASAM Securities Corporation",
+    "asamAssetManagement": "ASAM Asset Management",
+    "brokerageService": "Brokerage Service",
+    "investmentBanking": "Investment Banking",
+    "userGuide": "User Guide",
+    "contact***": "Contact",
+    "informationDisclosure": "Information Disclosure",
+    "asamEvents": "ASAM Events",
+    "certificateList": "Certificate List",
+    "career": "Careers"
+  },
+  "button": {
+    "getStarted": "Get Started",
+    "seeMore": "See More"
+  },
+  "homePage": {
+    "dataDrivenAITransformation": "Data-driven AI Transformation",
+    "whatAreWeDoing": "what are we doing?",
+    "llm": "LLM",
+    "visionA": "Vision A",
+    "ourTechnology": "Our <span>Technology</span>",
+    "ourSolution": "Our <span>Solution</span>",
+    "solutions": "Solutions"
+  }
+}

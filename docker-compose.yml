@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    image: asam-front/app:latest
+    container_name: asam-front
+    restart: always
+    env_file:
+      - .env.uat
+    volumes:
+      - .:/code
+    ports:
+      - '3009:3000'

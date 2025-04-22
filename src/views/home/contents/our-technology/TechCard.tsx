@@ -1,0 +1,134 @@
+import ButtonLink from '@/@core/components/button-link';
+import Image from '@/@core/components/image';
+import Video from '@/@core/components/video';
+import { WIDTH_MEDIUM } from '@/@core/configs';
+import { useDevice } from '@/@core/hooks/useDevice';
+import { ITechnology } from '@/@core/types/technology';
+import { hexToRGBA } from '@/@core/utils/hex-to-rgba';
+import { Box, Stack, styled, Typography, useTheme } from '@mui/material';
+import { useTranslation } from 'next-i18next';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { CSSProperties } from 'react';
+
+const defaultThumbPath = '/images/pages/articles/default-thumb.jpg';
+type Props = {
+  data: ITechnology;
+};
+
+const TechCard = ({ data }: Props) => {
+  const { id, title, category, thumbnail, path } = data || {};
+  const { t, i18n } = useTranslation('common');
+  const theme = useTheme();
+  const pathname = usePathname();
+  const device = useDevice();
+
+  const renderTitle = () => {
+    return title;
+  };
+
+  const smallThumbs: CSSProperties = {
+    paddingBottom: device.mobile ? '300px' : device.tablet ? '350px' : '756px',
+  };
+
+  const genContent = () => {
+    return (
+      <Box
+        sx={{
+          cursor: 'grab',
+        }}
+      >
+        {true ? (
+          <Image imgUrl={thumbnail} alt={renderTitle()} thumbStyles={smallThumbs} />
+        ) : (
+          <Video imgUrl={thumbnail} alt={renderTitle()} thumbStyles={smallThumbs} />
+        )}
+        <Link href={path}>
+          <Content>
+            <Typography variant="body1" className="sub-title truncate-text">
+              {category}
+            </Typography>
+            <Typography variant="body1" className="title truncate-text">
+              {renderTitle()}
+              <ButtonLink
+                link={''}
+                color={theme.palette.common.white}
+                name={''}
+                direction={'LTR'}
+                size={40}
+              />
+            </Typography>
+          </Content>
+        </Link>
+      </Box>
+    );
+  };
+
+  return <Card>{genContent()}</Card>;
+};
+
+const Content = styled(Stack)(({ theme }) => ({
+  padding: '2rem 1.5rem',
+  borderRadius: '0.5rem',
+  position: 'absolute',
+  top: '2rem',
+  left: '2rem',
+  maxWidth: '550px',
+  background: hexToRGBA(theme.palette.common.black, 0.24),
+  backdropFilter: 'blur(50px)',
+  '.title': {
+    width: 'fit-content',
+    maxWidth: '98%',
+    fontSize: '2.5rem',
+    lineHeight: '3rem',
+    fontWeight: 500,
+    color: theme.palette.common.white,
+    marginTop: '1rem',
+    display: 'inline-flex',
+    alignItems: 'flex-end',
+    gap: '0 0.25rem',
+  },
+  '.sub-title': {
+    fontSize: '1.5rem',
+    lineHeight: '2rem',
+    fontWeight: 400,
+    color: theme.palette.grey[100],
+  },
+  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
+  [theme.breakpoints.down('lg')]: {},
+  [theme.breakpoints.down('md')]: {},
+  [theme.breakpoints.down('sm')]: {
+    padding: '1.5rem 1rem',
+    bottom: '0.5rem',
+    right: '0.5rem',
+    left: 'unset',
+    top: 'unset',
+    maxWidth: '270px',
+    '.box-icon': {
+      width: '1rem',
+      height: '1rem',
+    },
+    '.title': {
+      fontSize: '1.125rem',
+      lineHeight: '1.5rem',
+      marginTop: '0.5rem',
+    },
+    '.sub-title': {
+      fontSize: '1rem',
+      lineHeight: '1.5rem',
+    },
+  },
+}));
+
+const Card = styled('div')(({ theme }) => ({
+  borderRadius: '0.5rem',
+  position: 'relative',
+  width: '100%',
+  height: '100%',
+  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
+  [theme.breakpoints.down('lg')]: {},
+  [theme.breakpoints.down('md')]: {},
+  [theme.breakpoints.down('sm')]: {},
+}));
+
+export default TechCard;
