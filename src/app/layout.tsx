@@ -39,7 +39,7 @@ export default function RootLayout({
       </head>
       <body>
         <Suspense fallback={<Loading />}>{children}</Suspense>
-        <ZaloChat />
+        {/* <ZaloChat /> */}
         <Advertisement />
 
         <Script src="/js/zalo-sdk.js" async crossOrigin="anonymous" />

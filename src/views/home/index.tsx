@@ -8,6 +8,7 @@ import cookieHelper from '@/@core/utils/cookie';
 import { CookieStorageKeys } from '@/@core/constants/general';
 import OurTechnologySection from './contents/our-technology';
 import OurSolutionSection from './contents/our-solution';
+import Flow from './contents/flow';
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
       <HeroSection />
       <OurTechnologySection />
       <OurSolutionSection />
+      <Flow />
       {/* <HeroSection index={data?.index || []} banners={data?.bnnr || []} />
       <AboutSection />
       <BoardTradingSection data={data?.cis || []} />
