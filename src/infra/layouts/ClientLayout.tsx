@@ -18,7 +18,7 @@ const ClientLayout = ({ children }: { children: ReactNode }) => {
   return (
     <MasterLayout hidden={hidden} settings={settings} saveSettings={saveSettings}>
       {children}
-      <ZaloChat />
+      {/* <ZaloChat /> */}
     </MasterLayout>
   );
 };

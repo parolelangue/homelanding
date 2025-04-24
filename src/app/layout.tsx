@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import { alliance } from '@/@core/fonts';
 import { Suspense } from 'react';
 import Loading from './loading';
-import Script from 'next/script';
-import ZaloChat from '@/@core/components/zalo-chat';
 import './global.css';
 
 import Advertisement from '@/@core/components/advertisement';
@@ -25,24 +23,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      style={
+        {
+          '--alliance-font': alliance.style.fontFamily,
+        } as React.CSSProperties
+      }
+    >
       <head>
         <link rel="apple-touch-icon" sizes="48x48" href="/favicon-48.png" />
         <link rel="shortcut icon" href="/favicon-48.png" />
         <link rel="manifest" href="/manifest.json" />
-        <style>{`
-            :root {
-              --alliance-font: ${alliance.style.fontFamily};
-            }
-          `}</style>
         <meta property="fb:app_id" content="562841856678360"></meta>
       </head>
       <body>
         <Suspense fallback={<Loading />}>{children}</Suspense>
         {/* <ZaloChat /> */}
-        <Advertisement />
+        {/* <Advertisement /> */}
 
-        <Script src="/js/zalo-sdk.js" async crossOrigin="anonymous" />
+        {/* <Script src="/js/zalo-sdk.js" async crossOrigin="anonymous" /> */}
         <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GG_ANALYTICS_TRACKING_ID}`}

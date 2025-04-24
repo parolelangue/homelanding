@@ -1,4 +1,3 @@
-import { colors } from '@/@core/theme/palette';
 import { Box, styled, SxProps } from '@mui/material';
 import clsx from 'clsx';
 import Link from 'next/link';

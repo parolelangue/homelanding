@@ -54,7 +54,7 @@ const NavigationSidebar = ({ open, toggleSidebar }: Props) => {
   };
 
   useEffect(() => {
-    dispatch(homeActions.getHeadCategories());
+    // dispatch(homeActions.getHeadCategories());
   }, []);
 
   const renderNavContent = () => (

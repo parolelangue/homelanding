@@ -8,6 +8,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { hexToRGBA } from '@/@core/utils/hex-to-rgba';
 import { useDevice } from '@/@core/hooks/useDevice';
+import MainWrapper from '@/@core/components/shared/sections/main-wrapper';
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -60,7 +61,7 @@ const Flow = () => {
           ease: 'power1.out',
         },
         {
-          scale: 0.85,
+          scale: 0.8,
           opacity: 0.6,
           transformOrigin: 'center center',
           ease: 'power1.out',
@@ -79,35 +80,39 @@ const Flow = () => {
   }, []);
 
   return (
-    <Section ref={sectionRef} id="smooth-content">
-      <div className="wrap">
-        <div className="sticky">
-          <div className="content">
-            {flows.map((flow, index) => (
-              <Card
-                className={`card frame-${index + 1}`}
-                style={{ '--frame-index': `${index * 25}%` } as React.CSSProperties}
-                key={index}
-                id={`frame-${index + 1}`}
-              >
-                <Grid container height="100%" gap={{ xs: '1.5rem', md: '0' }}>
-                  <Grid item xs={12} md={4} height="100%">
-                    <Typography className="sub-title">0{index + 1}</Typography>
-                    <Typography className="title">{flow.title}</Typography>
-                    <Typography className="desc">{flow.desc}</Typography>
-                  </Grid>
-                  <Grid item xs={12} md={8} height="100%">
-                    <Box component={'div'} className="box-img">
-                      <img src={flow.image} />
-                    </Box>
-                  </Grid>
-                </Grid>
-              </Card>
-            ))}
+    <MainWrapper>
+      <Section ref={sectionRef} id="smooth-content">
+        <div className="wrap">
+          <div className="sticky">
+            <MainWrapper>
+              <div className="content">
+                {flows.map((flow, index) => (
+                  <Card
+                    className={`card frame-${index + 1}`}
+                    style={{ '--frame-index': `${index * 25}%` } as React.CSSProperties}
+                    key={index}
+                    id={`frame-${index + 1}`}
+                  >
+                    <Grid container height="100%" gap={{ xs: '1.5rem', md: '0' }}>
+                      <Grid item xs={12} md={4} height="100%">
+                        <Typography className="sub-title">0{index + 1}</Typography>
+                        <Typography className="title">{flow.title}</Typography>
+                        <Typography className="desc">{flow.desc}</Typography>
+                      </Grid>
+                      <Grid item xs={12} md={8} height="100%">
+                        <Box component={'div'} className="box-img">
+                          <img src={flow.image} />
+                        </Box>
+                      </Grid>
+                    </Grid>
+                  </Card>
+                ))}
+              </div>
+            </MainWrapper>
           </div>
         </div>
-      </div>
-    </Section>
+      </Section>
+    </MainWrapper>
   );
 };
 
@@ -120,6 +125,7 @@ const Section = styled('section')(({ theme }) => ({
   justifyContent: 'center',
   overflow: 'visible',
   '.wrap': {
+    width: '100%',
     height: '450vh',
     position: 'absolute',
     top: 0,
@@ -293,6 +299,7 @@ const Section = styled('section')(({ theme }) => ({
 }));
 const Card = styled('div')(({ theme }) => ({
   width: '80vw',
+  maxWidth: '100%',
   height: '720px',
   padding: '1.5rem 2.5rem',
   borderRadius: '0.75rem',
@@ -303,9 +310,9 @@ const Card = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.common.white,
   transition: 'all .45s cubic-bezier(0, 0.7, 0.3, 0.9)',
   '.sub-title': {
-    fontSize: '1.125rem',
+    fontSize: '1.5rem',
     color: theme.palette.primary.main,
-    lineHeight: '1.75rem',
+    lineHeight: '2rem',
     fontWeight: 500,
     marginTop: '1.5rem',
   },

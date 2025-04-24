@@ -3,10 +3,7 @@ import { useEffect, useRef, ReactNode } from 'react';
 
 import VerticalLayout from './modes/VerticalLayout';
 import HorizontalLayout from './modes/HorizontalLayout';
-import { useDispatch } from 'react-redux';
-import { categoryActions } from '@/app/reducers/category';
-import { EDictDataKey } from '../types/general';
-import { useTranslation } from 'react-i18next';
+
 import { useTitle } from '../hooks/useTitle';
 
 type LayoutProps = {
@@ -26,7 +23,6 @@ const MasterLayout = (props: LayoutProps) => {
 
   useTitle();
   const isCollapsed = useRef<boolean>(settings.navCollapsed);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (hidden) {
@@ -50,10 +46,6 @@ const MasterLayout = (props: LayoutProps) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hidden]);
-
-  useEffect(() => {
-    dispatch(categoryActions.getContactInfo(EDictDataKey.HomePageContactInfo));
-  }, []);
 
   if (settings.layout === 'horizontal') {
     return <HorizontalLayout {...props}>{children}</HorizontalLayout>;

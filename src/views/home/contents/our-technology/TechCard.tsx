@@ -43,23 +43,25 @@ const TechCard = ({ data }: Props) => {
         ) : (
           <Video imgUrl={thumbnail} alt={renderTitle()} thumbStyles={smallThumbs} />
         )}
-        <Link href={path}>
-          <Content>
-            <Typography variant="body1" className="sub-title truncate-text">
-              {category}
-            </Typography>
-            <Typography variant="body1" className="title truncate-text">
-              {renderTitle()}
-              <ButtonLink
-                link={''}
-                color={theme.palette.common.white}
-                name={''}
-                direction={'LTR'}
-                size={40}
-              />
-            </Typography>
-          </Content>
-        </Link>
+        <Content>
+          <Typography variant="body1" className="sub-title truncate-text">
+            {category}
+          </Typography>
+          <Stack direction="row" alignItems="flex-end">
+            <Link href={path}>
+              <Typography variant="body1" className="title truncate-text">
+                {renderTitle()}
+              </Typography>
+            </Link>
+            <ButtonLink
+              link={''}
+              color={theme.palette.common.white}
+              name={''}
+              direction={'LTR'}
+              size={40}
+            />
+          </Stack>
+        </Content>
       </Box>
     );
   };
