@@ -94,13 +94,13 @@ a {
 }
 
 ::-webkit-scrollbar {
-  width: 0.2rem;
+  width: 0.25rem;
 }
 ::-webkit-scrollbar-track {
   border-radius: 30px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #00a650;
+  background: #2a30ff;
   border-radius: 30px;
 }
 

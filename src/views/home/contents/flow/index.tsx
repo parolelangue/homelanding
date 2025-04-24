@@ -1,11 +1,13 @@
 'use client';
 import { WIDTH_MEDIUM } from '@/@core/configs';
-import { Box, styled } from '@mui/material';
+import { Box, Grid, Stack, styled, Typography } from '@mui/material';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
-import { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { hexToRGBA } from '@/@core/utils/hex-to-rgba';
+import { useDevice } from '@/@core/hooks/useDevice';
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -16,25 +18,62 @@ const Flow = () => {
   const observer = useRef<IntersectionObserver | null>(null);
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const frameRef = useRef<HTMLDivElement | null>(null);
+  const device = useDevice();
 
   const flows = Array.from({ length: 4 }, (_, index) => ({
     title: 'Process & Flow ' + (index + 1),
     desc: 'We are an AI-driven company focused on solving real-world problems through intelligent, scalable solutions that improve efficiency,',
-    image: `/images/pages/home/our-solution/solution-img-1.png`,
+    image: `/images/pages/home/flow/flow-img-${index + 1}.png`,
   }));
 
   useGSAP(() => {
-    const _onScrollRotate = () => {
-      const scrollY = window.scrollY;
-      const rotateX = scrollY / 5;
-      const cube = document.querySelector('.cube') as HTMLDivElement;
-      cube.style.transform = `perspective(1200px)  rotateX(${rotateX}deg)`;
-    };
-
-    window.addEventListener('scroll', _onScrollRotate);
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card: HTMLDivElement, idx: number) => {
+      const index = idx;
+      const percentOffset = device.mobile ? 57 : 55;
+      const top = (device.mobile ? 40 : 50) + index * percentOffset;
+      const cardHeight = card.getBoundingClientRect().height || 800;
+      const offsetTop = cardHeight - 150;
+      gsap.fromTo(
+        card,
+        {
+          opacity: 1,
+          top: `${top}%`,
+          ease: 'power1.out',
+        },
+        {
+          opacity: 1,
+          top: `${top - index * percentOffset}%`,
+          ease: 'power1.out',
+          scrollTrigger: {
+            trigger: card,
+            start: `top top+=${offsetTop}`,
+            scrub: true,
+          },
+        },
+      );
+      gsap.fromTo(
+        cards[index - 1],
+        {
+          scale: 1,
+          opacity: 1,
+          ease: 'power1.out',
+        },
+        {
+          scale: 0.85,
+          opacity: 0.6,
+          transformOrigin: 'center center',
+          ease: 'power1.out',
+          scrollTrigger: {
+            trigger: card,
+            start: device.mobile ? 'top+=5% center' : 'top+=35% center',
+            scrub: true,
+          },
+        },
+      );
+    });
 
     return () => {
-      window.removeEventListener('scroll', _onScrollRotate);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
@@ -44,18 +83,27 @@ const Flow = () => {
       <div className="wrap">
         <div className="sticky">
           <div className="content">
-            <div className="frame" ref={frameRef}>
-              <div className="cube">
-                {flows.map((flow, index) => (
-                  <Card className={`frame-${index + 1}`} key={index} id={`frame-${index + 1}`}>
-                    <div className="detail">
-                      {/* <img src={flow.image} className="img" /> */}
-                      <h5 className="title">{flow.title}</h5>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </div>
+            {flows.map((flow, index) => (
+              <Card
+                className={`card frame-${index + 1}`}
+                style={{ '--frame-index': `${index * 25}%` } as React.CSSProperties}
+                key={index}
+                id={`frame-${index + 1}`}
+              >
+                <Grid container height="100%" gap={{ xs: '1.5rem', md: '0' }}>
+                  <Grid item xs={12} md={4} height="100%">
+                    <Typography className="sub-title">0{index + 1}</Typography>
+                    <Typography className="title">{flow.title}</Typography>
+                    <Typography className="desc">{flow.desc}</Typography>
+                  </Grid>
+                  <Grid item xs={12} md={8} height="100%">
+                    <Box component={'div'} className="box-img">
+                      <img src={flow.image} />
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Card>
+            ))}
           </div>
         </div>
       </div>
@@ -64,7 +112,7 @@ const Flow = () => {
 };
 
 const Section = styled('section')(({ theme }) => ({
-  height: '200vh',
+  height: '450vh',
   position: 'relative',
   zIndex: 5,
   display: 'flex',
@@ -72,7 +120,7 @@ const Section = styled('section')(({ theme }) => ({
   justifyContent: 'center',
   overflow: 'visible',
   '.wrap': {
-    height: '200vh',
+    height: '450vh',
     position: 'absolute',
     top: 0,
     zIndex: 4,
@@ -84,151 +132,238 @@ const Section = styled('section')(({ theme }) => ({
     top: 0,
     zIndex: 1,
     overflow: 'visible',
-    width: '1px',
+    width: '100%',
     willChange: 'transform',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   '.content': {
-    height: 'auto',
-    position: 'relative',
+    height: '100vh',
+    position: 'sticky',
+    top: 0,
     width: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'column',
+    margin: '50px 0',
   },
-  '.frame': {
-    height: 'min-content',
-    overflow: 'visible',
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  '.cube': {
-    overflow: 'visible',
-    position: 'relative',
-    transformStyle: 'preserve-3d',
-    aspectRatio: '1/1',
-    willChange: 'transform',
-    opacity: 1,
-    width: '150px',
-    height: '150px',
 
-    '.frame-1': {
-      aspectRatio: '1/1',
-      width: '200px',
-      height: '200px',
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      overflow: 'visible',
-      backfaceVisibility: 'hidden',
-      transform: 'translate(-50%, -50%) translateZ(100px)',
-      opacity: 1,
-      '.detail': {
-        transform: 'translate(-50%, -50%)',
-        opacity: 1,
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-        whiteSpace: 'pre',
-        width: 'auto',
-        height: 'auto',
-        zIndex: 1,
-      },
-    },
-    '.frame-2': {
-      aspectRatio: '1/1',
-      width: '200px',
-      height: '200px',
-      position: 'absolute',
-      top: '-115px',
-      left: '50%',
-      overflow: 'visible',
-      backfaceVisibility: 'hidden',
-      transform: 'translateX(-50%) rotateX(90deg)',
-      opacity: 1,
-      '.detail': {
-        transform: 'translate(-50%, -50%)',
-        opacity: 1,
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-        whiteSpace: 'pre',
-        width: 'auto',
-        height: 'auto',
-        zIndex: 1,
-      },
-    },
-    '.frame-3': {
-      //   aspectRatio: '1/1',
-      width: '200px',
-      height: '200px',
-      position: 'absolute',
-      top: 'calc(50.00000000000002% - 200px / 2)',
-      left: 'calc(50.00000000000002% - 200px / 2)',
-      overflow: 'visible',
-      backfaceVisibility: 'hidden',
-      transform: 'rotateX(180deg) translateZ(100px)',
-      opacity: 1,
-      '.detail': {
-        transform: 'translate(-50%, -50%)',
-        opacity: 1,
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-        whiteSpace: 'pre',
-        width: 'auto',
-        height: 'auto',
-        zIndex: 1,
-      },
-    },
-    '.frame-4': {
-      width: '200px',
-      height: '200px',
-      position: 'absolute',
-      bottom: '-115px',
-      left: 'calc(50.00000000000002% - 200px / 2)',
-      overflow: 'visible',
-      backfaceVisibility: 'hidden',
-      transform: 'rotateX(-90deg)',
-      '.detail': {
-        transform: 'translate(-50%, -50%)',
-        opacity: 1,
-        position: 'absolute',
-        left: '49%',
-        top: '50%',
-        whiteSpace: 'pre',
-        width: 'auto',
-        height: 'auto',
-        zIndex: 1,
-      },
-    },
-    '.title': {
-      fontSize: '10rem',
-      lineHeight: '200px',
-      color: theme.palette.common.white,
-      textTransform: 'uppercase',
-      fontWeight: 700,
-      whiteSpace: 'nowrap',
-    },
-    img: {
-      width: '200px',
-      height: '200px',
-    },
-  },
+  // Animation rotate
+  // '.content': {
+  //   height: 'auto',
+  //   position: 'relative',
+  //   width: '100%',
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+  // '.frame': {
+  //   height: 'min-content',
+  //   overflow: 'visible',
+  //   position: 'relative',
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+  // '.cube': {
+  //   overflow: 'visible',
+  //   position: 'relative',
+  //   transformStyle: 'preserve-3d',
+  //   aspectRatio: '1/1',
+  //   willChange: 'transform',
+  //   opacity: 1,
+  //   width: '150px',
+  //   height: '150px',
+
+  //   '.frame-1': {
+  //     aspectRatio: '1/1',
+  //     width: '200px',
+  //     height: '200px',
+  //     position: 'absolute',
+  //     top: '50%',
+  //     left: '50%',
+  //     overflow: 'visible',
+  //     backfaceVisibility: 'hidden',
+  //     transform: 'translate(-50%, -50%) translateZ(100px)',
+  //     opacity: 1,
+  //     '.detail': {
+  //       transform: 'translate(-50%, -50%)',
+  //       opacity: 1,
+  //       position: 'absolute',
+  //       left: '50%',
+  //       top: '50%',
+  //       whiteSpace: 'pre',
+  //       width: 'auto',
+  //       height: 'auto',
+  //       zIndex: 1,
+  //     },
+  //   },
+  //   '.frame-2': {
+  //     aspectRatio: '1/1',
+  //     width: '200px',
+  //     height: '200px',
+  //     position: 'absolute',
+  //     top: '-115px',
+  //     left: '50%',
+  //     overflow: 'visible',
+  //     backfaceVisibility: 'hidden',
+  //     transform: 'translateX(-50%) rotateX(90deg)',
+  //     opacity: 1,
+  //     '.detail': {
+  //       transform: 'translate(-50%, -50%)',
+  //       opacity: 1,
+  //       position: 'absolute',
+  //       left: '50%',
+  //       top: '50%',
+  //       whiteSpace: 'pre',
+  //       width: 'auto',
+  //       height: 'auto',
+  //       zIndex: 1,
+  //     },
+  //   },
+  //   '.frame-3': {
+  //     //   aspectRatio: '1/1',
+  //     width: '200px',
+  //     height: '200px',
+  //     position: 'absolute',
+  //     top: 'calc(50.00000000000002% - 200px / 2)',
+  //     left: 'calc(50.00000000000002% - 200px / 2)',
+  //     overflow: 'visible',
+  //     backfaceVisibility: 'hidden',
+  //     transform: 'rotateX(180deg) translateZ(100px)',
+  //     opacity: 1,
+  //     '.detail': {
+  //       transform: 'translate(-50%, -50%)',
+  //       opacity: 1,
+  //       position: 'absolute',
+  //       left: '50%',
+  //       top: '50%',
+  //       whiteSpace: 'pre',
+  //       width: 'auto',
+  //       height: 'auto',
+  //       zIndex: 1,
+  //     },
+  //   },
+  //   '.frame-4': {
+  //     width: '200px',
+  //     height: '200px',
+  //     position: 'absolute',
+  //     bottom: '-115px',
+  //     left: 'calc(50.00000000000002% - 200px / 2)',
+  //     overflow: 'visible',
+  //     backfaceVisibility: 'hidden',
+  //     transform: 'rotateX(-90deg)',
+  //     '.detail': {
+  //       transform: 'translate(-50%, -50%)',
+  //       opacity: 1,
+  //       position: 'absolute',
+  //       left: '49%',
+  //       top: '50%',
+  //       whiteSpace: 'pre',
+  //       width: 'auto',
+  //       height: 'auto',
+  //       zIndex: 1,
+  //     },
+  //   },
+  //   '.title': {
+  //     fontSize: '10rem',
+  //     lineHeight: '200px',
+  //     color: theme.palette.common.white,
+  //     textTransform: 'uppercase',
+  //     fontWeight: 700,
+  //     whiteSpace: 'nowrap',
+  //   },
+  //   img: {
+  //     width: '200px',
+  //     height: '200px',
+  //   },
+  // },
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
+  [theme.breakpoints.down('sm')]: {
+    height: '300vh',
+    '.wrap': {
+      height: '300vh',
+    },
+  },
 }));
 const Card = styled('div')(({ theme }) => ({
-  [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
-  [theme.breakpoints.down('lg')]: {},
-  [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
+  width: '80vw',
+  height: '720px',
+  padding: '1.5rem 2.5rem',
+  borderRadius: '0.75rem',
+  overflow: 'hidden',
+  position: 'absolute',
+  left: '50%',
+  transform: ' translateX(-50%) translateY(-50%);',
+  backgroundColor: theme.palette.common.white,
+  transition: 'all .45s cubic-bezier(0, 0.7, 0.3, 0.9)',
+  '.sub-title': {
+    fontSize: '1.125rem',
+    color: theme.palette.primary.main,
+    lineHeight: '1.75rem',
+    fontWeight: 500,
+    marginTop: '1.5rem',
+  },
+  '.title': {
+    fontSize: '2rem',
+    color: theme.palette.grey[900],
+    lineHeight: '2.5rem',
+    fontWeight: 600,
+    margin: '1.5rem 0 0.5rem 0',
+  },
+  '.desc': {
+    fontSize: '1rem',
+    color: theme.palette.grey[900],
+    lineHeight: '1.5rem',
+    fontWeight: 400,
+  },
+  '.box-img': {
+    width: '100%',
+    height: '100%',
+    borderRadius: '0.75rem',
+    overflow: 'hidden',
+    position: 'relative',
+    // '&:after': {
+    //   content: `''`,
+    //   width: '100%',
+    //   height: '100%',
+    //   backgroundColor: hexToRGBA('#000', 0.4),
+    //   position: 'absolute',
+    //   top: '50%',
+    //   left: '50%',
+    //   transform: 'translate(-50%,-50%)',
+    //   zIndex: 2,
+    // },
+    img: {
+      position: 'relative',
+      zIndex: 1,
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+    },
+  },
+  [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {
+    width: '80vw',
+    height: '720px',
+  },
+  [theme.breakpoints.down('lg')]: {
+    width: '90vw',
+    height: '640px',
+  },
+  [theme.breakpoints.down('md')]: {
+    width: '90vw',
+    height: '460px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    width: '90vw',
+    height: 'fit-content',
+    minHeight: '55vh',
+  },
 }));
 
 export default Flow;
