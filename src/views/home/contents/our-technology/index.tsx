@@ -17,6 +17,7 @@ import type SplideCore from '@splidejs/splide';
 import { newsActions } from '@/app/reducers/news';
 import TechCard from './TechCard';
 import { ITechnology } from '@/@core/types/technology';
+import gsap from 'gsap';
 
 const OurTechnologySection = () => {
   const { t } = useTranslation('common');
@@ -66,6 +67,30 @@ const OurTechnologySection = () => {
     },
   ];
 
+  const _onDrag = (ev) => {
+    const listSlide = ev.Components.Slides;
+    listSlide.forEach(({ slide }) => {
+      if (slide.className.includes('is-active'))
+        return gsap.to(slide, {
+          opacity: 1,
+          scale: 0.88,
+        });
+      gsap.to(slide, {
+        opacity: 0.5,
+        scale: 0.88,
+      });
+    });
+  };
+  const _onDragged = (ev) => {
+    const listSlide = ev.Components.Slides;
+    listSlide.forEach(({ slide }) => {
+      gsap.to(slide, {
+        opacity: 1,
+        scale: 1,
+      });
+    });
+  };
+
   const getAllInfosData = async () => {
     // const eventId = '4c5b6a7e8f9d1e2c3b4a5d6e7f8c9b0a';
     // const inforClosureId = '8f74fe97f1b85c3d03ff097ece0cb2e3';
@@ -111,6 +136,8 @@ const OurTechnologySection = () => {
         <Box component="div" className="splide__track">
           <NewsSlider
             ref={slideRef}
+            onDrag={_onDrag}
+            onDragged={_onDragged}
             className="hero-slider"
             options={{
               type: 'loop',
@@ -211,6 +238,9 @@ const OurTechnologySection = () => {
 // }));
 
 const NewsSlider = styled(Splide)(({ theme }) => ({
+  '.splide__slide': {
+    transition: 'all .45s cubic-bezier(0, 0.7, 0.3, 0.9)',
+  },
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
   [theme.breakpoints.down('lg')]: {
     marginTop: '0',
