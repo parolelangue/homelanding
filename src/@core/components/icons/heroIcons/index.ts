@@ -21,6 +21,7 @@ import QrGGPlay from './QrGGPlay';
 import BtnAppStore from './BtnAppStore';
 import BtnGGPlay from './BtnGGPlay';
 import ArrowRightUp from './ArrowRightUp';
+import ArrowDown from './ArrowDown';
 
 export const HeroIcons = {
   ArrowTrendingUp,
@@ -46,4 +47,5 @@ export const HeroIcons = {
   BtnAppStore,
   BtnGGPlay,
   ArrowRightUp,
+  ArrowDown,
 };

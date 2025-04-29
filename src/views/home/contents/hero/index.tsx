@@ -1,17 +1,14 @@
 'use client';
 import { WIDTH_MEDIUM } from '@/@core/configs';
-import { Box, styled, Typography } from '@mui/material';
+import { Box, keyframes, styled, Typography } from '@mui/material';
 //@ts-ignore
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import HeroItem from './HeroItem';
-import { hexToRGBA } from '@/@core/utils/hex-to-rgba';
-import { useDevice } from '@/@core/hooks/useDevice';
-import { IBanner, IBnnr } from '@/@core/types/home';
-import { useTranslation } from 'next-i18next';
-import StockExchangeSocket from '@/@core/components/StkExeSocket';
-import { IStockCode } from '@/@core/types/stockExchange';
-import { truncateSync } from 'fs';
 import MainWrapper from '@/@core/components/shared/sections/main-wrapper';
+import { useDevice } from '@/@core/hooks/useDevice';
+import { hexToRGBA } from '@/@core/utils/hex-to-rgba';
+import { Splide } from '@splidejs/react-splide';
+import { useTranslation } from 'next-i18next';
+import { HeroIcons } from '@/@core/components/icons/heroIcons';
+import { useResources } from '@/@core/hooks/useResources';
 
 const Wrap = styled('section')(({ theme }) => ({
   position: 'relative',
@@ -69,6 +66,39 @@ const Intro = styled(Box)(({ theme }) => ({
       color: theme.palette.common.white,
     },
   },
+}));
+
+const translateY = keyframes`
+  0%   { transform: translateY(-20px);   }
+  100% { transform: translateY(0px) }
+`;
+const ScrollToView = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  bottom: '6.25rem',
+  right: '4rem',
+  zIndex: 3,
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '0 0.5rem',
+  cursor: 'pointer',
+  '.arrow': {
+    width: '1.25rem',
+    height: '1.25rem',
+    overflow: 'hidden',
+    svg: {
+      animation: `${translateY} 1.5s infinite`,
+    },
+  },
+  '.label': {
+    fontSize: '1rem',
+    lineHeight: '1.5rem',
+    fontWeight: 500,
+    color: theme.palette.common.white,
+  },
+  [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
+  [theme.breakpoints.down('lg')]: {},
+  [theme.breakpoints.down('md')]: {},
+  [theme.breakpoints.down('sm')]: {},
 }));
 
 const HeroSlider = styled(Splide)(({ theme }) => ({
@@ -158,8 +188,17 @@ const HeroSlider = styled(Splide)(({ theme }) => ({
 type Props = {};
 
 const HeroSection = ({}: Props) => {
-  const { i18n } = useTranslation('common');
+  const { t } = useTranslation('common');
   const device = useDevice();
+  const { navLinks } = useResources();
+
+  const _onScrollNextSection = () => {
+    const ele = document.getElementById(navLinks[0].path);
+    ele.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  };
 
   return (
     <Wrap>
@@ -191,6 +230,14 @@ const HeroSection = ({}: Props) => {
           </Typography>
         </MainWrapper>
       </Intro>
+      <ScrollToView onClick={_onScrollNextSection}>
+        <Typography className="label" variant="body1">
+          {t('common.scrollToViewMore')}
+        </Typography>
+        <Box component={'div'} className="arrow">
+          <HeroIcons.ArrowDown />
+        </Box>
+      </ScrollToView>
     </Wrap>
   );
 };

@@ -41,8 +41,9 @@ const MuiToolbar = styled(Toolbar)(({ theme }) => ({
     zIndex: 1,
     width: '100%',
     height: '0%',
-    backdropFilter: 'blur(50px)',
-    backgroundColor: '#0808084D',
+    // backdropFilter: 'blur(50px)',
+    // backgroundColor: '#0808084D',
+    backgroundColor: theme.palette.common.white,
     boxShadow: '10px 10px 40px rgba(0, 0, 0, 0.1)',
     transition: 'height 0.25s ease-in-out',
   },
@@ -114,6 +115,8 @@ const HorizontalLayout = (props: HorizontalLayoutProps) => {
 
   const [openSidebar, { off: offSidebar, toggle: toggleSidebar }] = useBoolean();
 
+  const activeScrollBar = scrollTrigger || pathname !== '/';
+
   return (
     <HorizontalLayoutWrapper className="layout-wrapper">
       <AppBar
@@ -147,7 +150,7 @@ const HorizontalLayout = (props: HorizontalLayoutProps) => {
           <Box className="layout-horizontal-nav" sx={{ width: '100%' }}>
             <MuiToolbar
               className={clsx('horizontal-nav-content-container', {
-                active: scrollTrigger || pathname !== '/',
+                active: activeScrollBar,
               })}
               sx={{
                 mx: 'auto',
@@ -160,7 +163,12 @@ const HorizontalLayout = (props: HorizontalLayoutProps) => {
             >
               <MuiToolbarWrapper>
                 <MainWrapper isFullContainer>
-                  <LAppBar active={openSidebar} toggleSidebar={toggleSidebar} {...props}>
+                  <LAppBar
+                    active={openSidebar}
+                    activeScroll={activeScrollBar}
+                    toggleSidebar={toggleSidebar}
+                    {...props}
+                  >
                     {(userHorizontalNavMenuContent && userHorizontalNavMenuContent(props)) || (
                       <NavigationSidebar open toggleSidebar={() => {}} />
                     )}

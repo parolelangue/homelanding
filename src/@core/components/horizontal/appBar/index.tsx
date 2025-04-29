@@ -7,11 +7,36 @@ import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import { ReactNode, useEffect } from 'react';
 import LogoMain from '../../icons/LogoMain';
+import { useResources } from '@/@core/hooks/useResources';
+import clsx from 'clsx';
 
 const StyleLogo = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   textDecoration: 'none',
+  svg: {
+    path: {
+      fill: theme.palette.common.white,
+      transition: 'all .25s',
+      '&.logo': {
+        fill: theme.palette.primary.main,
+      },
+    },
+  },
+  '&.active': {
+    svg: {
+      path: {
+        fill: theme.palette.common.black,
+        transition: 'all .25s',
+        '&.active': {
+          fill: theme.palette.primary.main,
+        },
+        '&.logo': {
+          fill: theme.palette.primary.main,
+        },
+      },
+    },
+  },
 }));
 
 const LeftStack = styled(Stack)(({ theme }) => ({
@@ -70,74 +95,62 @@ const AppBarWrapper = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {},
 }));
 
-const ButtonHamburger = styled(Box)(({ theme }) => ({
-  padding: '0.5rem 1.25rem',
-  borderRadius: '0.325rem',
-  // background: hexToRGBA(theme.palette.common.white, 0.16),
+const Navs = styled('nav')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  ul: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    listStyleType: 'none',
+    li: {
+      a: {
+        padding: '0.5rem 1rem',
+        fontSize: '1rem',
+        fontWeight: 500,
+        lineHeight: '1.5rem',
+        color: theme.palette.common.white,
+        position: 'relative',
+        '&:after': {
+          content: `''`,
+          position: 'absolute',
+          left: 'auto',
+          right: '0',
+          bottom: 0,
+          width: '0%',
+          height: '2px',
+          backgroundColor: theme.palette.common.white,
+          transition: 'all .25s',
+        },
+        '&:hover': {
+          '&:after': {
+            width: '100%',
+            left: 0,
+            right: 'auto',
+            transition: 'all .25s',
+          },
+        },
+      },
+    },
+  },
+  '&.active': {
+    ul: {
+      li: {
+        a: {
+          color: theme.palette.grey[900],
+          '&:after': {
+            backgroundColor: theme.palette.common.black,
+          },
+        },
+      },
+    },
+  },
   [theme.breakpoints.down('xl')]: {},
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
   [`@media (max-width: 1270px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
   [theme.breakpoints.down('sm')]: {},
-}));
-
-const Hamburger = styled(Box)(({ theme }) => ({
-  width: '2.4rem',
-  height: '1.5rem',
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexDirection: 'column',
-  overflow: 'hidden',
-  cursor: 'pointer',
-  span: {
-    width: '2.4rem',
-    height: '2px',
-    backgroundColor: theme.palette.common.white,
-    display: 'inline-block',
-    borderRadius: '2rem',
-    transition: 'all .2s ' + cssUtils.customCubic,
-    position: 'absolute',
-    '&.first': {
-      right: 0,
-      marginLeft: 'auto',
-      top: '0.25rem',
-    },
-    '&.middle': {
-      top: '50%',
-      transform: 'translate(0,-50%)',
-    },
-    '&.last': {
-      bottom: '0.25rem',
-      width: '1.2rem',
-      transform: 'translate(50%,0)',
-      left: 0,
-      marginRight: 'auto',
-    },
-  },
-  '&.active': {
-    '.middle': {
-      transform: 'translate(-100%,-50%)',
-      opacity: 0,
-      transition: 'all .2s ' + cssUtils.customCubic,
-    },
-    '.first': {
-      width: '1.5rem',
-      transform: 'rotate(45deg) translateY(-50%)',
-      top: '50%',
-      right: '8px',
-      transition: 'all .2s ' + cssUtils.customCubic,
-    },
-    '.last': {
-      width: '1.5rem',
-      top: '50%',
-      left: '7px',
-      transform: 'rotate(-45deg) translateY(-50%)',
-      transition: 'all .2s ' + cssUtils.customCubic,
-    },
-  },
 }));
 
 type LAppBarProps = {
@@ -150,6 +163,7 @@ type LAppBarProps = {
   saveSettings?: any;
   settings?: any;
   active: boolean;
+  activeScroll?: boolean;
   toggleSidebar: VoidFunction;
 };
 
@@ -162,14 +176,24 @@ const LAppBar = (props: LAppBarProps) => {
     settings,
     toggleSidebar,
     active,
+    activeScroll,
   } = props;
 
   const { t } = useTranslation('common');
+  const { navLinks } = useResources();
 
   const isDesktop = useMediaQuery((theme: any) => theme.breakpoints.up('xl'));
 
   const onChangeDarkMode = (mode: EThemeMode) => () => {
     saveSettings({ ...settings, mode });
+  };
+
+  const _onScrollToSection = (id: string) => {
+    const ele = document.getElementById(id);
+    ele.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
   };
 
   useEffect(() => {
@@ -186,20 +210,13 @@ const LAppBar = (props: LAppBarProps) => {
         px: !isDesktop ? [4, 4] : [0, 0],
       }}
     >
-      <ButtonHamburger>
-        <Hamburger onClick={toggleSidebar} className={active ? 'active' : ''} component={'div'}>
-          <span className="first"></span>
-          <span className="middle"></span>
-          <span className="last"></span>
-        </Hamburger>
-      </ButtonHamburger>
       <Stack direction="row" alignItems="center" gap={'2.5rem'}>
         {userHorizontalAppBarBranding ? (
           userHorizontalAppBarBranding(props)
         ) : (
           <LeftStack>
             <Link href="/" passHref title="ASAM">
-              <StyleLogo>
+              <StyleLogo className={clsx({ active: activeScroll })}>
                 <LogoMain />
               </StyleLogo>
             </Link>
@@ -207,6 +224,23 @@ const LAppBar = (props: LAppBarProps) => {
         )}
         {children}
       </Stack>
+      <Navs className={clsx({ active: activeScroll })}>
+        <ul>
+          {navLinks.map((nav, index) => (
+            <li key={index}>
+              <Link
+                onClick={(e) => {
+                  _onScrollToSection(nav.path);
+                  e.preventDefault();
+                }}
+                href={nav.path}
+              >
+                {nav.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Navs>
       <RightStack>
         <Link href={ASAM_TRADING_LOGIN_URL} aria-label="ASAM trading" target="_blank" passHref>
           <ButtonStyle variant="contained">{t('button.getStarted')}</ButtonStyle>

@@ -21,24 +21,16 @@
     "relatedNews": "<span>Related</span> news",
     "description": "Description",
     "getStarted": "Get Started",
-    "seeMore": "See More"
+    "seeMore": "See More",
+    "scrollToViewMore": "Scroll to view more"
   },
   "navLinks": {
-    "aboutAsam": "About ASAM",
+    "whatWeDo": "What we do",
+    "technology": "Technology",
     "services": "Services",
-    "news": "News",
-    "contact": "Contact",
-    "support": "Support",
-    "asamSecuritiesCo": "ASAM Securities Corporation",
-    "asamAssetManagement": "ASAM Asset Management",
-    "brokerageService": "Brokerage Service",
-    "investmentBanking": "Investment Banking",
-    "userGuide": "User Guide",
-    "contact***": "Contact",
-    "informationDisclosure": "Information Disclosure",
-    "asamEvents": "ASAM Events",
-    "certificateList": "Certificate List",
-    "career": "Careers"
+    "solution": "Solution",
+    "organization": "Organization",
+    "contact": "Contact"
   },
   "button": {
     "getStarted": "Get Started",
@@ -51,6 +43,9 @@
     "visionA": "Vision A",
     "ourTechnology": "Our <span>Technology</span>",
     "ourSolution": "Our <span>Solution</span>",
-    "solutions": "Solutions"
+    "solutions": "Solutions",
+    "weAreAcompanyThatSolvesProblemsBasedOnAI": "We are a company that <span>Solves problems based on AI</span>",
+    "organization": "Organization",
+    "techniciansAreWaitingForYouInHcmc": "<span>1000+ Technicians</span> <br/>  are waiting for you in HCMC"
   }
 }

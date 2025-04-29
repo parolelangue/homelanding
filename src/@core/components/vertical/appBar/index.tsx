@@ -7,7 +7,7 @@ import ConfigLanguage from '../../shared/sections/config-language';
 
 const TopBar = styled(Stack)(({ theme }) => ({
   width: '100%',
-  backgroundColor: 'transparent',
+  backgroundColor: '',
   position: 'fixed',
   // height: 60,
   maxHeight: 60,
@@ -23,8 +23,8 @@ const TopBar = styled(Stack)(({ theme }) => ({
     zIndex: 1,
     width: '100%',
     height: '0%',
-    backgroundColor: theme.palette.common.black,
-    boxShadow: '10px 10px 40px rgba(0, 0, 0, 0.1)',
+    backgroundColor: theme.palette.common.white,
+    // boxShadow: '10px 10px 40px rgba(0, 0, 0, 0.1)',
     transition: 'height 0.25s ease-in-out',
   },
   '&.active': {
@@ -125,7 +125,7 @@ const LAppBar = ({ active, toggleSidebar }: LayoutBarProps) => {
     disableHysteresis: true,
   });
   return (
-    <TopBar className={clsx({ active: scrollTrigger })}>
+    <TopBar className={clsx('AAAA', { active: scrollTrigger })}>
       <Wrap direction={'row'}>
         <Link href="/" passHref>
           <StyleLogo>
