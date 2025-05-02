@@ -19,7 +19,7 @@ const Wrap = styled('section')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {},
   [theme.breakpoints.down('sm')]: {
     marginTop: '0',
-    height: '100%',
+    height: '100vh',
     width: '100%',
   },
 }));
@@ -51,6 +51,7 @@ const Intro = styled(Box)(({ theme }) => ({
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {
+    bottom: '12.5rem',
     '.title': {
       fontSize: '3rem',
       lineHeight: '4rem',
@@ -60,8 +61,8 @@ const Intro = styled(Box)(({ theme }) => ({
   },
   [theme.breakpoints.down('sm')]: {
     '.title': {
-      fontSize: '3rem',
-      lineHeight: '4rem',
+      fontSize: '2.75rem',
+      lineHeight: '3.25rem',
       fontWeight: 400,
       color: theme.palette.common.white,
     },
@@ -98,7 +99,10 @@ const ScrollToView = styled(Box)(({ theme }) => ({
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
+  [theme.breakpoints.down('sm')]: {
+    bottom: '2rem',
+    right: '2rem',
+  },
 }));
 
 const HeroSlider = styled(Splide)(({ theme }) => ({

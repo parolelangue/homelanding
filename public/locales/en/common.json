@@ -1,12 +1,17 @@
 {
   "common": {
     "shares": "Share",
+    "address": "Address",
     "followUs": "Follow Us",
     "aboutUs": "About Us",
-    "addressAsam": "03 Le Thanh Ton St, Ben Nghe Ward, District 1, Ho Chi Minh City.",
     "hotline": "Hotline",
-    "copyright": "Copyright@2024 ASAM Securities Corporation. Copyright Registered.",
-    "email": "contact@asamvn.com.vn",
+    "korea": "Korea",
+    "vietnam": "Vietnam",
+    "email": "Email",
+    "project": "Project",
+    "technology": "Technology",
+    "help": "Help",
+    "r&D": "R&D",
     "lookFor": "Search",
     "home": "Home",
     "share": "Share",
@@ -34,7 +39,8 @@
   },
   "button": {
     "getStarted": "Get Started",
-    "seeMore": "See More"
+    "seeMore": "See More",
+    "techBlog": "Tech Blog"
   },
   "homePage": {
     "dataDrivenAITransformation": "Data-driven AI Transformation",
@@ -46,6 +52,10 @@
     "solutions": "Solutions",
     "weAreAcompanyThatSolvesProblemsBasedOnAI": "We are a company that <span>Solves problems based on AI</span>",
     "organization": "Organization",
-    "techniciansAreWaitingForYouInHcmc": "<span>1000+ Technicians</span> <br/>  are waiting for you in HCMC"
+    "techniciansAreWaitingForYouInHcmc": "<span>1000+ Technicians</span> <br/>  are waiting for you in HCMC",
+    "techstacks": "Techstacks",
+    "teams": "Teams",
+    "contact": "Contact",
+    "greatIdeaCreativeTechnology": "Great Idea & Creative Technology"
   }
 }

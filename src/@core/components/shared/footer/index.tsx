@@ -1,25 +1,33 @@
 import { WIDTH_MEDIUM } from '@/@core/configs';
-import { IHeadCategory } from '@/@core/types/home';
-import { useAppSelector } from '@/infra/store';
-import { Divider, Grid, Stack, styled } from '@mui/material';
+import { useResources } from '@/@core/hooks/useResources';
+import { SectionTitle } from '@/@core/styles/common';
+import { Button, Divider, Stack, styled, Typography, useTheme } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
-import GridPolygon from '../../icons/GridPolygon';
-import GridPolygonTop from '../../icons/GridPolygonTop';
-import LogoMain from '../../icons/LogoMain';
+import LogoMainV2 from '../../icons/LogoMainv2';
+import LogoShort from '../../icons/LogoShort';
 import SocialFacebook from '../../icons/SocialFacebook';
+import SocialInstagram from '../../icons/SocialInstagram';
 import SocialLinked from '../../icons/SocialLinked';
-import SocialYoutube from '../../icons/SocialYoutube';
 import MainWrapper from '../sections/main-wrapper';
-import { EHomePageContactInfoKey, ETemplateDisplay, IHomeInfo } from '@/@core/types/general';
-import { genContentLang } from '@/@core/utils/transform';
 
 const Wrap = styled('footer')(({ theme }) => ({
   width: '100%',
-  backgroundColor: theme.palette.text.black900,
+  backgroundColor: '#101010',
   overflow: 'hidden',
   position: 'relative',
-  padding: '70px 0',
+  padding: '70px 0 100px 0',
+  backgroundImage: 'url(/images/footer/footer-bg.jpg)',
+  backgroundRepeat: 'no-repeat',
+  backgroundAttachment: 'fixed',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  '.intro': {
+    fontSize: '1.125rem',
+    lineHeight: '1.75rem',
+    color: theme.palette.grey[300],
+    fontWeight: 400,
+  },
   [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
@@ -27,172 +35,183 @@ const Wrap = styled('footer')(({ theme }) => ({
     padding: '70px 0.5rem',
   },
 }));
-const Top = styled(Stack)(({ theme }) => ({
+
+const SocialList = styled('ul')(({ theme }) => ({
+  display: 'inline-flex',
+  alignItems: 'center',
   gap: '0 1.5rem',
-  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
-  [theme.breakpoints.down('lg')]: {},
-  [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
-}));
-const Head = styled(Stack)(({ theme }) => ({
-  minWidth: 200,
-  marginBottom: '1rem',
-  '.label': {
-    fontSize: '1rem',
-    lineHeight: '1.5rem',
-    fontWeight: 400,
-    color: theme.palette.text.neutral950,
-    marginBottom: '0.325rem',
-  },
-  '.follow': {
-    marginTop: '1.5rem',
-    marginBottom: '0.625rem',
-  },
-  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
-  [theme.breakpoints.down('lg')]: {},
-  [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
-}));
-const Label = styled('p')(({ theme }) => ({
-  fontSize: '1.25rem',
-  lineHeight: '1.75rem',
-  fontWeight: 600,
-  color: theme.palette.text.neutral950,
-  marginBottom: '0.5rem',
-  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
-  [theme.breakpoints.down('lg')]: {},
-  [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {
-    textAlign: 'left',
-  },
-}));
-const List = styled('ul')(({ theme }) => ({
-  marginTop: '0.75rem',
-  display: 'flex',
-  flexDirection: 'column',
   listStyleType: 'none',
-  gap: '0.5rem 0',
-  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
-  [theme.breakpoints.down('lg')]: {},
-  [theme.breakpoints.down('md')]: {
-    alignItems: 'flex-start',
-  },
-  [theme.breakpoints.down('sm')]: {
-    alignItems: 'flex-start',
-  },
-}));
-const ListItem = styled('li')(({ theme }) => ({
-  padding: '0.25rem 0',
-  fontSize: '1rem',
-  lineHeight: '1.25rem',
-  width: 'fit-content',
-  position: 'relative',
-  fontWeight: 400,
-  color: theme.palette.text.neutral950,
-  transition: 'all .25s',
-  '&:after': {
-    content: `''`,
-    width: '0%',
-    height: '1px',
-    backgroundColor: theme.palette.common.white,
-    position: 'absolute',
-    bottom: 0,
-    left: 'auto',
-    right: 0,
-    transition: 'all .25s',
-  },
-  '&:hover': {
-    color: theme.palette.primary.main,
-    transition: 'all .25s',
-    '&:after': {
-      width: '100%',
-      left: 0,
-      right: 'auto',
-      transition: 'all .25s',
+  li: {
+    svg: {
+      path: {
+        transition: 'all .25s',
+      },
+    },
+    '&:hover': {
+      svg: {
+        path: {
+          fill: theme.palette.common.white,
+          transition: 'all .25s',
+        },
+      },
     },
   },
+
+  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
+  [theme.breakpoints.down('lg')]: {},
+  [theme.breakpoints.down('md')]: {},
+  [theme.breakpoints.down('sm')]: {},
+}));
+
+const Navs = styled('nav')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  ul: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    listStyleType: 'none',
+    li: {
+      padding: '0.5rem 1rem',
+      a: {
+        fontSize: '1rem',
+        fontWeight: 500,
+        lineHeight: '1.5rem',
+        color: theme.palette.common.white,
+        position: 'relative',
+        '&:after': {
+          content: `''`,
+          position: 'absolute',
+          left: 'auto',
+          right: '0',
+          bottom: '-2px',
+          width: '0%',
+          height: '2px',
+          backgroundColor: theme.palette.common.white,
+          transition: 'all .25s',
+        },
+        '&:hover': {
+          '&:after': {
+            width: '100%',
+            left: 0,
+            right: 'auto',
+            transition: 'all .25s',
+          },
+        },
+      },
+    },
+  },
+  '&.active': {
+    ul: {
+      li: {
+        a: {
+          color: theme.palette.grey[900],
+          '&:after': {
+            backgroundColor: theme.palette.common.black,
+          },
+        },
+      },
+    },
+  },
+  [theme.breakpoints.down('xl')]: {},
+  [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
+  [`@media (max-width: 1270px)`]: {},
+  [theme.breakpoints.down('lg')]: {},
+  [theme.breakpoints.down('md')]: {},
+  [theme.breakpoints.down('sm')]: {
+    ul: {
+      alignItems: 'flex-end',
+      flexDirection: 'column',
+    },
+  },
+}));
+
+const AprotechBox = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'relative',
+  width: '500px',
+  height: '500px',
+  '.aprotech-box': {
+    zIndex: 2,
+    width: '300px',
+    height: '300px',
+  },
+  '.shadow-1': {
+    position: 'absolute',
+    bottom: '0',
+    left: '0',
+    background: 'radial-gradient(51.74% 50.67% at 54.86% 47.16%, #002477 0%, #000 100%)',
+    width: '225px',
+    height: '225px',
+    mixBlendMode: 'plus-lighter',
+    filter: 'blur(43px)',
+  },
+  '.shadow-2': {
+    position: 'absolute',
+    top: '0',
+    right: '0',
+    background: 'radial-gradient(51.74% 50.67% at 54.86% 47.16%, #9FBCFF 0%, #000 100%)',
+    width: '426.079px',
+    height: '288.634px',
+    mixBlendMode: 'plus-lighter',
+    filter: 'blur(50px)',
+    opacity: 0.6,
+  },
   [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
   [theme.breakpoints.down('sm')]: {
-    fontSize: '1rem',
-    lineHeight: '1.25rem',
-    textAlign: 'left',
+    width: '400px',
+    height: '400px',
   },
 }));
-const Body = styled(Grid)(({ theme }) => ({
-  marginTop: '1.5rem',
+const AprotechCard = styled('div')(({ theme }) => ({
+  padding: '1.5rem 3rem 1.5rem 1.5rem',
+  backgroundColor: '#0a0a0a',
+  borderRadius: '0.5rem',
+  backdropFilter: 'blur(50px)',
   '.title': {
-    fontSize: '1.25rem',
-    lineHeight: '1.75rem',
-    fontWeight: 600,
-    color: theme.palette.text.neutral900,
-    marginBottom: '0.5rem',
+    marginBottom: '0.125rem',
   },
-  '.item': {
-    width: '100%',
+  '.title, .label': {
+    fontSize: '1rem',
+    lineHeight: '1.5rem',
+    color: theme.palette.grey[400],
+    fontWeight: 400,
+  },
+  '.label': {
+    minWidth: '90px',
+  },
+  '.value': {
+    fontSize: '1rem',
+    lineHeight: '1.5rem',
+    color: theme.palette.common.white,
+    fontWeight: 400,
   },
   '.link': {
-    fontSize: '1rem',
-    lineHeight: '1.75rem',
-    fontWeight: 600,
-    color: theme.palette.text.black800,
-    marginBottom: '0.5rem',
-  },
-  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
-  [theme.breakpoints.down('lg')]: {},
-  [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {
-    '.item': {
-      width: '100%',
-      alignItems: 'center',
-      textAlign: 'center',
+    position: 'relative',
+    '&:after': {
+      content: `''`,
+      position: 'absolute',
+      left: 'auto',
+      right: '0',
+      bottom: '-2px',
+      width: '0%',
+      height: '2px',
+      backgroundColor: theme.palette.common.white,
+      transition: 'all .25s',
+    },
+    '&:hover': {
+      '&:after': {
+        width: '100%',
+        left: 0,
+        right: 'auto',
+        transition: 'all .25s',
+      },
     },
   },
-}));
-const SocialItem = styled(Link)(({ theme }) => ({
-  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
-  [theme.breakpoints.down('lg')]: {},
-  [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
-}));
-
-const DividerWrapper = styled(Divider)(({ theme }) => ({
-  margin: '1.5rem 0',
-  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
-  [theme.breakpoints.down('lg')]: {},
-  [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
-}));
-
-const Bottom = styled(Grid)(({ theme }) => ({
-  '.text': {
-    fontSize: '1rem',
-    lineHeight: '1.5rem',
-    fontWeight: 400,
-    color: theme.palette.text.neutral950,
-  },
-  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
-  [theme.breakpoints.down('lg')]: {},
-  [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
-}));
-
-const GridOverlayBottom = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  zIndex: 1,
-  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
-  [theme.breakpoints.down('lg')]: {},
-  [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
-}));
-const GridOverlayTop = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  zIndex: 1,
   [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
@@ -204,160 +223,209 @@ type FooterProps = {
 };
 
 const Footer = (props: FooterProps) => {
-  const headCategories = useAppSelector((state) => state.home.headCategories);
   const { t, i18n } = useTranslation('common');
-  const homeInfo = useAppSelector((state) => state.category.homeInfo) as IHomeInfo[];
+  const { navLinks } = useResources();
+  const theme = useTheme();
 
-  const fbUrlData = homeInfo?.find((item) => item.dictCode === EHomePageContactInfoKey.FBUrl);
-  const linkedUrlData = homeInfo?.find(
-    (item) => item.dictCode === EHomePageContactInfoKey.LinkedUrl,
-  );
-  const youtubeUrlData = homeInfo?.find(
-    (item) => item.dictCode === EHomePageContactInfoKey.YoutubeUrl,
-  );
-
-  const phone01Data = homeInfo?.find((item) => item.dictCode === EHomePageContactInfoKey.Phone01);
-  const phone02Data = homeInfo?.find((item) => item.dictCode === EHomePageContactInfoKey.Phone02);
-  const phone03Data = homeInfo?.find((item) => item.dictCode === EHomePageContactInfoKey.Phone03);
-  const phone04Data = homeInfo?.find((item) => item.dictCode === EHomePageContactInfoKey.Phone04);
+  const _onScrollToSection = (id: string) => {
+    const ele = document.getElementById(id);
+    ele.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  };
 
   const socials = [
     {
-      label: 'Facebook',
-      Icon: SocialFacebook,
-      href: genContentLang(fbUrlData?.dictLabelInfo, i18n.language),
-    },
-    {
-      label: 'Youtube',
-      Icon: SocialYoutube,
-      href: genContentLang(youtubeUrlData?.dictLabelInfo, i18n.language),
-    },
-    {
       label: 'Linked',
       Icon: SocialLinked,
-      href: genContentLang(linkedUrlData?.dictLabelInfo, i18n.language),
+      href: 'https://www.linkedin.com/company/aprotech-global',
+    },
+    {
+      label: 'Instagram',
+      Icon: SocialInstagram,
+      href: 'https://www.instagram.com/aprotech.kr/',
+    },
+    {
+      label: 'Facebook',
+      Icon: SocialFacebook,
+      href: 'https://www.facebook.com/aprotech.kr',
     },
   ];
 
   return (
     <Wrap>
       <MainWrapper sxProps={{ zIndex: 2, position: 'relative' }}>
-        <Top direction={{ xs: 'column', sm: 'column', md: 'row' }}>
-          <Head
-            direction={{ xs: 'row', sm: 'row', md: 'column' }}
-            alignItems={{ xs: 'center', sm: 'center', md: 'flex-start' }}
-            justifyContent={{ xs: 'space-between', sm: 'space-between', md: 'flex-start' }}
+        <Stack
+          direction={{ xs: 'column', md: 'row' }}
+          alignItems={{ xs: 'flex-start', md: 'flex-end' }}
+          justifyContent="space-between"
+          mb={{ xs: '1.25rem', md: '2.5rem', lg: '3.5rem' }}
+        >
+          <Stack alignItems={'flex-start'}>
+            <Stack direction="row" alignItems="center" gap="0 0.5rem">
+              <LogoShort />
+              <Typography className="sub-title" sx={{ color: theme.palette.common.white }}>
+                {t('homePage.contact')}
+              </Typography>
+            </Stack>
+            <SectionTitle
+              dangerouslySetInnerHTML={{ __html: t('homePage.greatIdeaCreativeTechnology') }}
+              sx={{
+                color: theme.palette.common.white,
+                textTransform: 'initial !important',
+              }}
+            />
+          </Stack>
+          <Button
+            variant="contained"
+            sx={{
+              mt: { xs: '1rem', md: '0' },
+              backgroundColor: theme.palette.common.white,
+              color: theme.palette.grey[900],
+              '&:hover': {
+                color: theme.palette.common.white,
+                backgroundColor: theme.palette.grey[900],
+              },
+            }}
           >
-            <LogoMain />
-            <Stack className="follow">
-              <p className="label">{t('common.followUs')}</p>
-              <Stack direction={'row'} alignItems={'center'} gap={4} className="socials">
-                {socials.map(({ Icon, label, href }, index) => (
-                  <SocialItem title={label} href={href || ''} key={index} target="_blank">
+            {t('button.techBlog')}
+          </Button>
+        </Stack>
+        <Stack
+          direction={{ xs: 'column', md: 'row' }}
+          alignItems={'center'}
+          justifyContent="center"
+          gap={{ xs: '1rem 0', md: '0 1rem' }}
+        >
+          <AprotechBox>
+            <img src="/images/footer/aprotech-box.png" className="aprotech-box" />
+            <div className="shadow-1" />
+            <div className="shadow-2" />
+          </AprotechBox>
+          <AprotechCard>
+            <div className="section">
+              <Typography className="title" variant="body1">
+                {t('common.hotline')}
+              </Typography>
+              <Typography className="value" variant="body1">
+                +82 2-2658-9004
+              </Typography>
+            </div>
+            <Divider sx={{ my: '1.25rem' }} />
+            <div className="section">
+              <Typography className="title" variant="body1">
+                {t('common.address')}
+              </Typography>
+              <Stack direction="column" gap="0.325rem 0">
+                <Stack direction="row" gap="0 0.325rem ">
+                  <Typography className="label" variant="body1">
+                    {t('common.korea')}:
+                  </Typography>
+                  <Typography className="value" variant="body1">
+                    서울특별시 금천구 디지털로10길 37, 1415호 (가산동, 가산아스크타워)
+                  </Typography>
+                </Stack>
+                <Stack direction="row" gap="0 0.325rem ">
+                  <Typography className="label" variant="body1">
+                    {t('common.vietnam')}:
+                  </Typography>
+                  <Typography className="value" variant="body1">
+                    SCETPA Building, 19A Cong Hoa Street, Ward 12, Tan Binh District, HCMC, Vietnam
+                  </Typography>
+                </Stack>
+              </Stack>
+            </div>{' '}
+            <Divider sx={{ my: '1.25rem' }} />
+            <div className="section">
+              <Typography className="title" variant="body1">
+                {t('common.email')}
+              </Typography>
+              <Stack direction="row" flexWrap="wrap" gap="0.325rem 0">
+                <Stack direction="row" width={{ xs: '100%', md: '50%' }} gap="0 0.325rem ">
+                  <Typography className="label" variant="body1">
+                    {t('common.project')}:
+                  </Typography>
+                  <Link className="value link" href="mailto:contact@aprotech.kr">
+                    contact@aprotech.kr
+                  </Link>
+                </Stack>
+                <Stack direction="row" width={{ xs: '100%', md: '50%' }} gap="0 0.325rem ">
+                  <Typography className="label" variant="body1">
+                    {t('common.r&D')}:
+                  </Typography>
+                  <Link className="value link" href="mailto:tech@aprotech.kr">
+                    tech@aprotech.kr
+                  </Link>
+                </Stack>
+                <Stack direction="row" width={{ xs: '100%', md: '50%' }} gap="0 0.325rem ">
+                  <Typography className="label" variant="body1">
+                    {t('common.technology')}:
+                  </Typography>
+                  <Link className="value link" href="mailto:support@aprotech.kr">
+                    support@aprotech.kr
+                  </Link>
+                </Stack>
+                <Stack direction="row" width={{ xs: '100%', md: '50%' }} gap="0 0.325rem ">
+                  <Typography className="label" variant="body1">
+                    {t('common.help')}:
+                  </Typography>
+                  <Link className="value link" href="mailto:help@aprotech.kr">
+                    help@aprotech.kr
+                  </Link>
+                </Stack>
+              </Stack>
+            </div>
+          </AprotechCard>
+        </Stack>
+        <Stack
+          direction={{ xs: 'row', md: 'row' }}
+          alignItems="center"
+          justifyContent="space-between"
+          mt={{ xs: '1.5rem', md: '0' }}
+        >
+          <LogoMainV2 />
+          <Navs>
+            <ul>
+              {navLinks.map((nav, index) => (
+                <li key={index}>
+                  <Link
+                    onClick={(e) => {
+                      _onScrollToSection(nav.path);
+                      e.preventDefault();
+                    }}
+                    href={nav.path}
+                  >
+                    {nav.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Navs>
+        </Stack>
+        <Divider sx={{ my: '2.5rem' }} />
+        <Stack
+          direction={{ xs: 'column', md: 'row' }}
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <SocialList>
+            {socials.map((social, index) => {
+              const Icon = social.Icon;
+              return (
+                <li key={index}>
+                  <Link href={social.href}>
                     <Icon />
-                  </SocialItem>
-                ))}
-              </Stack>
-            </Stack>
-          </Head>
-          <Body container rowSpacing={{ xs: 6, sm: 46 }} columnSpacing={4}>
-            {headCategories?.map((x: IHeadCategory, index) => (
-              <Grid className="item" xs={6} sm={6} md={6} lg={3} item key={index}>
-                <Label>
-                  {i18n.language === 'kr' ? x?.titleInfo?.ko : x?.titleInfo?.[i18n.language]}
-                </Label>
-                <List>
-                  {x?.subs?.map((nav, index) => {
-                    const ancestor = x?.ancestor;
-                    const genPath = {
-                      [ETemplateDisplay.DetailPageArticle]:
-                        '/' +
-                        ancestor +
-                        '/' +
-                        nav?.ancestorPath +
-                        '/' +
-                        nav?.ancestorPath +
-                        '-' +
-                        nav?.id +
-                        '?articlePage=CATEGORY',
-                      [ETemplateDisplay.Link]: nav?.url,
-                    };
-                    const defaultPath = '/' + ancestor + '/' + nav?.ancestorPath;
-                    return (
-                      <ListItem key={index}>
-                        <Link href={genPath?.[nav.templateDisplay] || defaultPath}>
-                          {i18n.language === 'kr'
-                            ? nav?.titleInfo?.ko
-                            : nav?.titleInfo?.[i18n.language]}
-                        </Link>
-                      </ListItem>
-                    );
-                  })}
-                </List>
-              </Grid>
-            ))}
-          </Body>
-        </Top>
-        <DividerWrapper />
-        <Bottom container justifyContent={'space-between'} spacing={4}>
-          <Grid item xs={12} md={4} lg={4}>
-            <p className="text">{t('common.addressAsam')}</p>
-          </Grid>
-          <Grid item xs={12} md={4} lg={4} marginBottom={{ xs: '1rem', sm: '1rem', md: 0 }}>
-            <Stack
-              direction={{ xs: 'column', sm: 'column', md: 'row' }}
-              alignItems={'flex-start'}
-              justifyContent={{ xs: 'flex-start', sm: 'flex-start', md: 'center' }}
-              gap={2}
-            >
-              <p className="text">{t('common.hotline')}:</p>
-              <Stack gap={1}>
-                <Stack direction={'row'} alignItems={'center'} gap={1}>
-                  <a
-                    className="text"
-                    href={'tel:' + genContentLang(phone01Data?.dictLabelInfo, i18n.language)}
-                  >
-                    {genContentLang(phone01Data?.dictLabelInfo, i18n.language)}
-                  </a>
-                  <p className="text">|</p>
-                  <a
-                    className="text"
-                    href={'tel:' + genContentLang(phone02Data?.dictLabelInfo, i18n.language)}
-                  >
-                    {genContentLang(phone02Data?.dictLabelInfo, i18n.language)}
-                  </a>
-                </Stack>
-                <Stack direction={'row'} alignItems={'center'} gap={1}>
-                  <a
-                    className="text"
-                    href={'tel:' + genContentLang(phone03Data?.dictLabelInfo, i18n.language)}
-                  >
-                    {genContentLang(phone03Data?.dictLabelInfo, i18n.language)}
-                  </a>
-                  <p className="text" style={{ margin: '0 0.125rem' }}>
-                    |
-                  </p>
-                  <a
-                    className="text"
-                    href={'tel:' + genContentLang(phone04Data?.dictLabelInfo, i18n.language)}
-                  >
-                    {genContentLang(phone04Data?.dictLabelInfo, i18n.language)}
-                  </a>
-                </Stack>
-              </Stack>
-            </Stack>
-          </Grid>
-          <Grid item xs={12} md={4} lg={4}>
-            <p className="text">{t('common.copyright')}</p>
-          </Grid>
-        </Bottom>
+                  </Link>
+                </li>
+              );
+            })}
+          </SocialList>
+          <Typography className="intro" variant="body1">
+            © 2025. Aprotech Inc. All rights reserved.
+          </Typography>
+        </Stack>
       </MainWrapper>
-      <GridOverlayBottom>
-        <GridPolygon />
-      </GridOverlayBottom>
-      <GridOverlayTop>
-        <GridPolygonTop />
-      </GridOverlayTop>
     </Wrap>
   );
 };

@@ -93,7 +93,7 @@ const Flow = () => {
                 <Stack
                   alignItems={'flex-start'}
                   sx={{
-                    paddingTop: { base: '60px', md: '160px' },
+                    paddingTop: { xs: '60px', xl: '120px' },
                     position: 'absolute',
                     left: 0,
                   }}
@@ -386,11 +386,11 @@ const Card = styled('div')(({ theme }) => ({
   },
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {
     width: '80vw',
-    height: '720px',
+    height: '640px',
   },
   [theme.breakpoints.down('lg')]: {
     width: '90vw',
-    height: '640px',
+    height: '460px',
   },
   [theme.breakpoints.down('md')]: {
     width: '90vw',

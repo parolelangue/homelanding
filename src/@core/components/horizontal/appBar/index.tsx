@@ -104,8 +104,8 @@ const Navs = styled('nav')(({ theme }) => ({
     flexDirection: 'row',
     listStyleType: 'none',
     li: {
+      padding: '0.5rem 1rem',
       a: {
-        padding: '0.5rem 1rem',
         fontSize: '1rem',
         fontWeight: 500,
         lineHeight: '1.5rem',
@@ -116,7 +116,7 @@ const Navs = styled('nav')(({ theme }) => ({
           position: 'absolute',
           left: 'auto',
           right: '0',
-          bottom: 0,
+          bottom: '-2px',
           width: '0%',
           height: '2px',
           backgroundColor: theme.palette.common.white,

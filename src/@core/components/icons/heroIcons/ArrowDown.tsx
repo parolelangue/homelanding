@@ -15,9 +15,9 @@ const ArrowDown: FunctionComponent<Props> = ({ size, pathProps, ...props }) => {
       <path
         d="M16.5 11.5L9 19M9 19L1.5 11.5M9 19L9 1"
         stroke="white"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
