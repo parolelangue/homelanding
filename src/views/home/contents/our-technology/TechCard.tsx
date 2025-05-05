@@ -17,7 +17,7 @@ type Props = {
 };
 
 const TechCard = ({ data }: Props) => {
-  const { id, title, category, thumbnail, path } = data || {};
+  const { title, category, thumbnail } = data || {};
   const { t, i18n } = useTranslation('common');
   const theme = useTheme();
   const pathname = usePathname();
@@ -52,18 +52,9 @@ const TechCard = ({ data }: Props) => {
             {category}
           </Typography>
           <Stack direction="row" alignItems="flex-end">
-            <Link href={path}>
-              <Typography variant="body1" className="title truncate-text">
-                {renderTitle()}
-              </Typography>
-            </Link>
-            <ButtonLink
-              link={''}
-              color={theme.palette.common.white}
-              name={''}
-              direction={'LTR'}
-              size={40}
-            />
+            <Typography variant="body1" className="title truncate-text">
+              {renderTitle()}
+            </Typography>
           </Stack>
         </Content>
       </Box>

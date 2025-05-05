@@ -111,7 +111,6 @@ type Props = {};
 
 const HeroSection = ({}: Props) => {
   const { t } = useTranslation('common');
-  const device = useDevice();
   const { navLinks } = useResources();
 
   const _onScrollNextSection = () => {

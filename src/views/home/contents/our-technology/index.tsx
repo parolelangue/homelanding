@@ -16,39 +16,43 @@ import TechCard from './TechCard';
 const OurTechnologySection = () => {
   const { t } = useTranslation('common');
   const [actTab, setActTab] = useState<string>('llm');
-  const [activeSlide, setActiveSlide] = useState<number>(0);
   const slideRef = useRef<SplideCore | null>(null);
   const device = useDevice();
 
-  const dummyData = Array.from({ length: 8 }).map((_, index) => ({
-    id: index + 1 + '',
-    title: 'Defense Reformation Defense Reformation ' + (index + 1),
-    category: 'Vision A',
-    thumbnail: '/images/pages/home/our-technology/technology-img-1.jpg',
-    path: '/tech/' + (index + 1),
-  })) as ITechnology[];
-
-  // const indexSlide = useMemo(
-  //   () => ({
-  //     first: activeSlide === 0,
-  //     last: activeSlide === slideRef.current?.splides?.length - slideRef.current?.options?.perPage,
-  //   }),
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   [activeSlide, slideRef.current],
-  // );
-
-  // const _onNavigation = (type: 'prev' | 'next') => () => {
-  //   if (
-  //     !slideRef.current ||
-  //     (indexSlide.first && type === 'prev') ||
-  //     (indexSlide.last && type === 'next')
-  //   )
-  //     return;
-  //   slideRef.current.go(type === 'prev' ? '<' : '>');
-  // };
+  const technologiesData = useMemo(
+    () => [
+      {
+        title: t('homePage.aLargeLanguageModelThatExcelsAtProcessing'),
+        category: t('homePage.llm'),
+        code: 'llm',
+        thumbnail: `/images/pages/home/our-technology/technology-img-1.jpg`,
+      },
+      {
+        title: t('homePage.integrationOfComputerVisionAndAITechnologies'),
+        category: t('homePage.visionAI'),
+        code: 'visionAI',
+        thumbnail: `/images/pages/home/our-technology/technology-img-2.jpg`,
+      },
+      {
+        title: t('homePage.machineLearningOperations'),
+        category: t('homePage.mlops'),
+        code: 'mlops',
+        thumbnail: `/images/pages/home/our-technology/technology-img-3.jpg`,
+      },
+      {
+        title: t('homePage.roboticProcessAutomation'),
+        category: t('homePage.rpa'),
+        code: 'rpa',
+        thumbnail: `/images/pages/home/our-technology/technology-img-4.jpg`,
+      },
+    ],
+    [t],
+  );
 
   const _onChangeTab = (_: unknown, v: string) => {
     setActTab(v);
+    const index = technologiesData.findIndex(({ code }) => code === v);
+    slideRef.current.go(index);
   };
 
   const _onDrag = (ev) => {
@@ -96,8 +100,9 @@ const OurTechnologySection = () => {
             />
 
             <TabStyle value={actTab} onChange={_onChangeTab}>
-              <Tab value="llm" label={t('homePage.llm')} />
-              <Tab value="visionA" label={t('homePage.visionA')} />
+              {technologiesData.map((technology, index) => (
+                <Tab key={index} value={technology.code} label={technology.category} />
+              ))}
             </TabStyle>
           </Stack>
         </MainWrapper>
@@ -120,7 +125,7 @@ const OurTechnologySection = () => {
               // setActiveSlide(ev.index);
             }}
           >
-            {dummyData?.map((x, index) => (
+            {technologiesData?.map((x, index) => (
               <SplideSlide className="slide" key={index}>
                 <TechCard data={x} />
               </SplideSlide>

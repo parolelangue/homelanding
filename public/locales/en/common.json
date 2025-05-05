@@ -83,6 +83,13 @@
     "swTesting": "SW Testing",
     "serviceDesk": "Service Desk",
     "dataIntegration": "Data Integration",
-    "editingVideo": "Editing Video"
+    "editingVideo": "Editing Video",
+    "aLargeLanguageModelThatExcelsAtProcessing": "A large language model that excels at processing",
+    "visionAI": "Vision AI",
+    "integrationOfComputerVisionAndAITechnologies": "Integration of Computer Vision & AI Technologies",
+    "mlops": "MLOps",
+    "machineLearningOperations": "Machine Learning Operations",
+    "rpa": "RPA",
+    "roboticProcessAutomation": "Robotic Process Automation"
   }
 }

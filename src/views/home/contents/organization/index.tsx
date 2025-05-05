@@ -111,6 +111,7 @@ const TabStyle = styled(Tabs)(({ theme }) => ({
 const ImgWraper = styled('div')(({ theme }) => ({
   width: '100%',
   height: 'auto',
+  minHeight: '750px',
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -133,6 +134,7 @@ const ImgWraper = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {},
   [theme.breakpoints.down('sm')]: {
     height: '250px',
+    minHeight: '250px',
     img: {
       height: '100%',
       objectFit: 'cover',

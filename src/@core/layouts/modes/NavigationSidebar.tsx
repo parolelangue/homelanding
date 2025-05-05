@@ -23,7 +23,6 @@ const NavigationSidebar = ({ open, toggleSidebar }: Props) => {
   const itemsRef = useRef<{ [id: number]: HTMLLIElement | null }>({});
   const device = useDevice();
   const { t } = useTranslation('common');
-  const dispatch = useAppDispatch();
   const theme = useTheme();
   const pathname = usePathname();
 

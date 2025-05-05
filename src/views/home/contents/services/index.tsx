@@ -12,7 +12,6 @@ import ServiceCard from './ServiceCard';
 const ServicesSection = () => {
   const { t } = useTranslation('common');
   const [actTab, setActTab] = useState<string>('factory');
-  const theme = useTheme();
 
   const serviceData = useMemo(
     () => [
