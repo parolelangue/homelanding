@@ -10,14 +10,15 @@ import { useTranslation } from 'next-i18next';
 type Props = {
   settings?: any;
   saveSettings?: any;
+  activeScroll?: boolean;
 };
 
 type LangTypes = 'kr' | 'en' | 'vi';
 
 const labels = {
-  vi: {
-    title: 'VI',
-  },
+  // vi: {
+  //   title: 'VI',
+  // },
   kr: {
     title: 'KR',
   },
@@ -39,6 +40,11 @@ const StackLang = styled(Stack)(({ theme }) => ({
       transition: 'all 0.3s ease',
     },
   },
+  '&.active-scroll': {
+    '.active': {
+      color: theme.palette.grey[900],
+    },
+  },
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {
@@ -54,7 +60,7 @@ const StackLang = styled(Stack)(({ theme }) => ({
   },
 }));
 
-const ConfigLanguage = ({}: Props) => {
+const ConfigLanguage = ({ activeScroll }: Props) => {
   const { t, i18n } = useTranslation('common');
 
   const cachedLang = localStorage.getItem(authConfig.i18nextLng);
@@ -76,7 +82,12 @@ const ConfigLanguage = ({}: Props) => {
   };
 
   return (
-    <StackLang direction="row" alignItems="center" gap={1}>
+    <StackLang
+      direction="row"
+      alignItems="center"
+      gap={1}
+      className={clsx({ 'active-scroll': activeScroll })}
+    >
       {Object.keys(labels).map((key, index) =>
         Object.keys(labels).length - 1 !== index ? (
           <React.Fragment key={index}>

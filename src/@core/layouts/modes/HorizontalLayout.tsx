@@ -169,9 +169,12 @@ const HorizontalLayout = (props: HorizontalLayoutProps) => {
                     toggleSidebar={toggleSidebar}
                     {...props}
                   >
-                    {(userHorizontalNavMenuContent && userHorizontalNavMenuContent(props)) || (
-                      <NavigationSidebar open toggleSidebar={() => {}} />
-                    )}
+                    {
+                      userHorizontalNavMenuContent && userHorizontalNavMenuContent(props)
+                      //  || (
+                      //   <NavigationSidebar open toggleSidebar={() => {}} />
+                      // )
+                    }
                   </LAppBar>
                 </MainWrapper>
               </MuiToolbarWrapper>

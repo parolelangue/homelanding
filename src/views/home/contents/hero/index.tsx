@@ -19,8 +19,8 @@ const Wrap = styled('section')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {},
   [theme.breakpoints.down('sm')]: {
     marginTop: '0',
-    height: '100vh',
     width: '100%',
+    height: '90vh',
   },
 }));
 const Overlay = styled('div')(({ theme }) => ({
@@ -34,7 +34,9 @@ const Overlay = styled('div')(({ theme }) => ({
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
+  [theme.breakpoints.down('sm')]: {
+    height: '90vh',
+  },
 }));
 
 const Intro = styled(Box)(({ theme }) => ({
@@ -75,7 +77,7 @@ const translateY = keyframes`
 `;
 const ScrollToView = styled(Box)(({ theme }) => ({
   position: 'absolute',
-  bottom: '6.25rem',
+  bottom: '4rem',
   right: '4rem',
   zIndex: 3,
   display: 'inline-flex',
@@ -102,90 +104,6 @@ const ScrollToView = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     bottom: '2rem',
     right: '2rem',
-  },
-}));
-
-const HeroSlider = styled(Splide)(({ theme }) => ({
-  padding: '0',
-  '.splide__pagination': {
-    display: 'inline-flex',
-    width: 'fit-content',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    bottom: '70px',
-    borderRadius: '2rem',
-    padding: '0',
-    li: {
-      margin: '0',
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      button: {
-        width: '0.5rem',
-        height: '0.5rem',
-        borderRadius: '2rem',
-        opacity: 1,
-        backgroundColor: hexToRGBA(theme.palette.primary.main, 0.3),
-        transition: 'all .25s',
-        '&.is-active': {
-          width: '3.25rem',
-          transform: 'scale(1) !important',
-          backgroundColor: theme.palette.primary.main,
-          transition: 'all .25s',
-        },
-      },
-    },
-  },
-  '.slide': {
-    '&.is-active': {
-      '.card-img': {
-        opacity: 1,
-        transition: 'all 2s',
-      },
-      '.sub-title': {
-        transform: 'translateX(0)',
-        opacity: 1,
-        transition: 'all 1s',
-      },
-      '.title': {
-        transform: 'translateX(0)',
-        opacity: 1,
-        transition: 'all 1.25s',
-      },
-      '.description': {
-        transform: 'translateX(0)',
-        opacity: 1,
-        transition: 'all 1.5s',
-      },
-      '.btn-about': {
-        transform: 'translateX(0)',
-        opacity: 1,
-        transition: 'all 1.75s',
-      },
-    },
-  },
-  [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {
-    '.splide__pagination': {
-      bottom: '120px',
-    },
-  },
-  [theme.breakpoints.down('lg')]: {
-    marginTop: '0',
-    '.splide__pagination': {
-      bottom: '1.5rem',
-    },
-  },
-  [theme.breakpoints.down('md')]: {
-    marginTop: '0',
-    '.splide__pagination': {
-      bottom: '1.5rem',
-    },
-  },
-  [theme.breakpoints.down('sm')]: {
-    marginTop: '0',
-    '.splide__pagination': {
-      bottom: '1.75rem',
-    },
   },
 }));
 
@@ -230,7 +148,8 @@ const HeroSection = ({}: Props) => {
         <MainWrapper isFullContainer>
           <Typography className="title" variant="h1">
             DATA DRIVEN
-            <br /> AI TRANSFORMTAION
+            <br />
+            AI TRANSFORMATION
           </Typography>
         </MainWrapper>
       </Intro>

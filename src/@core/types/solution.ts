@@ -1,7 +1,10 @@
+import React, { ReactNode } from 'react';
+
 export interface ISolution {
-  id: string;
+  code: string;
+  groupCd: string[];
   title: string;
-  desc: string;
-  thumbnail: string;
-  path: string;
+  manuPath: string;
+  sysPath: string;
+  icon: any;
 }

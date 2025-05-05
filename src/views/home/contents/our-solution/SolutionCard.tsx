@@ -1,106 +1,129 @@
-import ButtonLink from '@/@core/components/button-link';
-import Image from '@/@core/components/image';
-import Video from '@/@core/components/video';
+import { HeroIcons } from '@/@core/components/icons/heroIcons';
 import { WIDTH_MEDIUM } from '@/@core/configs';
-import { useDevice } from '@/@core/hooks/useDevice';
 import { ISolution } from '@/@core/types/solution';
-import { ITechnology } from '@/@core/types/technology';
-import { hexToRGBA } from '@/@core/utils/hex-to-rgba';
-import { Box, Stack, styled, Typography, useTheme } from '@mui/material';
+import { Box, Button, Stack, styled, Typography } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { CSSProperties } from 'react';
 
-const defaultThumbPath = '/images/pages/articles/default-thumb.jpg';
 type Props = {
   data: ISolution;
 };
 
 const SolutionCard = ({ data }: Props) => {
-  const { id, title, desc, thumbnail, path } = data || {};
+  const { code, groupCd, title, manuPath, sysPath, icon } = data || {};
   const { t, i18n } = useTranslation('common');
-  const theme = useTheme();
-  const pathname = usePathname();
-  const device = useDevice();
 
-  const renderTitle = () => {
-    return title;
-  };
+  const Icon = icon;
 
-  const smallThumbs: CSSProperties = {
-    paddingBottom: device.mobile ? '250px' : device.tablet ? '350px' : '500px',
-    borderRadius: '0.75rem',
-    overflow: 'hidden',
-  };
-
-  const genContent = () => {
-    return (
-      <Box>
-        {true ? (
-          <Image imgUrl={thumbnail} alt={renderTitle()} thumbStyles={smallThumbs} />
-        ) : (
-          <Video imgUrl={thumbnail} alt={renderTitle()} thumbStyles={smallThumbs} />
-        )}
-        <Link href={path}>
-          <Content>
-            <Typography variant="body1" className="title truncate-text">
-              {renderTitle()}
-            </Typography>
-            <Typography variant="body1" className="description truncate-text">
-              {desc}
-            </Typography>
-          </Content>
+  return (
+    <Card className="solution-item">
+      <Stack direction="row" alignItems="center" gap="0 1rem" mb="0.75rem">
+        <Box className="box-icon" component="div">
+          <Icon size={24} />
+        </Box>
+        <Typography className="code">{code}</Typography>
+      </Stack>
+      <Typography className="title">{title}</Typography>
+      <Stack
+        mt={{ xs: '1rem', md: '2rem' }}
+        direction={{ xs: 'column', md: 'row' }}
+        width={'100%'}
+        alignItems={{ xs: 'flex-start', md: 'center' }}
+        gap={{ xs: '0.5rem 0', md: '0 0.5rem' }}
+      >
+        <Link href="#">
+          <Button variant="outlined" className="btn-manu">
+            {t('button.manual')}{' '}
+          </Button>
         </Link>
-      </Box>
-    );
-  };
-
-  return <Card>{genContent()}</Card>;
+        <Link href="#">
+          <Button className="btn-sys">
+            {t('button.goToSystem')}
+            <HeroIcons.ArrowRight size={22} />
+          </Button>
+        </Link>
+      </Stack>
+    </Card>
+  );
 };
 
-const Content = styled(Stack)(({ theme }) => ({
-  '.title': {
-    fontSize: '1.5rem',
-    lineHeight: '2rem',
-    fontWeight: 500,
-    color: theme.palette.grey[900],
-    margin: '1rem 0 0.5rem 0',
-    minHeight: '96px',
-  },
-  '.description': {
-    fontSize: '1.125rem',
-    lineHeight: '1.75rem',
-    minHeight: '84px',
-    fontWeight: 400,
-    color: theme.palette.grey[900],
-  },
-  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
-  [theme.breakpoints.down('lg')]: {},
-  [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {
-    '.title': {
-      fontSize: '1.125rem',
-      lineHeight: '1.5rem',
-      minHeight: '72px',
-    },
-    '.description': {
-      fontSize: '0.875rem',
-      lineHeight: '1.25rem',
-      minHeight: '60px',
-    },
-  },
-}));
-
 const Card = styled('div')(({ theme }) => ({
-  borderRadius: '0.5rem',
   position: 'relative',
   width: '100%',
   height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  opacity: 0,
+  // transform: 'scale(0.8)',
+  transition: 'all .5s cubic-bezier(0, 0.7, 0.3, 0.9)',
+  '.btn-manu': {
+    border: `1px solid ${theme.palette.grey[200]}`,
+    color: theme.palette.grey[900],
+    '&:hover': {
+      borderColor: theme.palette.grey[900],
+      backgroundColor: theme.palette.grey[900],
+      color: theme.palette.common.white,
+    },
+  },
+  button: {
+    fontSize: '1rem',
+    paddingLeft: '1.5rem',
+    paddingRight: '1.5rem',
+    textTransform: 'initial',
+    borderRadius: '0.325rem',
+  },
+  '.btn-sys': {
+    backgroundColor: ` ${theme.palette.primary.main}`,
+    color: theme.palette.common.white,
+    gap: '0 0.5rem',
+    '&:hover': {
+      opacity: 0.8,
+      backgroundColor: ` ${theme.palette.primary.main}`,
+    },
+  },
+  '.box-icon': {
+    width: '3rem',
+    height: '3rem',
+    borderRadius: '0.5rem',
+    backgroundColor: theme.palette.grey[50],
+    border: `1px solid ${theme.palette.grey[200]}`,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  '.code': {
+    fontSize: '1.5rem',
+    lineHeight: '2rem',
+    fontWeight: 600,
+    color: theme.palette.grey[900],
+  },
+  '.title': {
+    fontSize: '1rem',
+    lineHeight: '1.5rem',
+    fontWeight: 400,
+    color: theme.palette.grey[600],
+  },
   [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
-  [theme.breakpoints.down('lg')]: {},
+  [theme.breakpoints.down('lg')]: {
+    paddingLeft: '0.75rem',
+    paddingRight: '0.75rem',
+  },
   [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
+  [theme.breakpoints.down('sm')]: {
+    'button, a': {
+      width: '100%',
+    },
+    button: {
+      paddingLeft: '0.5rem',
+      paddingRight: '0.5rem',
+      fontSize: '0.875rem',
+      svg: {
+        width: '1.125rem',
+        height: '1.125rem',
+      },
+    },
+  },
 }));
 
 export default SolutionCard;

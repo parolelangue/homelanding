@@ -1,29 +1,33 @@
 'use client';
-import { WIDTH_MEDIUM } from '@/@core/configs';
-import { Stack, styled, Tab, Tabs, Typography } from '@mui/material';
-import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
-//@ts-ignore
 import LogoShort from '@/@core/components/icons/LogoShort';
 import MainWrapper from '@/@core/components/shared/sections/main-wrapper';
-import { useDevice } from '@/@core/hooks/useDevice';
+import { WIDTH_MEDIUM } from '@/@core/configs';
 import { SectionTitle } from '@/@core/styles/common';
-import { useAppDispatch, useAppSelector } from '@/infra/store';
+import { useGSAP } from '@gsap/react';
+import { Stack, styled, Tab, Tabs, Typography } from '@mui/material';
+import gsap from 'gsap';
+import { useTranslation } from 'next-i18next';
+import { useState } from 'react';
 
 const OrganizationSection = () => {
   const { t } = useTranslation('common');
   const [actTab, setActTab] = useState<string>('techstacks');
-  const device = useDevice();
-  const dispatch = useAppDispatch();
-
-  const data = useAppSelector((state) => state.news.eventNews);
 
   const _onChangeTab = (_: unknown, v: string) => {
     setActTab(v);
   };
 
+  useGSAP(() => {
+    const img = document.querySelector('.img-wrap');
+    gsap.fromTo(
+      img,
+      { opacity: 0.7, scale: 0.9, duration: 0.6, ease: 'power1.inOut' },
+      { opacity: 1, scale: 1, duration: 0.6, ease: 'power1.inOut', stagger: 0.2 },
+    );
+  }, [actTab]);
+
   return (
-    <Wrap>
+    <Wrap id="organization">
       <Head>
         <MainWrapper>
           <Stack
@@ -49,7 +53,7 @@ const OrganizationSection = () => {
             <Tab value="techstacks" label={t('homePage.techstacks')} />
             <Tab value="teams" label={t('homePage.teams')} />
           </TabStyle>
-          <ImgWraper>
+          <ImgWraper className="img-wrap">
             {actTab === 'techstacks' && (
               <img
                 className="active"
@@ -116,6 +120,7 @@ const ImgWraper = styled('div')(({ theme }) => ({
     height: 'auto',
     transform: 'scale(0.9)',
     opacity: 0,
+    borderRadius: '1.25rem',
     transition: 'all .25s',
     '&.active': {
       transform: 'scale(1)',
@@ -126,7 +131,13 @@ const ImgWraper = styled('div')(({ theme }) => ({
   [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
+  [theme.breakpoints.down('sm')]: {
+    height: '250px',
+    img: {
+      height: '100%',
+      objectFit: 'cover',
+    },
+  },
 }));
 
 const Head = styled(Stack)(({ theme }) => ({
@@ -150,12 +161,13 @@ const Head = styled(Stack)(({ theme }) => ({
 
 const Wrap = styled('section')(({ theme }) => ({
   padding: '100px 0',
-  background: theme.palette.common.white,
+  // background: theme.palette.common.white,
+  background: `linear-gradient(181deg, #FFF 0.48%, rgba(255, 255, 255, 0.00) 69.19%), linear-gradient(0deg, #FFF 0%, rgba(255, 255, 255, 0.00) 38.82%), url('/images/pages/home/organization/blur-organization.png') lightgray 50% / cover no-repeat`,
   [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
   [theme.breakpoints.down('sm')]: {
-    padding: '50px 0',
+    padding: '80px 0',
   },
 }));
 

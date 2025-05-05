@@ -6,7 +6,7 @@ const StyleScrollTop = styled('div')(({ theme }) => ({
   zIndex: 1200,
   position: 'fixed',
   right: theme.spacing(4) + '!important',
-  bottom: theme.spacing(22) + '!important',
+  bottom: theme.spacing(5) + '!important',
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
   [theme.breakpoints.down('sm')]: {},

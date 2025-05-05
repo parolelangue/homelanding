@@ -1,6 +1,5 @@
 import { WIDTH_MEDIUM } from '@/@core/configs';
 import { ASAM_TRADING_LOGIN_URL } from '@/@core/constants/general';
-import { cssUtils } from '@/@core/theme/palette';
 import { EThemeMode } from '@/@core/types/general';
 import { Box, Button, Stack, styled, useMediaQuery } from '@mui/material';
 import { useTranslation } from 'next-i18next';
@@ -245,9 +244,6 @@ const LAppBar = (props: LAppBarProps) => {
         <Link href={ASAM_TRADING_LOGIN_URL} aria-label="ASAM trading" target="_blank" passHref>
           <ButtonStyle variant="contained">{t('button.getStarted')}</ButtonStyle>
         </Link>
-        {/* <Stack direction="row" alignItems="center" gap={'1.5rem'}>
-          <ConfigLanguage />
-        </Stack> */}
       </RightStack>
     </AppBarWrapper>
   );

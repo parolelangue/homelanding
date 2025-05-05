@@ -28,7 +28,11 @@ const TechCard = ({ data }: Props) => {
   };
 
   const smallThumbs: CSSProperties = {
-    paddingBottom: device.mobile ? '300px' : device.tablet ? '350px' : '756px',
+    paddingBottom: device.mobile
+      ? '500px !important'
+      : device.tablet
+        ? '500px !important'
+        : '756px',
   };
 
   const genContent = () => {

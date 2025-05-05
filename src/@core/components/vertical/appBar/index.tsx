@@ -9,8 +9,8 @@ const TopBar = styled(Stack)(({ theme }) => ({
   width: '100%',
   backgroundColor: '',
   position: 'fixed',
-  // height: 60,
-  maxHeight: 60,
+  height: 52,
+  maxHeight: 52,
   zIndex: 100,
   display: 'flex',
   alignItems: 'center',
@@ -92,6 +92,11 @@ const HamburgerButton = styled(Box)(({ theme }) => ({
       transition: 'all .2s ' + cssUtils.customCubic,
     },
   },
+  '&.active-scroll': {
+    span: {
+      backgroundColor: theme.palette.common.black,
+    },
+  },
 }));
 
 const Wrap = styled(Stack)(({ theme }) => ({
@@ -101,6 +106,7 @@ const Wrap = styled(Stack)(({ theme }) => ({
   position: 'relative',
   zIndex: 3,
   width: '100%',
+  height: '100%',
 }));
 
 const StyleLogo = styled('div')(({ theme }) => ({
@@ -111,6 +117,20 @@ const StyleLogo = styled('div')(({ theme }) => ({
   svg: {
     width: '100%',
     height: '100%',
+  },
+  '&.active': {
+    svg: {
+      path: {
+        fill: theme.palette.common.black,
+        transition: 'all .25s',
+        '&.active': {
+          fill: theme.palette.primary.main,
+        },
+        '&.logo': {
+          fill: theme.palette.primary.main,
+        },
+      },
+    },
   },
 }));
 
@@ -125,18 +145,18 @@ const LAppBar = ({ active, toggleSidebar }: LayoutBarProps) => {
     disableHysteresis: true,
   });
   return (
-    <TopBar className={clsx('AAAA', { active: scrollTrigger })}>
+    <TopBar className={clsx('', { active: scrollTrigger })}>
       <Wrap direction={'row'}>
         <Link href="/" passHref>
-          <StyleLogo>
+          <StyleLogo className={clsx({ active: scrollTrigger })}>
             <LogoMain />
           </StyleLogo>
         </Link>
         <Stack direction={'row'} gap={3} alignItems={'center'}>
-          <ConfigLanguage />
+          <ConfigLanguage activeScroll={scrollTrigger} />
           <HamburgerButton
             onClick={toggleSidebar}
-            className={active ? 'active' : ''}
+            className={clsx({ active: active, 'active-scroll': scrollTrigger })}
             component={'div'}
           >
             <span className="first"></span>

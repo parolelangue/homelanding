@@ -1,19 +1,17 @@
-import { useAppDispatch, useAppSelector } from '@/infra/store';
+import { useAppDispatch } from '@/infra/store';
 import { Box, Button, Stack, styled, Typography, useScrollTrigger, useTheme } from '@mui/material';
 import clsx from 'clsx';
 import { CSSProperties, useEffect, useRef, useState } from 'react';
 
-import { HeroIcons } from '@/@core/components/icons/heroIcons';
+import { WIDTH_MEDIUM } from '@/@core/configs';
+import { ASAM_TRADING_LOGIN_URL } from '@/@core/constants/general';
 import { useDevice } from '@/@core/hooks/useDevice';
-import { ELanguage, ETemplateDisplay } from '@/@core/types/general';
+import { useResources } from '@/@core/hooks/useResources';
 import { IHeadCategory } from '@/@core/types/home';
 import { hexToRGBA } from '@/@core/utils/hex-to-rgba';
-import { homeActions } from '@/app/reducers/home';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { WIDTH_MEDIUM } from '@/@core/configs';
-import { ASAM_TRADING_LOGIN_URL } from '@/@core/constants/general';
 
 type Props = {
   open: boolean;
@@ -24,12 +22,12 @@ const NavigationSidebar = ({ open, toggleSidebar }: Props) => {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const itemsRef = useRef<{ [id: number]: HTMLLIElement | null }>({});
   const device = useDevice();
-  const { t, i18n } = useTranslation('common');
+  const { t } = useTranslation('common');
   const dispatch = useAppDispatch();
   const theme = useTheme();
   const pathname = usePathname();
-  const splitPaths = pathname.split('/');
-  const headCategories = useAppSelector((state) => state.home.headCategories);
+
+  const { navLinks } = useResources();
 
   const scrollTrigger = useScrollTrigger({
     threshold: 72,
@@ -39,6 +37,15 @@ const NavigationSidebar = ({ open, toggleSidebar }: Props) => {
   const onToggleDropdown = (item: IHeadCategory) => () => {
     if (!device.mobile && !device.tablet) return;
     setExpandedId(item.id === expandedId ? null : item.id);
+  };
+
+  const _onScrollToSection = (id: string) => {
+    const ele = document.getElementById(id);
+    ele.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+    toggleSidebar();
   };
 
   const scrollTriggerStyles = {
@@ -60,9 +67,8 @@ const NavigationSidebar = ({ open, toggleSidebar }: Props) => {
   const renderNavContent = () => (
     <Wrap sx={scrollTrigger || pathname !== '/' ? scrollTriggerStyles : {}}>
       <List className="list">
-        {headCategories?.map((item: IHeadCategory, index) => {
-          const { titleInfo, ancestor } = item;
-          const title = i18n.language === ELanguage.KR ? titleInfo.ko : titleInfo?.[i18n.language];
+        {navLinks?.map((item, index) => {
+          const { label, path } = item;
           return (
             <ListItem
               key={index}
@@ -70,67 +76,19 @@ const NavigationSidebar = ({ open, toggleSidebar }: Props) => {
                 itemsRef.current[index] = el;
               }}
               className={clsx('item', {
-                active: splitPaths[1] === item.ancestor || expandedId === item.id,
+                // active: splitPaths[1] === item.ancestor || expandedId === item.id,
               })}
-              onClick={onToggleDropdown(item)}
+              onClick={(e) => {
+                _onScrollToSection(path);
+                e.preventDefault();
+              }}
               style={{ '--delay': `0.${index + 2 * 2}s` } as CSSProperties}
             >
               <Stack className="wrap" direction={'row'} gap={2.5} alignItems={'center'}>
                 <Typography variant={'body1'} className={'label'}>
-                  {title}
+                  {label}
                 </Typography>
-                {!!item?.subs?.length && (
-                  <HeroIcons.ChevronDown
-                    size={20}
-                    className="dropdown-icon"
-                    color={theme.palette.common.white}
-                  />
-                )}
               </Stack>
-              {!!item?.subs?.length && (
-                <SubPanel
-                  className={clsx('panel', {
-                    active: expandedId === item.id && (device.tablet || device.mobile),
-                  })}
-                  style={{ '--h-panel': item?.subs?.length * 54 + 36 + 'px' } as CSSProperties}
-                >
-                  <div className="list">
-                    {item.subs.map((nav, index) => {
-                      const genPath = {
-                        [ETemplateDisplay.DetailPageArticle]:
-                          '/' +
-                          ancestor +
-                          '/' +
-                          nav?.ancestorPath +
-                          '/' +
-                          nav?.ancestorPath +
-                          '-' +
-                          nav?.id +
-                          '?articlePage=CATEGORY',
-                        [ETemplateDisplay.Link]: nav?.url,
-                      };
-                      const defaultPath = '/' + ancestor + '/' + nav?.ancestorPath;
-
-                      if (nav?.onlyFooterYn === 'Y') return null;
-                      return (
-                        <SubPanelItem
-                          href={genPath?.[nav.templateDisplay] || defaultPath}
-                          className={clsx({
-                            active: splitPaths[2] === nav?.ancestorPath,
-                          })}
-                          key={index}
-                          onClick={toggleSidebar}
-                          target={nav?.templateDisplay === ETemplateDisplay.Link ? '_blank' : ''}
-                        >
-                          {i18n.language === 'kr'
-                            ? nav?.titleInfo?.ko
-                            : nav?.titleInfo?.[i18n.language]}{' '}
-                        </SubPanelItem>
-                      );
-                    })}
-                  </div>
-                </SubPanel>
-              )}
             </ListItem>
           );
         })}
@@ -143,11 +101,15 @@ const NavigationSidebar = ({ open, toggleSidebar }: Props) => {
   return (
     <WrapContent
       component={'div'}
-      className={clsx({ active: open, 'is-mobile': device.mobile || device.tablet })}
+      className={clsx({
+        active: open,
+        'is-mobile': device.mobile || device.tablet,
+        'active-scroll': scrollTrigger,
+      })}
     >
       {renderNavContent()}
       <Link href={ASAM_TRADING_LOGIN_URL} passHref>
-        <OpenAccount variant="contained">{t('button.openAccount')}</OpenAccount>
+        <GetStarted variant="contained">{t('button.getStarted')}</GetStarted>
       </Link>
     </WrapContent>
   );
@@ -198,11 +160,11 @@ const Wrap = styled(Stack)(({ theme }) => ({
 
 const WrapContent = styled(Box)(({ theme }) => ({
   width: '100%',
-  height: 'calc(100vh - 40px)',
+  height: 'calc(100vh - 52px)',
   backgroundColor: theme.palette.background.default,
   position: 'fixed',
   zIndex: 2000,
-  top: 40,
+  top: 52,
   padding: '1rem',
   borderTop: '1px solid rgba(97, 97, 97, 0.2)',
   borderRight: '1px solid rgba(97, 97, 97, 0.2)',
@@ -263,12 +225,24 @@ const WrapContent = styled(Box)(({ theme }) => ({
       },
     },
   },
+  '&.active-scroll': {
+    backgroundColor: theme.palette.common.white,
+    '.list': {
+      '.item': {
+        '.label': {
+          color: theme.palette.grey[900],
+        },
+      },
+    },
+  },
   [theme.breakpoints.down('sm')]: {},
 }));
 
 const List = styled('ul')(({ theme }) => ({
   display: 'flex',
   listStyle: 'none',
+  justifyContent: 'center',
+  alignItems: 'center',
   [theme.breakpoints.down('sm')]: {},
 }));
 const ListItem = styled('li')(({ theme }) => ({
@@ -276,6 +250,7 @@ const ListItem = styled('li')(({ theme }) => ({
     padding: '0.425rem 1rem',
     margin: '0.2rem 0',
     borderRadius: '0.75rem',
+    justifyContent: 'center !important',
   },
   '.dropdown-icon': {
     transition: 'all .25s',
@@ -283,6 +258,7 @@ const ListItem = styled('li')(({ theme }) => ({
   cursor: 'pointer',
   position: 'relative',
   transition: 'all .25s',
+  textAlign: 'center',
   '&.active': {
     '.wrap': {
       backgroundColor: hexToRGBA(theme.palette.common.white, 0.1),
@@ -306,23 +282,27 @@ const ListItem = styled('li')(({ theme }) => ({
     },
   },
   '.label': {
-    fontSize: '1.25rem',
-    lineHeight: '1.75rem',
+    fontSize: '1.5rem',
+    lineHeight: '2.25rem',
     fontWeight: 500,
-    color: theme.palette.text.mode + ' !important',
+    textTransform: 'uppercase',
+    textAlign: 'center',
+    color: theme.palette.text.mode,
   },
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
 }));
 
-const OpenAccount = styled(Button)(({ theme }) => ({
+const GetStarted = styled(Button)(({ theme }) => ({
   borderRadius: 6,
   boxShadow: 'none',
   whiteSpace: 'nowrap',
   textTransform: 'initial',
   marginTop: '1rem',
   width: '100%',
-  fontSize: '1rem',
+  fontSize: '1.25rem',
+  lineHeight: '1.75rem',
+  height: '3rem !important',
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},

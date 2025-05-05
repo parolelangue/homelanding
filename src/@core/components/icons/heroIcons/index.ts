@@ -22,6 +22,18 @@ import BtnAppStore from './BtnAppStore';
 import BtnGGPlay from './BtnGGPlay';
 import ArrowRightUp from './ArrowRightUp';
 import ArrowDown from './ArrowDown';
+import Truck from './Truck';
+import Storage from './Storage';
+import Warehouse from './Warehouse';
+import Manufactur from './Manufactur';
+import Import from './Import';
+import Export from './Export';
+import Scan from './Scan';
+import StreamCode from './StreamCode';
+import Lookup from './Lookup';
+import Box from './Box';
+import Ship from './Ship';
+import Security from './Security';
 
 export const HeroIcons = {
   ArrowTrendingUp,
@@ -48,4 +60,16 @@ export const HeroIcons = {
   BtnGGPlay,
   ArrowRightUp,
   ArrowDown,
+  Truck,
+  Storage,
+  Warehouse,
+  Manufactur,
+  Import,
+  Export,
+  Scan,
+  StreamCode,
+  Lookup,
+  Box,
+  Ship,
+  Security,
 };

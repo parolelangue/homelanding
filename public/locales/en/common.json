@@ -1,5 +1,6 @@
 {
   "common": {
+    "aprotech": "Aprotech",
     "shares": "Share",
     "address": "Address",
     "followUs": "Follow Us",
@@ -40,7 +41,9 @@
   "button": {
     "getStarted": "Get Started",
     "seeMore": "See More",
-    "techBlog": "Tech Blog"
+    "techBlog": "Tech Blog",
+    "goToSystem": "Go to System",
+    "manual": "Manual"
   },
   "homePage": {
     "dataDrivenAITransformation": "Data-driven AI Transformation",
@@ -56,6 +59,30 @@
     "techstacks": "Techstacks",
     "teams": "Teams",
     "contact": "Contact",
-    "greatIdeaCreativeTechnology": "Great Idea & Creative Technology"
+    "greatIdeaCreativeTechnology": "Great Idea & Creative Technology",
+    "factory": "Factory",
+    "logistic": "Logistic",
+    "healthcare": "Healthcare",
+    "manufacturingExucutionSystem": "Manufacturing Exucution System",
+    "shippingManagementSystem": "Shipping Management System",
+    "materialRequirementPlanning": "Material Requirement Planning",
+    "factoryWarehouseManagement": "Factory Warehouse Management",
+    "importLogisticSystem": "Import Logistic System",
+    "exportLogisticSystem": "Export Logistic System",
+    "inOutBarcodeScanner": "In/Out Barcode Scanner",
+    "streamCodeReader": "Stream Code Reader",
+    "productLabelInspector": "Product Label Inspector",
+    "transportatManagementSystem": "Transportat Management System",
+    "strezamPartsClassofier": "Strezam Parts Classofier",
+    "forwardingManagementSystem": "Forwarding Management System",
+    "logisticWarehouseManagementSystem": "Logistic Warehouse Management System",
+    "cargoMonitoringSystem": "Cargo Monitoring System",
+    "customsClearanceManagementSystem": "Customs Clearance Management System",
+    "smarterSolutionPoweredByAI": " <span>Smarter Solutions,</span> Powered byAI",
+    "services": "Services",
+    "swTesting": "SW Testing",
+    "serviceDesk": "Service Desk",
+    "dataIntegration": "Data Integration",
+    "editingVideo": "Editing Video"
   }
 }

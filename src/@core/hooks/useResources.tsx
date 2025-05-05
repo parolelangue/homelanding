@@ -10,7 +10,7 @@ export const useResources = () => {
     },
     {
       label: t('navLinks.technology'),
-      path: 'whatWeDo',
+      path: 'technology',
     },
     {
       label: t('navLinks.services'),
@@ -18,7 +18,7 @@ export const useResources = () => {
     },
     {
       label: t('navLinks.solution'),
-      path: 'solution',
+      path: 'solutions',
     },
     {
       label: t('navLinks.organization'),

@@ -3,17 +3,14 @@ import { alliance } from '@/@core/fonts';
 import { Suspense } from 'react';
 import Loading from './loading';
 import './global.css';
-
-import Advertisement from '@/@core/components/advertisement';
+import LoadingPage from '@/@core/components/loading-page';
 
 export const metadata: Metadata = {
-  title: 'ASAM',
-  description:
-    'ASAM khẳng định là một trong những công ty tài chính uy tín tại Việt Nam. Cam kết mang đến những dịch vụ tài chính chất lượng cao, minh bạch và chuyên nghiệp.',
+  title: 'Aprotech',
+  description: 'Aprotech.',
   openGraph: {
-    title: 'ASAM',
-    description:
-      'ASAM khẳng định là một trong những công ty tài chính uy tín tại Việt Nam. Cam kết mang đến những dịch vụ tài chính chất lượng cao, minh bạch và chuyên nghiệp.',
+    title: 'Aprotech',
+    description: 'ASAM .',
   },
 };
 
@@ -42,9 +39,9 @@ export default function RootLayout({
         <Suspense fallback={<Loading />}>{children}</Suspense>
         {/* <ZaloChat /> */}
         {/* <Advertisement /> */}
-
+        <LoadingPage />
         {/* <Script src="/js/zalo-sdk.js" async crossOrigin="anonymous" /> */}
-        <script
+        {/* <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GG_ANALYTICS_TRACKING_ID}`}
         ></script>
@@ -59,7 +56,7 @@ export default function RootLayout({
               });
             `,
           }}
-        />
+        /> */}
       </body>
     </html>
   );

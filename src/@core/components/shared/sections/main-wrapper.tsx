@@ -11,8 +11,8 @@ const StyleWrapper = styled(Box)(({ theme }) => ({
   paddingRight: '1rem !important',
   paddingBottom: '0',
   [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1440px)`]: {
-    paddingLeft: '7.5rem !important',
-    paddingRight: '7.5rem !important',
+    paddingLeft: '3.5rem !important',
+    paddingRight: '3.5rem !important',
   },
   [theme.breakpoints.down('sm')]: {
     paddingLeft: theme.spacing(4),

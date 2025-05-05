@@ -28,7 +28,7 @@ const Flow = () => {
   const flows = Array.from({ length: 4 }, (_, index) => ({
     title: 'Process & Flow ' + (index + 1),
     desc: 'We are an AI-driven company focused on solving real-world problems through intelligent, scalable solutions that improve efficiency,',
-    image: `/images/pages/home/flow/flow-img-${index + 1}.png`,
+    image: `/images/pages/home/flow/flow-img-${index + 1}.jpg`,
   }));
 
   useGSAP(() => {
@@ -89,13 +89,14 @@ const Flow = () => {
         <div className="section-wrap">
           <div className="wrap">
             <div className="sticky">
-              <MainWrapper sxProps={{ position: 'relative' }}>
+              <MainWrapper sxProps={{ position: 'relative', height: { xs: '80%', md: 'auto' } }}>
                 <Stack
                   alignItems={'flex-start'}
                   sx={{
-                    paddingTop: { xs: '60px', xl: '120px' },
+                    paddingTop: { xs: '10px', xl: '120px' },
                     position: 'absolute',
                     left: 0,
+                    top: { xs: '-20px', md: '0' },
                   }}
                 >
                   <Stack direction="row" alignItems="center" gap="0 0.5rem">
@@ -120,12 +121,12 @@ const Flow = () => {
                       id={`frame-${index + 1}`}
                     >
                       <Grid container height="100%" gap={{ xs: '1.5rem', md: '0' }}>
-                        <Grid item xs={12} md={4} height="100%">
+                        <Grid item xs={12} md={3} height="100%">
                           <Typography className="sub-title">0{index + 1}</Typography>
                           <Typography className="title">{flow.title}</Typography>
                           <Typography className="desc">{flow.desc}</Typography>
                         </Grid>
-                        <Grid item xs={12} md={8} height="100%">
+                        <Grid item xs={12} md={9} height="100%">
                           <Box component={'div'} className="box-img">
                             <img src={flow.image} />
                           </Box>
@@ -320,9 +321,15 @@ const Section = styled('section')(({ theme }) => ({
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
   [theme.breakpoints.down('sm')]: {
-    height: '300vh',
+    '.section-wrap': {
+      height: '300vh',
+    },
     '.wrap': {
       height: '300vh',
+      '.content': {
+        height: '100vh',
+        marginTop: '3rem',
+      },
     },
   },
 }));
@@ -385,7 +392,7 @@ const Card = styled('div')(({ theme }) => ({
     },
   },
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {
-    width: '80vw',
+    width: '90vw',
     height: '640px',
   },
   [theme.breakpoints.down('lg')]: {

@@ -1,33 +1,24 @@
 'use client';
 import { WIDTH_MEDIUM } from '@/@core/configs';
-import { Box, Button, Stack, styled } from '@mui/material';
-import clsx from 'clsx';
+import { Box, Stack, styled, Tab, Tabs } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useMemo, useRef, useState } from 'react';
 //@ts-ignore
-import { HeroIcons } from '@/@core/components/icons/heroIcons';
-import NewCard from '@/@core/components/new-card';
 import MainWrapper from '@/@core/components/shared/sections/main-wrapper';
-import Tabs from '@/@core/components/tabs';
 import { useDevice } from '@/@core/hooks/useDevice';
 import { SectionTitle } from '@/@core/styles/common';
-import { useAppDispatch, useAppSelector } from '@/infra/store';
+import { ITechnology } from '@/@core/types/technology';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import type SplideCore from '@splidejs/splide';
-import { newsActions } from '@/app/reducers/news';
-import TechCard from './TechCard';
-import { ITechnology } from '@/@core/types/technology';
 import gsap from 'gsap';
+import TechCard from './TechCard';
 
 const OurTechnologySection = () => {
   const { t } = useTranslation('common');
-  const [activeTab, setActiveTab] = useState<string>('llm');
+  const [actTab, setActTab] = useState<string>('llm');
   const [activeSlide, setActiveSlide] = useState<number>(0);
   const slideRef = useRef<SplideCore | null>(null);
   const device = useDevice();
-  const dispatch = useAppDispatch();
-
-  const data = useAppSelector((state) => state.news.eventNews);
 
   const dummyData = Array.from({ length: 8 }).map((_, index) => ({
     id: index + 1 + '',
@@ -37,35 +28,28 @@ const OurTechnologySection = () => {
     path: '/tech/' + (index + 1),
   })) as ITechnology[];
 
-  const indexSlide = useMemo(
-    () => ({
-      first: activeSlide === 0,
-      last: activeSlide === slideRef.current?.splides?.length - slideRef.current?.options?.perPage,
-    }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [activeSlide, slideRef.current],
-  );
+  // const indexSlide = useMemo(
+  //   () => ({
+  //     first: activeSlide === 0,
+  //     last: activeSlide === slideRef.current?.splides?.length - slideRef.current?.options?.perPage,
+  //   }),
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   [activeSlide, slideRef.current],
+  // );
 
-  const _onNavigation = (type: 'prev' | 'next') => () => {
-    if (
-      !slideRef.current ||
-      (indexSlide.first && type === 'prev') ||
-      (indexSlide.last && type === 'next')
-    )
-      return;
-    slideRef.current.go(type === 'prev' ? '<' : '>');
+  // const _onNavigation = (type: 'prev' | 'next') => () => {
+  //   if (
+  //     !slideRef.current ||
+  //     (indexSlide.first && type === 'prev') ||
+  //     (indexSlide.last && type === 'next')
+  //   )
+  //     return;
+  //   slideRef.current.go(type === 'prev' ? '<' : '>');
+  // };
+
+  const _onChangeTab = (_: unknown, v: string) => {
+    setActTab(v);
   };
-
-  const tabs = [
-    {
-      label: t('homePage.llm'),
-      key: 'llm',
-    },
-    {
-      label: t('homePage.visionA'),
-      key: 'visionA',
-    },
-  ];
 
   const _onDrag = (ev) => {
     const listSlide = ev.Components.Slides;
@@ -91,28 +75,8 @@ const OurTechnologySection = () => {
     });
   };
 
-  const getAllInfosData = async () => {
-    // const eventId = '4c5b6a7e8f9d1e2c3b4a5d6e7f8c9b0a';
-    // const inforClosureId = '8f74fe97f1b85c3d03ff097ece0cb2e3';
-    // await Promise.allSettled([
-    //   dispatch(
-    //     newsActions.getNewsByOrder({ params: { pageSize: 12, cateId: eventId }, key: 'eventNews' }),
-    //   ),
-    //   dispatch(
-    //     newsActions.getNewsByOrder({
-    //       params: { pageSize: 12, cateId: inforClosureId },
-    //       key: 'inforClosureNews',
-    //     }),
-    //   ),
-    // ]);
-  };
-
-  useEffect(() => {
-    getAllInfosData();
-  }, []);
-
   return (
-    <Wrap>
+    <Wrap id="technology">
       <Head>
         <MainWrapper>
           <Stack
@@ -124,13 +88,17 @@ const OurTechnologySection = () => {
           >
             <SectionTitle
               dangerouslySetInnerHTML={{ __html: t('homePage.ourTechnology') }}
-              sx={{ textTransform: 'initial' }}
+              sx={{
+                textTransform: 'initial',
+                textAlign: { xs: 'center', md: 'left' },
+                mb: { xs: '1rem', md: '0' },
+              }}
             />
-            <Tabs
-              list={tabs}
-              activeTab={activeTab}
-              onChangedTab={(key) => setActiveTab(key as typeof activeTab)}
-            />
+
+            <TabStyle value={actTab} onChange={_onChangeTab}>
+              <Tab value="llm" label={t('homePage.llm')} />
+              <Tab value="visionA" label={t('homePage.visionA')} />
+            </TabStyle>
           </Stack>
         </MainWrapper>
         <Box component="div" className="splide__track">
@@ -146,10 +114,10 @@ const OurTechnologySection = () => {
               perMove: 1,
               arrows: false,
               pagination: false,
-              gap: '3rem',
+              ...(device.mobile ? { gap: '1rem' } : { gap: '3rem' }),
             }}
             onMoved={(ev) => {
-              setActiveSlide(ev.index);
+              // setActiveSlide(ev.index);
             }}
           >
             {dummyData?.map((x, index) => (
@@ -237,6 +205,37 @@ const OurTechnologySection = () => {
 //   },
 // }));
 
+const TabStyle = styled(Tabs)(({ theme }) => ({
+  '.MuiTabs-scroller': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  '.MuiTabs-indicator': {
+    display: 'none',
+  },
+  '.MuiTabs-flexContainer': {
+    gap: '0 0.5rem',
+  },
+  button: {
+    minWidth: '130px',
+    border: `1px solid ${theme.palette.grey[200]}`,
+    borderRadius: '0.325rem',
+    color: theme.palette.grey[400],
+    textTransform: 'initial',
+    transition: 'all .25s',
+    '&.Mui-selected': {
+      color: theme.palette.grey[900],
+      borderColor: theme.palette.grey[800],
+      transition: 'all .25s',
+    },
+  },
+  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
+  [theme.breakpoints.down('lg')]: {},
+  [theme.breakpoints.down('md')]: {},
+  [theme.breakpoints.down('sm')]: {},
+}));
+
 const NewsSlider = styled(Splide)(({ theme }) => ({
   '.splide__slide': {
     transition: 'all .45s cubic-bezier(0, 0.7, 0.3, 0.9)',
@@ -262,7 +261,7 @@ const Head = styled(Stack)(({ theme }) => ({
 
 const Wrap = styled('section')(({ theme }) => ({
   padding: '100px 0',
-  background: theme.palette.grey[50],
+  background: theme.palette.common.white,
   [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
