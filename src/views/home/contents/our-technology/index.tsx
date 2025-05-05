@@ -223,7 +223,7 @@ const TabStyle = styled(Tabs)(({ theme }) => ({
     gap: '0 0.5rem',
   },
   button: {
-    minWidth: '130px',
+    minWidth: '100px',
     border: `1px solid ${theme.palette.grey[200]}`,
     borderRadius: '0.325rem',
     color: theme.palette.grey[400],

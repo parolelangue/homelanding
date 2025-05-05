@@ -17,12 +17,12 @@ const ServiceCard = ({ data }: Props) => {
   return (
     <Card>
       <BoxImage>
-        <Link href="#">
+        <Link href="#" onClick={(e) => e.preventDefault()}>
           <img src={img} />
         </Link>
       </BoxImage>
       <Stack direction="column" gap="0.5rem 0" mt={{ xs: '1rem', md: '1.5rem' }}>
-        <Link href="#">
+        <Link href="#" onClick={(e) => e.preventDefault()}>
           <Typography className="title">{title}</Typography>
         </Link>
 

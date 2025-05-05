@@ -168,7 +168,7 @@ const Section = styled('section')(({ theme }) => ({
     position: 'sticky',
     top: 0,
     zIndex: 1,
-    overflow: 'visible',
+    overflow: 'hidden',
     width: '100%',
     willChange: 'transform',
     display: 'flex',
