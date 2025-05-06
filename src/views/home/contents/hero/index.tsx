@@ -3,9 +3,6 @@ import { WIDTH_MEDIUM } from '@/@core/configs';
 import { Box, keyframes, styled, Typography } from '@mui/material';
 //@ts-ignore
 import MainWrapper from '@/@core/components/shared/sections/main-wrapper';
-import { useDevice } from '@/@core/hooks/useDevice';
-import { hexToRGBA } from '@/@core/utils/hex-to-rgba';
-import { Splide } from '@splidejs/react-splide';
 import { useTranslation } from 'next-i18next';
 import { HeroIcons } from '@/@core/components/icons/heroIcons';
 import { useResources } from '@/@core/hooks/useResources';
@@ -63,10 +60,14 @@ const Intro = styled(Box)(({ theme }) => ({
   },
   [theme.breakpoints.down('sm')]: {
     '.title': {
-      fontSize: '2.75rem',
+      fontSize: '2.5rem',
       lineHeight: '3.25rem',
-      fontWeight: 400,
-      color: theme.palette.common.white,
+    },
+  },
+  [`@media (min-width: 320px) and (max-width: 375px)`]: {
+    '.title': {
+      fontSize: '2rem',
+      lineHeight: '3.25rem',
     },
   },
 }));

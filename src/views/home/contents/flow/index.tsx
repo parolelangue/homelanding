@@ -2,7 +2,7 @@
 import { WIDTH_MEDIUM } from '@/@core/configs';
 import { Box, Grid, Stack, styled, Typography } from '@mui/material';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -25,11 +25,31 @@ const Flow = () => {
   const frameRef = useRef<HTMLDivElement | null>(null);
   const device = useDevice();
 
-  const flows = Array.from({ length: 4 }, (_, index) => ({
-    title: 'Process & Flow ' + (index + 1),
-    desc: 'We are an AI-driven company focused on solving real-world problems through intelligent, scalable solutions that improve efficiency,',
-    image: `/images/pages/home/flow/flow-img-${index + 1}.jpg`,
-  }));
+  const flowsData = useMemo(
+    () => [
+      {
+        title: t('homePage.decisionAutomation'),
+        desc: t('homePage.decisionAutomationDesc'),
+        image: '/images/pages/home/flow/flow-img-1.jpg',
+      },
+      {
+        title: t('homePage.processAndFlow'),
+        desc: t('homePage.processAndFlowDesc'),
+        image: '/images/pages/home/flow/flow-img-2.jpg',
+      },
+      {
+        title: t('homePage.linkedData'),
+        desc: t('homePage.linkedDataDesc'),
+        image: '/images/pages/home/flow/flow-img-3.jpg',
+      },
+      {
+        title: t('homePage.dataLake'),
+        desc: t('homePage.dataLakeDesc'),
+        image: '/images/pages/home/flow/flow-img-4.jpg',
+      },
+    ],
+    [t],
+  );
 
   useGSAP(() => {
     const cards = document.querySelectorAll('.card');
@@ -113,7 +133,7 @@ const Flow = () => {
                   />
                 </Stack>
                 <div className="content">
-                  {flows.map((flow, index) => (
+                  {flowsData.map((flow, index) => (
                     <Card
                       className={`card frame-${index + 1}`}
                       style={{ '--frame-index': `${index * 25}%` } as React.CSSProperties}
@@ -121,7 +141,7 @@ const Flow = () => {
                       id={`frame-${index + 1}`}
                     >
                       <Grid container height="100%" gap={{ xs: '1.5rem', md: '0' }}>
-                        <Grid item xs={12} md={3} height="100%">
+                        <Grid item xs={12} md={3} height="100%" paddingRight="1rem">
                           <Typography className="sub-title">0{index + 1}</Typography>
                           <Typography className="title">{flow.title}</Typography>
                           <Typography className="desc">{flow.desc}</Typography>

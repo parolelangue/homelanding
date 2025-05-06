@@ -282,7 +282,16 @@ const TabStyle = styled(Tabs)(({ theme }) => ({
   [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
+  [theme.breakpoints.down('sm')]: {
+    button: {
+      minWidth: '100px',
+    },
+  },
+  [`@media (min-width: 320px) and (max-width: 375px)`]: {
+    button: {
+      minWidth: '80px',
+    },
+  },
 }));
 
 const Head = styled(Stack)(({ theme }) => ({

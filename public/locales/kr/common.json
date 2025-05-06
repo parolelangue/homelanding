@@ -90,6 +90,14 @@
         "mlops": "MLOps",
         "machineLearningOperations": "머신러닝 운영",
         "rpa": "RPA",
-        "roboticProcessAutomation": "로봇 프로세스 자동화"
+        "roboticProcessAutomation": "로봇 프로세스 자동화",
+        "decisionAutomation": "의사결정 자동화",
+        "decisionAutomationDesc": "의사결정 자동화는 알고리즘, 인공지능(AI), 규칙 기반 시스템과 같은 기술을 활용하여 자동으로 결정을 내리는 것을 의미하며, 이는 사람의 개입을 줄이고, 속도, 일관성, 효율성을 높여 프로세스와 운영을 최적화합니다.",
+        "processAndFlow": "프로세스 및 흐름",
+        "processAndFlowDesc": "프로세스 및 흐름은 시스템 내에서 작업이나 활동이 구조화된 순서로 진행되는 것을 의미하며, 원하는 결과를 얻기 위해 작업, 정보, 자재가 시작부터 끝까지 원활하고 효율적으로 이동하도록 보장합니다.",
+        "linkedData": "링크드 데이터",
+        "linkedDataDesc": "링크드 데이터는 구조화된 데이터를 표준 형식을 사용해 서로 연결 가능하도록 게시하는 방식으로, 웹상의 다양한 데이터셋 간에 원활한 연결과 통합을 가능하게 합니다.",
+        "dataLake": "데이터 레이크",
+        "dataLakeDesc": "데이터 레이크는 대용량의 원시 데이터를 원래 형식 그대로 중앙 저장소에 저장하는 방식으로, 구조화, 반구조화, 비정형 데이터 전반에 걸쳐 유연한 저장, 처리, 분석을 가능하게 합니다."
     }
 }

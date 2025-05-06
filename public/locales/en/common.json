@@ -94,6 +94,10 @@
     "decisionAutomation": "Decision Automation",
     "decisionAutomationDesc": "Decision automation refers to using technology—like algorithms, AI, and rule-based systems—to make decisions automatically, reducing human intervention, increasing speed, consistency, and efficiency across processes and operations.",
     "processAndFlow": "Process & Flow",
-    "processAndFlowDesc": "Process and flow refer to the structured sequence of tasks or activities within a system, ensuring smooth, efficient movement of work, information, or materials from start to finish for desired outcomes."
+    "processAndFlowDesc": "Process and flow refer to the structured sequence of tasks or activities within a system, ensuring smooth, efficient movement of work, information, or materials from start to finish for desired outcomes.",
+    "linkedData": "Linked Data",
+    "linkedDataDesc": "Linked Data is a method of publishing structured data so it can be interlinked and become more useful, enabling seamless connections and integration across diverse datasets on the web using standard formats.",
+    "dataLake": "Data Lake",
+    "dataLakeDesc": "A data lake is a centralized repository that stores large volumes of raw data in its native format, allowing flexible storage, processing, and analysis across structured, semi-structured, and unstructured data types."
   }
 }

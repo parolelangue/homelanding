@@ -238,7 +238,11 @@ const TabStyle = styled(Tabs)(({ theme }) => ({
   [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
-  [theme.breakpoints.down('sm')]: {},
+  [theme.breakpoints.down('sm')]: {
+    button: {
+      minWidth: '65px',
+    },
+  },
 }));
 
 const NewsSlider = styled(Splide)(({ theme }) => ({
