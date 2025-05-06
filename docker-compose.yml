@@ -1,12 +1,12 @@
 services:
   web:
     build: .
-    image: asam-front/app:latest
-    container_name: asam-front
+    image: aprotech-landing/app:latest
+    container_name: aprotech-landing
     restart: always
     env_file:
       - .env.uat
     volumes:
       - .:/code
     ports:
-      - '3009:3000'
+      - '3105:3000'
