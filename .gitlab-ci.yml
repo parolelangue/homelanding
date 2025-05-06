@@ -2,7 +2,7 @@ image: gitlab/dind
 
 variables:
   DOCKER_DRIVER: overlay2
-  APP_IMAGE: asam-front/app
+  APP_IMAGE: aprotech-landing/app
   APP_TAG: latest
 
 stages:

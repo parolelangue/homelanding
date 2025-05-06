@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'http://asamvn.com.vn/sitemap.xml',
+    sitemap: 'http://aprotech.com.vn/sitemap.xml',
   };
 }

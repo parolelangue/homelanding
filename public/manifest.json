@@ -1,7 +1,7 @@
 {
-    "name": "ASAM",
-    "short_name": "ASAM",
-    "description": "ASAM Asset Management",
+    "name": "Aprotech",
+    "short_name": "Aprotech",
+    "description": "Aprotech",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#fff",

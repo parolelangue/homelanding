@@ -1,10 +1,8 @@
-import { useAppDispatch } from '@/infra/store';
 import { Box, Button, Stack, styled, Typography, useScrollTrigger, useTheme } from '@mui/material';
 import clsx from 'clsx';
 import { CSSProperties, useEffect, useRef, useState } from 'react';
 
 import { WIDTH_MEDIUM } from '@/@core/configs';
-import { ASAM_TRADING_LOGIN_URL } from '@/@core/constants/general';
 import { useDevice } from '@/@core/hooks/useDevice';
 import { useResources } from '@/@core/hooks/useResources';
 import { IHeadCategory } from '@/@core/types/home';
@@ -107,7 +105,7 @@ const NavigationSidebar = ({ open, toggleSidebar }: Props) => {
       })}
     >
       {renderNavContent()}
-      <Link href={ASAM_TRADING_LOGIN_URL} passHref>
+      <Link href={'#'} passHref>
         <GetStarted variant="contained">{t('button.getStarted')}</GetStarted>
       </Link>
     </WrapContent>

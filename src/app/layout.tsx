@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Aprotech.',
   openGraph: {
     title: 'Aprotech',
-    description: 'ASAM .',
+    description: 'Aprotech .',
   },
 };
 

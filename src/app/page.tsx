@@ -4,7 +4,6 @@ import { sharedMetadata } from './shared-metadata';
 
 export const metadata: Metadata = {
   ...sharedMetadata,
-  // title: 'ASAM | Home',
 };
 export const revalidate = 60;
 

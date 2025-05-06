@@ -10,16 +10,16 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['asamvn.com.vn'],
+    domains: ['aprotech.com.vn'],
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: 'asamvn.com.vn',
+        hostname: 'aprotech.com.vn',
         pathname: '/upload/**',
       },
       {
         protocol: 'https',
-        hostname: 'asamvn.com.vn',
+        hostname: 'aprotech.com.vn',
         pathname: '/upload/**',
       },
     ],

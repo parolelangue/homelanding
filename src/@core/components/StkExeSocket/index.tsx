@@ -9,7 +9,6 @@ import { hexToRGBA } from '@/@core/utils/hex-to-rgba';
 import MainWrapper from '../shared/sections/main-wrapper';
 import Link from 'next/link';
 import { homeService } from '@/app/services/home';
-import { ASAM_TRADING_URL } from '@/@core/constants/general';
 
 type Props = {
   data: IStockCode[];
@@ -50,7 +49,7 @@ const StockExchangeSocket = ({ data }: Props) => {
               </Grid>
             ))}
           </StockExchange>
-          <Link href={ASAM_TRADING_URL} target="_blank">
+          <Link href={'#'} target="_blank">
             <ViewStockExchange variant="outlined">{t('button.stockExchange')}</ViewStockExchange>
           </Link>
         </Stack>

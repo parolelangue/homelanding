@@ -1,5 +1,4 @@
 import { WIDTH_MEDIUM } from '@/@core/configs';
-import { ASAM_TRADING_LOGIN_URL } from '@/@core/constants/general';
 import { EThemeMode } from '@/@core/types/general';
 import { Box, Button, Stack, styled, useMediaQuery } from '@mui/material';
 import { useTranslation } from 'next-i18next';
@@ -8,6 +7,7 @@ import { ReactNode, useEffect } from 'react';
 import LogoMain from '../../icons/LogoMain';
 import { useResources } from '@/@core/hooks/useResources';
 import clsx from 'clsx';
+import ConfigLanguage from '../../shared/sections/config-language';
 
 const StyleLogo = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -214,7 +214,7 @@ const LAppBar = (props: LAppBarProps) => {
           userHorizontalAppBarBranding(props)
         ) : (
           <LeftStack>
-            <Link href="/" passHref title="ASAM">
+            <Link href="/" passHref>
               <StyleLogo className={clsx({ active: activeScroll })}>
                 <LogoMain />
               </StyleLogo>
@@ -241,7 +241,8 @@ const LAppBar = (props: LAppBarProps) => {
         </ul>
       </Navs>
       <RightStack>
-        <Link href={ASAM_TRADING_LOGIN_URL} aria-label="ASAM trading" target="_blank" passHref>
+        <ConfigLanguage activeScroll={activeScroll} />
+        <Link href={'#'} target="_blank" passHref>
           <ButtonStyle variant="contained">{t('button.getStarted')}</ButtonStyle>
         </Link>
       </RightStack>

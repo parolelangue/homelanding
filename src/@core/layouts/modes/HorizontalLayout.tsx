@@ -10,7 +10,6 @@ import ScrollTop from '../../components/icons/ScrollTop';
 import ScrollToTop from '../../components/scroll-to-top';
 import Footer from '../../components/shared/footer';
 import { WIDTH_MEDIUM } from '../../configs';
-import NavigationSidebar from './NavigationSidebar';
 import { useBoolean } from '@/@core/hooks/useBoolean';
 
 const HorizontalLayoutWrapper = styled('div')({
