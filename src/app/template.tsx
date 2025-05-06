@@ -2,7 +2,6 @@
 
 import { SettingsConsumer, SettingsProvider } from '@/@core/context/settingsContext';
 import ThemeComponent from '@/@core/theme/ThemeComponent';
-import { createEmotionCache } from '@/@core/utils/create-emotion-cache';
 
 // Default theme
 import '@splidejs/react-splide/css';
@@ -17,8 +16,6 @@ import '@splidejs/react-splide/css/core';
 import '@/infra/configs/i18n';
 import ClientLayout from '@/infra/layouts/ClientLayout';
 export default function Template(props: any) {
-  const cache = createEmotionCache();
-
   return (
     <SettingsProvider>
       <SettingsConsumer>
