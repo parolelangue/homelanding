@@ -149,11 +149,11 @@ const HeroSection = ({}: Props) => {
       <Overlay />
       <Intro>
         <MainWrapper isFullContainer>
-          <Typography className="title" variant="h1">
-            DATA DRIVEN
-            <br />
-            AI TRANSFORMATION
-          </Typography>
+          <Box
+            component={'h1'}
+            className="title"
+            dangerouslySetInnerHTML={{ __html: t('homePage.dataDrivenAITransformation') }}
+          />
         </MainWrapper>
       </Intro>
       <ScrollToView onClick={_onScrollNextSection}>
