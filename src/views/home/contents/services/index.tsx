@@ -1,10 +1,9 @@
 'use client';
-import { HeroIcons } from '@/@core/components/icons/heroIcons';
 import LogoShort from '@/@core/components/icons/LogoShort';
 import MainWrapper from '@/@core/components/shared/sections/main-wrapper';
 import { WIDTH_MEDIUM } from '@/@core/configs';
 import { SectionTitle } from '@/@core/styles/common';
-import { Divider, Grid, Stack, styled, Tab, Tabs, Typography, useTheme } from '@mui/material';
+import { Grid, Stack, styled, Typography } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { useMemo, useState } from 'react';
 import ServiceCard from './ServiceCard';
@@ -17,7 +16,7 @@ const ServicesSection = () => {
     () => [
       {
         title: t('homePage.swTesting'),
-        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, ',
+        desc: t('homePage.swTestingDesc'),
         path: '',
         img: '/images/pages/home/services/service-img-1.png',
         colSpan: {
@@ -28,7 +27,7 @@ const ServicesSection = () => {
       },
       {
         title: t('homePage.serviceDesk'),
-        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, ',
+        desc: t('homePage.serviceDeskDesc'),
         path: '',
         img: '/images/pages/home/services/service-img-2.png',
         colSpan: {
@@ -39,7 +38,7 @@ const ServicesSection = () => {
       },
       {
         title: t('homePage.dataIntegration'),
-        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, ',
+        desc: t('homePage.dataIntegrationDesc'),
         path: '',
         img: '/images/pages/home/services/service-img-3.png',
         colSpan: {
@@ -50,7 +49,7 @@ const ServicesSection = () => {
       },
       {
         title: t('homePage.editingVideo'),
-        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, ',
+        desc: t('homePage.editingVideoDesc'),
         path: '',
         img: '/images/pages/home/services/service-img-4.png',
         colSpan: {
