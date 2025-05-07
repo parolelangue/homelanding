@@ -245,7 +245,7 @@ const AprotechCard = styled('div')(({ theme }) => ({
     position: 'relative',
   },
   '.title': {
-    marginBottom: '0.125rem',
+    marginBottom: '0.325rem',
   },
   '.title, .label': {
     fontSize: '1rem',

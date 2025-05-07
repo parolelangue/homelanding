@@ -32,7 +32,7 @@ const SolutionCard = ({ data }: Props) => {
         alignItems={{ xs: 'flex-start', md: 'center' }}
         gap={{ xs: '0.5rem 0', md: '0 0.5rem' }}
       >
-        <Link href="#" target="_blank">
+        <Link href={LINKS.DOCS_SITE} target="_blank">
           <Button variant="outlined" className="btn-manu">
             {t('button.manual')}{' '}
           </Button>
