@@ -101,7 +101,10 @@ const ScrollToView = styled(Box)(({ theme }) => ({
   },
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
   [theme.breakpoints.down('lg')]: {},
-  [theme.breakpoints.down('md')]: {},
+  [theme.breakpoints.down('md')]: {
+    bottom: '2rem',
+    right: '2rem',
+  },
   [theme.breakpoints.down('sm')]: {
     bottom: '2rem',
     right: '2rem',

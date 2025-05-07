@@ -56,7 +56,18 @@ const Flow = () => {
     cards.forEach((card: HTMLDivElement, idx: number) => {
       const index = idx;
       const percentOffset = device.mobile ? 57 : 55;
-      const top = (device.mobile ? 40 : 50) + index * percentOffset;
+      // ------ Check small width screen ----- //
+      const genW = () => {
+        console.log('View 💕-> ', window, window.innerWidth, window.outerWidth);
+
+        const defaultW = device.tablet ? window.innerWidth || window.outerWidth : window.outerWidth;
+
+        if (344 <= defaultW && defaultW <= 365) return 48;
+        if (800 <= defaultW && defaultW <= 860) return 35;
+        return 45;
+      };
+
+      const top = genW() + index * percentOffset;
       const cardHeight = card.getBoundingClientRect().height || 800;
       const offsetTop = cardHeight - 150;
       gsap.fromTo(
@@ -101,7 +112,7 @@ const Flow = () => {
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, []);
+  }, [window.innerWidth]);
 
   return (
     <Section ref={sectionRef} id="flow">
@@ -112,11 +123,12 @@ const Flow = () => {
               <MainWrapper sxProps={{ position: 'relative', height: { xs: '80%', md: 'auto' } }}>
                 <Stack
                   alignItems={'flex-start'}
+                  className="head"
                   sx={{
                     paddingTop: { xs: '10px', xl: '120px' },
                     position: 'absolute',
                     left: 0,
-                    top: { xs: '-20px', md: '0' },
+                    top: { xs: '-20px', md: '100px', lg: '0' },
                   }}
                 >
                   <Stack direction="row" alignItems="center" gap="0 0.5rem">
@@ -140,13 +152,13 @@ const Flow = () => {
                       key={index}
                       id={`frame-${index + 1}`}
                     >
-                      <Grid container height="100%" gap={{ xs: '1.5rem', md: '0' }}>
-                        <Grid item xs={12} md={3} height="100%" paddingRight="1rem">
+                      <Grid container height="100%" gap={{ xs: '0.5rem', md: '0' }}>
+                        <Grid item xs={12} md={3} lg={3} paddingRight="1rem">
                           <Typography className="sub-title">0{index + 1}</Typography>
                           <Typography className="title">{flow.title}</Typography>
                           <Typography className="desc">{flow.desc}</Typography>
                         </Grid>
-                        <Grid item xs={12} md={9} height="100%">
+                        <Grid item xs={12} md={9} lg={9} height="100%">
                           <Box component={'div'} className="box-img">
                             <img src={flow.image} />
                           </Box>
@@ -342,16 +354,22 @@ const Section = styled('section')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {},
   [theme.breakpoints.down('sm')]: {
     '.section-wrap': {
-      height: '300vh',
+      height: '350vh',
     },
     '.wrap': {
-      height: '300vh',
+      height: '350vh',
       '.content': {
         height: '100vh',
         marginTop: '3rem',
       },
     },
+    '.head': {},
   },
+  // [`@media (min-width: 320px)`]: {
+  //   '.head': {
+  //     top: '100px',
+  //   },
+  // },
 }));
 const Card = styled('div')(({ theme }) => ({
   width: '80vw',
@@ -417,16 +435,41 @@ const Card = styled('div')(({ theme }) => ({
   },
   [theme.breakpoints.down('lg')]: {
     width: '90vw',
-    height: '460px',
+    height: '540px',
   },
   [theme.breakpoints.down('md')]: {
     width: '90vw',
-    height: '460px',
+    height: '540px',
+  },
+  [`@media (min-width: 768px) and (max-width: 919px)`]: {
+    width: '90vw',
+    height: '640px',
+    '.sub-title': {
+      marginTop: '0rem',
+    },
+    '.box-img': {
+      height: 'auto',
+    },
+    '.desc': {
+      marginBottom: '0.5rem',
+    },
   },
   [theme.breakpoints.down('sm')]: {
     width: '90vw',
     height: 'fit-content',
     minHeight: '55vh',
+    padding: '1rem',
+    '.sub-title': {
+      marginTop: '0rem',
+    },
+    '.title': {
+      fontSize: '1.5rem',
+      lineHeight: '1.75rem',
+      margin: '0.5rem 0',
+    },
+    '.desc': {
+      marginBottom: '0.5rem',
+    },
   },
 }));
 

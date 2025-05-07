@@ -109,7 +109,31 @@ const Card = styled('div')(({ theme }) => ({
     paddingLeft: '0.75rem',
     paddingRight: '0.75rem',
   },
-  [theme.breakpoints.down('md')]: {},
+  [theme.breakpoints.down('md')]: {
+    button: {
+      paddingLeft: '0.5rem',
+      paddingRight: '0.5rem',
+      fontSize: '0.875rem',
+      svg: {
+        width: '1.125rem',
+        height: '1.125rem',
+      },
+    },
+  },
+  [`@media (min-width: 768px) and (max-width: 860px)`]: {
+    'button, a': {
+      width: '100%',
+    },
+    button: {
+      paddingLeft: '0.5rem',
+      paddingRight: '0.5rem',
+      fontSize: '0.875rem',
+      svg: {
+        width: '1.125rem',
+        height: '1.125rem',
+      },
+    },
+  },
   [theme.breakpoints.down('sm')]: {
     'button, a': {
       width: '100%',
@@ -124,6 +148,7 @@ const Card = styled('div')(({ theme }) => ({
       },
     },
   },
+  [`@media (min-width: 320px)`]: {},
 }));
 
 export default SolutionCard;

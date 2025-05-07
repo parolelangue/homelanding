@@ -243,6 +243,13 @@ const TabStyle = styled(Tabs)(({ theme }) => ({
       minWidth: '65px',
     },
   },
+  [`@media (min-width: 320px)`]: {
+    button: {
+      minWidth: '45px',
+      padding: '0.5rem 0.75rem',
+    },
+    marginBottom: '1rem',
+  },
 }));
 
 const NewsSlider = styled(Splide)(({ theme }) => ({

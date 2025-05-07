@@ -51,6 +51,11 @@ const DefaultPalette = (mode: any, skin: any, themeColor: any) => {
   };
 
   return {
+    breakpoints: {
+      values: {
+        xs: 320, // ⬅️ Change from 0 to 320
+      },
+    },
     customColors: {
       dark: darkColor,
       main: mainColor,

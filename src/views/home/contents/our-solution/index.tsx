@@ -216,13 +216,17 @@ const OurSolutionSection = () => {
             rowSpacing={{ xs: 6, md: 0 }}
             minHeight={{ md: '560px' }}
           >
-            <Grid item xs={12} md={5} lg={5} xl={3}>
+            <Grid item xs={12} md={4} lg={5} xl={3}>
               <ImgWrapper>
                 <img src="/images/pages/home/our-solution/solution-img-1.jpg" />
               </ImgWrapper>
             </Grid>
-            <Grid item xs={12} md={7} lg={7} xl={9}>
-              <Grid container columnSpacing={{ xs: 4, xl: 10 }} rowSpacing={{ xs: 6, xl: 10 }}>
+            <Grid item xs={12} md={8} lg={7} xl={9}>
+              <Grid
+                container
+                columnSpacing={{ xs: 4, md: 4, xl: 10 }}
+                rowSpacing={{ xs: 4, md: 4, xl: 10 }}
+              >
                 {solutionData?.map((x, index) => (
                   <Grid item key={index} xs={6} md={6} lg={6} xl={4}>
                     <SolutionCard data={x} />
@@ -282,6 +286,9 @@ const TabStyle = styled(Tabs)(({ theme }) => ({
   [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 1439px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
+  [`@media (min-width: 768px) and (max-width: 860px)`]: {
+    marginTop: '1rem',
+  },
   [theme.breakpoints.down('sm')]: {
     button: {
       minWidth: '100px',
