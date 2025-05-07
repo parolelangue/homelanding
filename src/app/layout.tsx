@@ -7,10 +7,10 @@ import LoadingPage from '@/@core/components/loading-page';
 
 export const metadata: Metadata = {
   title: 'Aprotech',
-  description: 'Aprotech.',
+  description: 'Aprotech platform by Aprotech',
   openGraph: {
     title: 'Aprotech',
-    description: 'Aprotech .',
+    description: 'Aprotech platform by Aprotech',
   },
 };
 
@@ -34,6 +34,9 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon-48.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta property="fb:app_id" content="562841856678360"></meta>
+        <meta property="og:title" content="Aprotech " />
+        <meta property="og:description" content="Aprotech platform by Aprotech." />
+        <meta property="og:image" content="/favicon-48.png" />
       </head>
       <body>
         <Suspense fallback={<Loading />}>{children}</Suspense>

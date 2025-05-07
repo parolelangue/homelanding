@@ -10,6 +10,7 @@ import SocialInstagram from '../../icons/SocialInstagram';
 import SocialLinked from '../../icons/SocialLinked';
 import MainWrapper from '../sections/main-wrapper';
 import LogoMainV2 from '../../icons/LogoMainV2';
+import { LINKS } from '@/@core/constants/general';
 
 const Wrap = styled('footer')(({ theme }) => ({
   width: '100%',
@@ -359,20 +360,23 @@ const Footer = (props: FooterProps) => {
               }}
             />
           </Stack>
-          <Button
-            variant="contained"
-            sx={{
-              mt: { xs: '1rem', md: '0' },
-              backgroundColor: theme.palette.common.white,
-              color: theme.palette.grey[900],
-              '&:hover': {
-                color: theme.palette.common.white,
-                backgroundColor: theme.palette.grey[500],
-              },
-            }}
-          >
-            {t('button.techBlog')}
-          </Button>
+
+          <Link href={LINKS.DOCS_SITE} target="_blank" passHref>
+            <Button
+              variant="contained"
+              sx={{
+                mt: { xs: '1rem', md: '0' },
+                backgroundColor: theme.palette.common.white,
+                color: theme.palette.grey[900],
+                '&:hover': {
+                  color: theme.palette.common.white,
+                  backgroundColor: theme.palette.grey[500],
+                },
+              }}
+            >
+              {t('button.techBlog')}
+            </Button>
+          </Link>
         </Stack>
         <Stack
           direction={{ xs: 'column', md: 'row' }}

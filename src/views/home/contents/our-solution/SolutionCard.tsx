@@ -1,5 +1,6 @@
 import { HeroIcons } from '@/@core/components/icons/heroIcons';
 import { WIDTH_MEDIUM } from '@/@core/configs';
+import { LINKS } from '@/@core/constants/general';
 import { ISolution } from '@/@core/types/solution';
 import { Box, Button, Stack, styled, Typography } from '@mui/material';
 import { useTranslation } from 'next-i18next';
@@ -31,12 +32,12 @@ const SolutionCard = ({ data }: Props) => {
         alignItems={{ xs: 'flex-start', md: 'center' }}
         gap={{ xs: '0.5rem 0', md: '0 0.5rem' }}
       >
-        <Link href="#">
+        <Link href="#" target="_blank">
           <Button variant="outlined" className="btn-manu">
             {t('button.manual')}{' '}
           </Button>
         </Link>
-        <Link href="#">
+        <Link href={LINKS.DEMO_SITE} target="_blank">
           <Button className="btn-sys">
             {t('button.goToSystem')}
             <HeroIcons.ArrowRight size={22} />

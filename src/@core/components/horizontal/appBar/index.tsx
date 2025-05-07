@@ -8,6 +8,7 @@ import LogoMain from '../../icons/LogoMain';
 import { useResources } from '@/@core/hooks/useResources';
 import clsx from 'clsx';
 import ConfigLanguage from '../../shared/sections/config-language';
+import { LINKS } from '@/@core/constants/general';
 
 const StyleLogo = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -242,8 +243,8 @@ const LAppBar = (props: LAppBarProps) => {
       </Navs>
       <RightStack>
         <ConfigLanguage activeScroll={activeScroll} />
-        <Link href={'#'} target="_blank" passHref>
-          <ButtonStyle variant="contained">{t('button.getStarted')}</ButtonStyle>
+        <Link href={LINKS.DOCS_SITE} target="_blank" passHref>
+          <ButtonStyle variant="contained">{t('button.techBlog')}</ButtonStyle>
         </Link>
       </RightStack>
     </AppBarWrapper>

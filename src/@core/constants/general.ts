@@ -17,3 +17,8 @@ export const INSTALL_LINKS = {
   AppStore: '',
   GooglePlay: '',
 };
+
+export const LINKS = {
+  DEMO_SITE: 'https://docs-site-login-a7df168d97ac.herokuapp.com/',
+  DOCS_SITE: 'https://tech.aprotech.kr',
+};
