@@ -143,7 +143,7 @@ const HeroSection = ({}: Props) => {
           objectFit: 'cover',
         }}
       >
-        <source src="/videos/hero-video.mp4" type="video/mp4" />
+        <source src="/videos/AI_Transformation_bg.mov" type="video/mov" />
         Your browser does not support the video tag.
       </Box>
       <Overlay />
