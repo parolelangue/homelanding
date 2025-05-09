@@ -38,12 +38,15 @@ export default function RootLayout({
         <meta property="og:description" content="Great idea & Creative Technology." />
         <meta property="og:image" content="/favicon-48.png" /> */}
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="shortcut icon" href="/favicon-48.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/aprotech-avatar-512.png" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/favicon-48.png" />
         <meta property="og:url" content="https://aprotech.kr/" />
         <meta property="og:title" content="Aprotech Inc." />
         <meta property="og:description" content="Great Idea & Creative Technology" />
@@ -51,6 +54,7 @@ export default function RootLayout({
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/png" />
+        <meta property="fb:app_id" content="562841856678360"></meta>
       </head>
       <body>
         <Suspense fallback={<Loading />}>{children}</Suspense>
