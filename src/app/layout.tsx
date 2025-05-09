@@ -6,11 +6,11 @@ import './global.css';
 import LoadingPage from '@/@core/components/loading-page';
 
 export const metadata: Metadata = {
-  title: 'Aprotech',
-  description: 'Aprotech platform by Aprotech',
+  title: 'Aprotech Inc.',
+  description: 'Great idea & Creative Technology',
   openGraph: {
-    title: 'Aprotech',
-    description: 'Aprotech platform by Aprotech',
+    title: 'Aprotech Inc.',
+    description: 'Great idea & Creative Technology',
   },
 };
 
@@ -30,13 +30,26 @@ export default function RootLayout({
       }
     >
       <head>
-        <link rel="apple-touch-icon" sizes="48x48" href="/favicon-48.png" />
+        {/* <link rel="apple-touch-icon" sizes="48x48" href="/favicon-48.png" />
         <link rel="shortcut icon" href="/favicon-48.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta property="fb:app_id" content="562841856678360"></meta>
-        <meta property="og:title" content="Aprotech " />
-        <meta property="og:description" content="Aprotech platform by Aprotech." />
-        <meta property="og:image" content="/favicon-48.png" />
+        <meta property="og:title" content="Aprotech Inc." />
+        <meta property="og:description" content="Great idea & Creative Technology." />
+        <meta property="og:image" content="/favicon-48.png" /> */}
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://aprotech.kr/" />
+        <meta property="og:title" content="Aprotech Inc." />
+        <meta property="og:description" content="Great Idea & Creative Technology" />
+        <meta property="og:image" content="/aprotech-og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
       </head>
       <body>
         <Suspense fallback={<Loading />}>{children}</Suspense>

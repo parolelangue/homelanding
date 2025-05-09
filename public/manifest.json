@@ -1,7 +1,7 @@
 {
-    "name": "Aprotech",
-    "short_name": "Aprotech",
-    "description": "Aprotech",
+    "name": "Aprotech Inc.",
+    "short_name": "Aprotech Inc.",
+    "description": "Great idea & Creative Technology",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#fff",

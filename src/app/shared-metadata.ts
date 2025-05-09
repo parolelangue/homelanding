@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 
 export const sharedMetadata: Metadata = {
-  title: 'Aprotech',
-  description: 'Aprotech platform by Aprotech',
+  title: 'Aprotech Inc.',
+  description: 'Great idea & Creative Technology',
   openGraph: {
-    title: 'Aprotech',
-    description: 'Aprotech platform by Aprotech',
+    title: 'Aprotech Inc.',
+    description: 'Great idea & Creative Technology',
   },
 };
