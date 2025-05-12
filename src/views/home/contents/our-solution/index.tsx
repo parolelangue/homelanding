@@ -27,7 +27,7 @@ const OurSolutionSection = () => {
         title: t('homePage.manufacturingExucutionSystem'),
         groupCd: ['factory'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'http://115.77.191.161:3001/smartfactory/mes',
         icon: HeroIcons.Manufactur,
       },
       {
@@ -35,7 +35,7 @@ const OurSolutionSection = () => {
         title: t('homePage.materialRequirementPlanning'),
         groupCd: ['factory'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'http://115.77.191.161:9000/smartfactory/mrp',
         icon: HeroIcons.Storage,
       },
       {
@@ -43,7 +43,7 @@ const OurSolutionSection = () => {
         title: t('homePage.factoryWarehouseManagement'),
         groupCd: ['factory'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'http://115.77.191.161:8080/smartfactory/wms',
         icon: HeroIcons.Warehouse,
       },
       {
@@ -51,7 +51,7 @@ const OurSolutionSection = () => {
         title: t('homePage.importLogisticSystem'),
         groupCd: ['factory'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'http://115.77.191.161:3000/smartfactory/logistics',
         icon: HeroIcons.Import,
       },
       {
@@ -59,7 +59,7 @@ const OurSolutionSection = () => {
         title: t('homePage.exportLogisticSystem'),
         groupCd: ['factory'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'http://115.77.191.161:3000/smartfactory/logistics',
         icon: HeroIcons.Export,
       },
       {
@@ -67,7 +67,7 @@ const OurSolutionSection = () => {
         title: t('homePage.inOutBarcodeScanner'),
         groupCd: ['factory'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'http://115.77.191.161:5174/smartfactory/iobs',
         icon: HeroIcons.Scan,
       },
       {
@@ -75,7 +75,7 @@ const OurSolutionSection = () => {
         title: t('homePage.streamCodeReader'),
         groupCd: ['factory'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'http://115.77.191.161:5175/smartfactory/scr',
         icon: HeroIcons.StreamCode,
       },
       {
@@ -83,7 +83,7 @@ const OurSolutionSection = () => {
         title: t('homePage.productLabelInspector'),
         groupCd: ['factory'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'http://115.77.191.161:5176/smartfactory/pli',
         icon: HeroIcons.Lookup,
       },
       {
@@ -91,16 +91,15 @@ const OurSolutionSection = () => {
         title: t('homePage.strezamPartsClassofier'),
         groupCd: ['factory'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'http://115.77.191.161:5177/smartfactory/spc',
         icon: HeroIcons.Box,
       },
-
       {
         code: 'SCD',
         title: t('homePage.smartCustomizedDietary'),
         groupCd: ['healthcare'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'http://115.77.191.161:4000/smarthealthcare/scd/login',
         icon: HeroIcons.SmartDietary,
       },
       {
@@ -119,13 +118,12 @@ const OurSolutionSection = () => {
         sysPath: '',
         icon: HeroIcons.Research,
       },
-
       {
         code: 'SMS',
         title: t('homePage.shippingManagementSystem'),
         groupCd: ['logistic'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'https://vos-ocean.valueonsys.com/',
         icon: HeroIcons.Truck,
       },
       {
@@ -141,7 +139,7 @@ const OurSolutionSection = () => {
         title: t('homePage.forwardingManagementSystem'),
         groupCd: ['logistic'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'https://vos-fms.valueonsys.com/',
         icon: HeroIcons.Forwarding,
       },
       {
@@ -149,7 +147,7 @@ const OurSolutionSection = () => {
         title: t('homePage.logisticWarehouseManagementSystem'),
         groupCd: ['logistic'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'https://vos-wms.valueonsys.com/',
         icon: HeroIcons.LogisticWarehouse,
       },
       {
@@ -157,7 +155,7 @@ const OurSolutionSection = () => {
         title: t('homePage.cargoMonitoringSystem'),
         groupCd: ['logistic'],
         manuPath: '',
-        sysPath: '',
+        sysPath: 'https://vos-cargoeye.valueonsys.com/',
         icon: HeroIcons.Monitorting,
       },
       {
