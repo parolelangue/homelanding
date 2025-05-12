@@ -34,6 +34,13 @@ import Lookup from './Lookup';
 import Box from './Box';
 import Ship from './Ship';
 import Security from './Security';
+import Transportation from './Transportation';
+import Forwarding from './Forwarding';
+import Monitorting from './Monitorting';
+import LogisticWarehouse from './LogisticWarehouse';
+import Hospital from './Hospital';
+import Research from './Research';
+import SmartDietary from './SmartDietary';
 
 export const HeroIcons = {
   ArrowTrendingUp,
@@ -72,4 +79,11 @@ export const HeroIcons = {
   Box,
   Ship,
   Security,
+  Transportation,
+  Forwarding,
+  Monitorting,
+  LogisticWarehouse,
+  Hospital,
+  Research,
+  SmartDietary,
 };

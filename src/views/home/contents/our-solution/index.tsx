@@ -41,7 +41,7 @@ const OurSolutionSection = () => {
       {
         code: 'FWMS',
         title: t('homePage.factoryWarehouseManagement'),
-        groupCd: ['factory', 'healthcare'],
+        groupCd: ['factory'],
         manuPath: '',
         sysPath: '',
         icon: HeroIcons.Warehouse,
@@ -94,21 +94,30 @@ const OurSolutionSection = () => {
         sysPath: '',
         icon: HeroIcons.Box,
       },
-      {
-        code: 'HMA',
-        title: t('homePage.materialRequirementPlanning'),
-        groupCd: ['healthcare'],
-        manuPath: '',
-        sysPath: '',
-        icon: HeroIcons.Truck,
-      },
+
       {
         code: 'SCD',
-        title: t('homePage.strezamPartsClassofier'),
+        title: t('homePage.smartCustomizedDietary'),
         groupCd: ['healthcare'],
         manuPath: '',
         sysPath: '',
-        icon: HeroIcons.Truck,
+        icon: HeroIcons.SmartDietary,
+      },
+      {
+        code: 'HMA',
+        title: t('homePage.healthcareMessagingAgent'),
+        groupCd: ['healthcare'],
+        manuPath: '',
+        sysPath: '',
+        icon: HeroIcons.Hospital,
+      },
+      {
+        code: 'PMI',
+        title: t('homePage.personalMedicalDataIntegrator'),
+        groupCd: ['healthcare'],
+        manuPath: '',
+        sysPath: '',
+        icon: HeroIcons.Research,
       },
 
       {
@@ -125,7 +134,7 @@ const OurSolutionSection = () => {
         groupCd: ['logistic'],
         manuPath: '',
         sysPath: '',
-        icon: HeroIcons.Truck,
+        icon: HeroIcons.Transportation,
       },
       {
         code: 'FMS',
@@ -133,7 +142,7 @@ const OurSolutionSection = () => {
         groupCd: ['logistic'],
         manuPath: '',
         sysPath: '',
-        icon: HeroIcons.Truck,
+        icon: HeroIcons.Forwarding,
       },
       {
         code: 'LWMS',
@@ -141,7 +150,7 @@ const OurSolutionSection = () => {
         groupCd: ['logistic'],
         manuPath: '',
         sysPath: '',
-        icon: HeroIcons.Truck,
+        icon: HeroIcons.LogisticWarehouse,
       },
       {
         code: 'CMS',
@@ -149,7 +158,7 @@ const OurSolutionSection = () => {
         groupCd: ['logistic'],
         manuPath: '',
         sysPath: '',
-        icon: HeroIcons.Ship,
+        icon: HeroIcons.Monitorting,
       },
       {
         code: 'CCMS',
@@ -163,16 +172,33 @@ const OurSolutionSection = () => {
     return solutions.filter((solution) => solution.groupCd.includes(actTab));
   }, [actTab, t]);
 
+  const imgPaths = {
+    factory: '/images/pages/home/our-solution/solution-img-1.jpg',
+    logistic: '/images/pages/home/our-solution/solution-img-2.jpg',
+    healthcare: '/images/pages/home/our-solution/solution-img-3.png',
+  };
+
   const _onChangeTab = (_: unknown, v: string) => {
     setActTab(v);
   };
 
   useGSAP(() => {
     const solutionEles = document.querySelectorAll('.solution-item');
+    const img = document.querySelector('.img-wrap');
     gsap.fromTo(
       solutionEles,
       { opacity: 0, scale: 0.6, duration: 0.2, ease: 'power1.inOut' },
       { opacity: 1, scale: 1, duration: 0.6, ease: 'power1.inOut', stagger: 0.15 },
+    );
+    gsap.fromTo(
+      img,
+      { opacity: 0, duration: 0.2, scale: 0.6, ease: 'power1.inOut' },
+      {
+        opacity: 1,
+        duration: 0.2,
+        scale: 1,
+        ease: 'power1.inOut',
+      },
     );
   }, [JSON.stringify(solutionData)]);
 
@@ -217,8 +243,8 @@ const OurSolutionSection = () => {
             minHeight={{ md: '560px' }}
           >
             <Grid item xs={12} md={4} lg={5} xl={3}>
-              <ImgWrapper>
-                <img src="/images/pages/home/our-solution/solution-img-1.jpg" />
+              <ImgWrapper className="img-wrap">
+                <img src={imgPaths[actTab]} />
               </ImgWrapper>
             </Grid>
             <Grid item xs={12} md={8} lg={7} xl={9}>
@@ -246,6 +272,7 @@ const ImgWrapper = styled('div')(({ theme }) => ({
   height: '100%',
   borderRadius: '1rem',
   overflow: 'hidden',
+  transition: 'all .25s',
   img: {
     width: '100%',
     height: '100%',

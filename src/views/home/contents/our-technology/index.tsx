@@ -23,7 +23,7 @@ const OurTechnologySection = () => {
     () => [
       {
         title: t('homePage.aLargeLanguageModelThatExcelsAtProcessing'),
-        category: t('homePage.llm'),
+        category: 'LLM',
         code: 'llm',
         thumbnail: `/images/pages/home/our-technology/technology-img-1.jpg`,
       },

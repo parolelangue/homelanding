@@ -1,4 +1,3 @@
-import ButtonLink from '@/@core/components/button-link';
 import Image from '@/@core/components/image';
 import Video from '@/@core/components/video';
 import { WIDTH_MEDIUM } from '@/@core/configs';
@@ -7,11 +6,9 @@ import { ITechnology } from '@/@core/types/technology';
 import { hexToRGBA } from '@/@core/utils/hex-to-rgba';
 import { Box, Stack, styled, Typography, useTheme } from '@mui/material';
 import { useTranslation } from 'next-i18next';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { CSSProperties } from 'react';
 
-const defaultThumbPath = '/images/pages/articles/default-thumb.jpg';
 type Props = {
   data: ITechnology;
 };
@@ -19,13 +16,7 @@ type Props = {
 const TechCard = ({ data }: Props) => {
   const { title, category, thumbnail } = data || {};
   const { t, i18n } = useTranslation('common');
-  const theme = useTheme();
-  const pathname = usePathname();
   const device = useDevice();
-
-  const renderTitle = () => {
-    return title;
-  };
 
   const smallThumbs: CSSProperties = {
     paddingBottom: device.mobile
@@ -43,9 +34,9 @@ const TechCard = ({ data }: Props) => {
         }}
       >
         {true ? (
-          <Image imgUrl={thumbnail} alt={renderTitle()} thumbStyles={smallThumbs} />
+          <Image imgUrl={thumbnail} alt={title} thumbStyles={smallThumbs} />
         ) : (
-          <Video imgUrl={thumbnail} alt={renderTitle()} thumbStyles={smallThumbs} />
+          <Video imgUrl={thumbnail} alt={title} thumbStyles={smallThumbs} />
         )}
         <Content>
           <Typography variant="body1" className="sub-title truncate-text">
@@ -53,7 +44,7 @@ const TechCard = ({ data }: Props) => {
           </Typography>
           <Stack direction="row" alignItems="flex-end">
             <Typography variant="body1" className="title truncate-text">
-              {renderTitle()}
+              {title}
             </Typography>
           </Stack>
         </Content>

@@ -1,17 +1,15 @@
 'use client';
+import LogoShort from '@/@core/components/icons/LogoShort';
+import MainWrapper from '@/@core/components/shared/sections/main-wrapper';
 import { WIDTH_MEDIUM } from '@/@core/configs';
-import { Box, Grid, Stack, styled, Typography } from '@mui/material';
-import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useDevice } from '@/@core/hooks/useDevice';
+import { SectionTitle } from '@/@core/styles/common';
 import { useGSAP } from '@gsap/react';
+import { Box, Grid, Stack, styled, Typography } from '@mui/material';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { hexToRGBA } from '@/@core/utils/hex-to-rgba';
-import { useDevice } from '@/@core/hooks/useDevice';
-import MainWrapper from '@/@core/components/shared/sections/main-wrapper';
-import LogoShort from '@/@core/components/icons/LogoShort';
 import { useTranslation } from 'next-i18next';
-import { SectionTitle } from '@/@core/styles/common';
+import React, { useMemo, useRef } from 'react';
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -58,8 +56,6 @@ const Flow = () => {
       const percentOffset = device.mobile ? 57 : 55;
       // ------ Check small width screen ----- //
       const genW = () => {
-        console.log('View 💕-> ', window, window.innerWidth, window.outerWidth);
-
         const defaultW = device.tablet ? window.innerWidth || window.outerWidth : window.outerWidth;
 
         if (344 <= defaultW && defaultW <= 365) return 48;
@@ -128,7 +124,7 @@ const Flow = () => {
                     paddingTop: { xs: '10px', xl: '120px' },
                     position: 'absolute',
                     left: 0,
-                    top: { xs: '-20px', md: '100px', lg: '0' },
+                    top: { xs: '-20px', md: '100px', lg: '75px', xl: '0' },
                   }}
                 >
                   <Stack direction="row" alignItems="center" gap="0 0.5rem">
