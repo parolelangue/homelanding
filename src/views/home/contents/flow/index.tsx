@@ -3,6 +3,7 @@ import LogoShort from '@/@core/components/icons/LogoShort';
 import MainWrapper from '@/@core/components/shared/sections/main-wrapper';
 import { WIDTH_MEDIUM } from '@/@core/configs';
 import { useDevice } from '@/@core/hooks/useDevice';
+import { useGetZoom } from '@/@core/hooks/useGetZoom';
 import { SectionTitle } from '@/@core/styles/common';
 import { useGSAP } from '@gsap/react';
 import { Box, Grid, Stack, styled, Typography } from '@mui/material';
@@ -18,10 +19,9 @@ type Props = {};
 
 const Flow = () => {
   const { t } = useTranslation('common');
-  const observer = useRef<IntersectionObserver | null>(null);
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const frameRef = useRef<HTMLDivElement | null>(null);
   const device = useDevice();
+  const zoom = useGetZoom();
 
   const flowsData = useMemo(
     () => [
@@ -60,6 +60,7 @@ const Flow = () => {
 
         if (344 <= defaultW && defaultW <= 365) return 48;
         if (800 <= defaultW && defaultW <= 860) return 35;
+        if (1200 <= defaultW) return 55;
         return 45;
       };
 
@@ -108,7 +109,7 @@ const Flow = () => {
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [window.innerWidth]);
+  }, [window.innerWidth, zoom]);
 
   return (
     <Section ref={sectionRef} id="flow">
@@ -147,6 +148,12 @@ const Flow = () => {
                       style={{ '--frame-index': `${index * 25}%` } as React.CSSProperties}
                       key={index}
                       id={`frame-${index + 1}`}
+                      sx={{
+                        ...((zoom === 150 || zoom === 100) &&
+                        (device.desktop || device.desktopLarge)
+                          ? { height: '500px !important' }
+                          : {}),
+                      }}
                     >
                       <Grid container height="100%" gap={{ xs: '0.5rem', md: '0' }}>
                         <Grid item xs={12} md={3} lg={3} paddingRight="1rem">
