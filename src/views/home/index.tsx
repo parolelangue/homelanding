@@ -1,5 +1,4 @@
 'use client';
-import gsap from 'gsap';
 import Flow from './contents/flow';
 import HeroSection from './contents/hero';
 import OurSolutionSection from './contents/our-solution';
