@@ -409,7 +409,7 @@ const Footer = (props: FooterProps) => {
                     {t('common.korea')}:
                   </Typography>
                   <Typography className="value" variant="body1">
-                    서울특별시 금천구 디지털로10길 37, 1415호 (가산동, 가산아스크타워)
+                    1415, 37, Digital-ro 10-gil, Geumcheon-gu, Seoul, Republic of Korea
                   </Typography>
                 </Stack>
                 <Stack direction="row" gap="0 0.325rem ">

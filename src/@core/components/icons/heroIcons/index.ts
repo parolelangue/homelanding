@@ -41,6 +41,7 @@ import LogisticWarehouse from './LogisticWarehouse';
 import Hospital from './Hospital';
 import Research from './Research';
 import SmartDietary from './SmartDietary';
+import CargoCrane from './CargoCrane';
 
 export const HeroIcons = {
   ArrowTrendingUp,
@@ -86,4 +87,5 @@ export const HeroIcons = {
   Hospital,
   Research,
   SmartDietary,
+  CargoCrane,
 };

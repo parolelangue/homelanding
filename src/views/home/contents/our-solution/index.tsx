@@ -127,12 +127,12 @@ const OurSolutionSection = () => {
         icon: HeroIcons.Truck,
       },
       {
-        code: 'TMS',
-        title: t('homePage.transportatManagementSystem'),
+        code: 'OCS',
+        title: t('homePage.oogCargoSimulator'),
         groupCd: ['logistic'],
         manuPath: '',
-        sysPath: '',
-        icon: HeroIcons.Transportation,
+        sysPath: 'https://oog.valueonsys.com/mainPage',
+        icon: HeroIcons.CargoCrane,
       },
       {
         code: 'FMS',
@@ -218,7 +218,7 @@ const OurSolutionSection = () => {
                 <Typography className="sub-title">{t('homePage.solutions')}</Typography>
               </Stack>
               <SectionTitle
-                dangerouslySetInnerHTML={{ __html: t('homePage.ourSolution') }}
+                dangerouslySetInnerHTML={{ __html: t('homePage.smarterSolutionPoweredByAI') }}
                 sx={{
                   textTransform: 'initial !important',
                 }}
@@ -302,6 +302,9 @@ const TabStyle = styled(Tabs)(({ theme }) => ({
     color: theme.palette.grey[400],
     textTransform: 'initial',
     transition: 'all .25s',
+    fontSize: '1.125rem',
+    lineHeight: '1.75rem',
+    fontWeight: 500,
     '&.Mui-selected': {
       color: theme.palette.grey[900],
       borderColor: theme.palette.grey[800],

@@ -59,9 +59,9 @@ const ButtonStyle = styled(Button)(({ theme }) => ({
   textTransform: 'initial',
 
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {
-    fontSize: 16,
+    fontSize: '1.125rem',
     fontWeight: 600,
-    lineHeight: '25px',
+    lineHeight: '1.75rem',
     padding: '0.46875rem 1.53rem',
   },
   [theme.breakpoints.down('lg')]: {},
@@ -106,9 +106,9 @@ const Navs = styled('nav')(({ theme }) => ({
     li: {
       padding: '0.5rem 1rem',
       a: {
-        fontSize: '1rem',
+        fontSize: '1.125rem',
         fontWeight: 500,
-        lineHeight: '1.5rem',
+        lineHeight: '1.75rem',
         color: theme.palette.common.white,
         position: 'relative',
         '&:after': {

@@ -48,7 +48,7 @@ const ServicesSection = () => {
         },
       },
       {
-        title: t('homePage.editingVideo'),
+        title: t('homePage.editingDigitalContents'),
         desc: t('homePage.editingVideoDesc'),
         path: '',
         img: '/images/pages/home/services/service-img-4.png',
@@ -72,7 +72,9 @@ const ServicesSection = () => {
               <Typography className="sub-title">{t('homePage.services')}</Typography>
             </Stack>
             <SectionTitle
-              dangerouslySetInnerHTML={{ __html: t('homePage.smarterSolutionPoweredByAI') }}
+              dangerouslySetInnerHTML={{
+                __html: t('homePage.humanComputingServicesForDigitalTransformation'),
+              }}
               sx={{
                 textTransform: 'initial !important',
               }}

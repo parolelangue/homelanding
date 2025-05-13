@@ -39,7 +39,9 @@ const OrganizationSection = () => {
               <Typography className="sub-title">{t('homePage.organization')}</Typography>
             </Stack>
             <SectionTitle
-              dangerouslySetInnerHTML={{ __html: t('homePage.techniciansAreWaitingForYouInHcmc') }}
+              dangerouslySetInnerHTML={{
+                __html: t('homePage.weAreGowingWithinFreedomAndResponsibility'),
+              }}
               sx={{
                 textTransform: 'initial !important',
                 textAlign: 'center',

@@ -1,6 +1,6 @@
 'use client';
 import { WIDTH_MEDIUM } from '@/@core/configs';
-import { Box, Stack, styled, Tab, Tabs } from '@mui/material';
+import { Box, Stack, styled, Tab, Tabs, Typography } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useMemo, useRef, useState } from 'react';
 //@ts-ignore
@@ -12,6 +12,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import type SplideCore from '@splidejs/splide';
 import gsap from 'gsap';
 import TechCard from './TechCard';
+import LogoShort from '@/@core/components/icons/LogoShort';
 
 const OurTechnologySection = () => {
   const { t } = useTranslation('common');
@@ -85,19 +86,29 @@ const OurTechnologySection = () => {
         <MainWrapper>
           <Stack
             direction={{ base: 'column', md: 'row' }}
-            alignItems={{ base: 'flex-start', md: 'center' }}
+            alignItems={{ base: 'flex-start', md: 'flex-end' }}
             justifyContent={'space-between'}
             sx={{ marginBottom: { xs: '1rem', sm: '1rem', md: '3.5rem' } }}
             gap={4}
           >
-            <SectionTitle
-              dangerouslySetInnerHTML={{ __html: t('homePage.ourTechnology') }}
-              sx={{
-                textTransform: 'initial',
-                textAlign: { xs: 'center', md: 'left' },
-                mb: { xs: '1rem', md: '0' },
-              }}
-            />
+            <Stack
+              alignItems={'flex-start'}
+              sx={{ marginBottom: { xs: '1rem', sm: '0', md: '0' } }}
+              maxWidth="850px"
+            >
+              <Stack direction="row" alignItems="center" gap="0 0.5rem">
+                <LogoShort />
+                <Typography className="sub-title">{t('homePage.technology')}</Typography>
+              </Stack>
+              <SectionTitle
+                dangerouslySetInnerHTML={{
+                  __html: t('homePage.ourCoreTechnologyIsSpecializedInArtificialIntelligence'),
+                }}
+                sx={{
+                  textTransform: 'initial !important',
+                }}
+              />
+            </Stack>
 
             <TabStyle value={actTab} onChange={_onChangeTab}>
               {technologiesData.map((technology, index) => (
@@ -222,6 +233,7 @@ const TabStyle = styled(Tabs)(({ theme }) => ({
   '.MuiTabs-flexContainer': {
     gap: '0 0.5rem',
   },
+  marginBottom: '0rem',
   button: {
     minWidth: '100px',
     border: `1px solid ${theme.palette.grey[200]}`,
@@ -229,6 +241,9 @@ const TabStyle = styled(Tabs)(({ theme }) => ({
     color: theme.palette.grey[400],
     textTransform: 'initial',
     transition: 'all .25s',
+    fontSize: '1.125rem',
+    lineHeight: '1.75rem',
+    fontWeight: 500,
     '&.Mui-selected': {
       color: theme.palette.grey[900],
       borderColor: theme.palette.grey[800],
@@ -243,7 +258,7 @@ const TabStyle = styled(Tabs)(({ theme }) => ({
       minWidth: '65px',
     },
   },
-  [`@media (min-width: 320px)`]: {
+  [`@media (min-width: 320px) and (max-width: 767 px)`]: {
     button: {
       minWidth: '45px',
       padding: '0.5rem 0.75rem',

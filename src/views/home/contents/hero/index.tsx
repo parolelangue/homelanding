@@ -44,7 +44,7 @@ const Intro = styled(Box)(({ theme }) => ({
   '.title': {
     fontSize: '5rem',
     lineHeight: '6rem',
-    fontWeight: 400,
+    fontWeight: 500,
     color: theme.palette.common.white,
   },
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
@@ -54,7 +54,7 @@ const Intro = styled(Box)(({ theme }) => ({
     '.title': {
       fontSize: '3rem',
       lineHeight: '4rem',
-      fontWeight: 400,
+      fontWeight: 500,
       color: theme.palette.common.white,
     },
   },
@@ -94,8 +94,8 @@ const ScrollToView = styled(Box)(({ theme }) => ({
     },
   },
   '.label': {
-    fontSize: '1rem',
-    lineHeight: '1.5rem',
+    fontSize: '1.125rem',
+    lineHeight: '1.75rem',
     fontWeight: 500,
     color: theme.palette.common.white,
   },
