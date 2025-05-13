@@ -500,7 +500,7 @@ const Footer = (props: FooterProps) => {
               const Icon = social.Icon;
               return (
                 <li key={index}>
-                  <Link href={social.href}>
+                  <Link href={social.href} target="_blank">
                     <Icon />
                   </Link>
                 </li>

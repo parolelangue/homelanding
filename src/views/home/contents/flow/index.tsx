@@ -150,7 +150,8 @@ const Flow = () => {
                       id={`frame-${index + 1}`}
                       sx={{
                         ...((zoom === 150 || zoom === 100) &&
-                        (device.desktop || device.desktopLarge)
+                        (device.desktop || device.desktopLarge) &&
+                        window.innerWidth < 1920
                           ? { height: '500px !important' }
                           : {}),
                       }}
@@ -352,6 +353,12 @@ const Section = styled('section')(({ theme }) => ({
   //     height: '200px',
   //   },
   // },
+  [`@media (min-width: 2200px) and (max-width: 2560px)`]: {
+    '.head': {
+      top: '70px',
+    },
+  },
+
   [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {},
   [theme.breakpoints.down('lg')]: {},
   [theme.breakpoints.down('md')]: {},
@@ -432,7 +439,11 @@ const Card = styled('div')(({ theme }) => ({
       objectFit: 'cover',
     },
   },
-  [`@media (min-width: ${WIDTH_MEDIUM}px)`]: {
+  [`@media (min-width: 2200px) and (max-width: 2560px)`]: {
+    width: '90vw',
+    height: '720px',
+  },
+  [`@media (min-width: ${WIDTH_MEDIUM}px) and (max-width: 2199px)`]: {
     width: '90vw',
     height: '640px',
   },
