@@ -11,7 +11,7 @@ type Props = {
 };
 
 const SolutionCard = ({ data }: Props) => {
-  const { code, groupCd, title, manuPath, sysPath, icon } = data || {};
+  const { code, title, sysPath, icon } = data || {};
   const { t, i18n } = useTranslation('common');
 
   const Icon = icon;
