@@ -37,7 +37,7 @@ const SolutionCard = ({ data }: Props) => {
             {t('button.manual')}{' '}
           </Button>
         </Link>
-        <Link href={LINKS.DEMO_SITE} target="_blank">
+        <Link href={sysPath} target="_blank">
           <Button className="btn-sys">
             {t('button.goToSystem')}
             <HeroIcons.ArrowRight size={22} />
