@@ -11,6 +11,7 @@ import SocialLinked from '../../icons/SocialLinked';
 import MainWrapper from '../sections/main-wrapper';
 import LogoMainV2 from '../../icons/LogoMainV2';
 import { LINKS } from '@/@core/constants/general';
+import SocialBlog from '../../icons/SocialBlog';
 
 const Wrap = styled('footer')(({ theme }) => ({
   width: '100%',
@@ -326,6 +327,11 @@ const Footer = (props: FooterProps) => {
       label: 'Facebook',
       Icon: SocialFacebook,
       href: 'https://www.facebook.com/aprotech.kr',
+    },
+    {
+      label: 'Blog',
+      Icon: SocialBlog,
+      href: 'https://blog.naver.com/aprotech-global',
     },
   ];
 
