@@ -56,12 +56,11 @@ const Content = styled(Stack)(({ theme }) => ({
   position: 'absolute',
   top: '2rem',
   left: '2rem',
-  maxWidth: '550px',
+  maxWidth: '700px',
   background: hexToRGBA(theme.palette.common.black, 0.24),
   backdropFilter: 'blur(50px)',
   '.title': {
     width: 'fit-content',
-    maxWidth: '98%',
     fontSize: '2.5rem',
     lineHeight: '3rem',
     fontWeight: 500,
