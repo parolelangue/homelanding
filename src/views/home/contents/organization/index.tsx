@@ -34,13 +34,13 @@ const OrganizationSection = () => {
             alignItems={'center'}
             sx={{ marginBottom: { xs: '1rem', sm: '1rem', md: '3.5rem' } }}
           >
-            <Stack direction="row" alignItems="center" gap="0 0.5rem">
+            <Stack direction="row" alignItems="center" gap="0 0.5rem" mb="0.5rem">
               <LogoShort />
               <Typography className="sub-title">{t('homePage.organization')}</Typography>
             </Stack>
             <SectionTitle
               dangerouslySetInnerHTML={{
-                __html: t('homePage.weAreGowingWithinFreedomAndResponsibility'),
+                __html: t('homePage.weProvideITServicesWideTechStack'),
               }}
               sx={{
                 textTransform: 'initial !important',

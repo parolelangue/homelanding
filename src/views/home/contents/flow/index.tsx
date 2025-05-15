@@ -15,8 +15,6 @@ import React, { useMemo, useRef } from 'react';
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
-type Props = {};
-
 const Flow = () => {
   const { t } = useTranslation('common');
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -53,18 +51,24 @@ const Flow = () => {
     const cards = document.querySelectorAll('.card');
     cards.forEach((card: HTMLDivElement, idx: number) => {
       const index = idx;
-      const percentOffset = device.mobile ? 57 : 55;
+      const percentOffset = device.mobile ? 60 : 62;
+      const itemSecondOffset = idx === 1 ? 5 : 0;
+      const defaultW = device.tablet ? window.innerWidth || window.outerWidth : window.outerWidth;
+
       // ------ Check small width screen ----- //
       const genW = () => {
-        const defaultW = device.tablet ? window.innerWidth || window.outerWidth : window.outerWidth;
-
         if (344 <= defaultW && defaultW <= 365) return 48;
         if (800 <= defaultW && defaultW <= 860) return 35;
         if (1200 <= defaultW) return 55;
         return 45;
       };
+      const genPercentOffset = () => {
+        if (530 <= defaultW && defaultW <= 799) return 70;
+        if (device.mobile) return 60;
+        return 62;
+      };
 
-      const top = genW() + index * percentOffset;
+      const top = genW() + index * (genPercentOffset() + itemSecondOffset);
       const cardHeight = card.getBoundingClientRect().height || 800;
       const offsetTop = cardHeight - 150;
       gsap.fromTo(
@@ -76,7 +80,7 @@ const Flow = () => {
         },
         {
           opacity: 1,
-          top: `${top - index * percentOffset}%`,
+          top: `${top - index * genPercentOffset()}%`,
           ease: 'power1.out',
           scrollTrigger: {
             trigger: card,
@@ -128,13 +132,13 @@ const Flow = () => {
                     top: { xs: '-20px', md: '100px', lg: '75px', xl: '0' },
                   }}
                 >
-                  <Stack direction="row" alignItems="center" gap="0 0.5rem">
+                  <Stack direction="row" alignItems="center" gap="0 0.5rem" mb="0.5rem">
                     <LogoShort />
                     <Typography className="sub-title">{t('homePage.whatAreWeDoing')}</Typography>
                   </Stack>
                   <SectionTitle
                     dangerouslySetInnerHTML={{
-                      __html: t('homePage.weAreAcompanyThatSolvesProblemsBasedOnAI'),
+                      __html: t('homePage.weSolveYourProblemsBasedOnData'),
                     }}
                     sx={{
                       textTransform: 'initial !important',

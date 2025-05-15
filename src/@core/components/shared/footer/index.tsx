@@ -398,7 +398,7 @@ const Footer = (props: FooterProps) => {
           <AprotechCard>
             <div className="section">
               <Typography className="title" variant="body1">
-                {t('common.hotline')}
+                {t('common.phone')}
               </Typography>
               <Typography className="value" variant="body1">
                 +82 2-2658-9004
@@ -415,7 +415,7 @@ const Footer = (props: FooterProps) => {
                     {t('common.korea')}:
                   </Typography>
                   <Typography className="value" variant="body1">
-                    1415, 37, Digital-ro 10-gil, Geumcheon-gu, Seoul, Republic of Korea
+                    {t('common.addressKr')}
                   </Typography>
                 </Stack>
                 <Stack direction="row" gap="0 0.325rem ">

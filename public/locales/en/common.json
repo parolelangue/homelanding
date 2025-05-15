@@ -5,7 +5,7 @@
     "address": "Address",
     "followUs": "Follow Us",
     "aboutUs": "About Us",
-    "hotline": "Hotline",
+    "phone": "Phone",
     "korea": "Korea",
     "vietnam": "Vietnam",
     "email": "Email",
@@ -28,7 +28,8 @@
     "description": "Description",
     "getStarted": "Get Started",
     "seeMore": "See More",
-    "scrollToViewMore": "Scroll to view more"
+    "scrollToViewMore": "Scroll to more",
+    "addressKr": "1415, 37, Digital-ro 10-gil, Geumcheon-gu, Seoul, Republic of Korea"
   },
   "navLinks": {
     "whatWeDo": "What we do",
@@ -41,7 +42,7 @@
   "button": {
     "getStarted": "Get Started",
     "seeMore": "See More",
-    "techBlog": "Tech Blog",
+    "techBlog": "TechBlog",
     "goToSystem": "Go to System",
     "manual": "Manual"
   },
@@ -53,12 +54,15 @@
     "ourTechnology": "Our <span>Technology</span>",
     "technology": "Technology",
     "ourCoreTechnologyIsSpecializedInArtificialIntelligence": "Our core technology is <br/> specialized in <span>Artificial Intelligence</span>",
+    "weFocusOnTheAIDiffusion": "We focus on the <span>AI diffusion</span>",
     "ourSolution": "Our <span>Solution</span>",
     "solutions": "Solutions",
     "weAreAcompanyThatSolvesProblemsBasedOnAI": "We are a company that <span>Solves problems based on AI</span>",
+    "weSolveYourProblemsBasedOnData": "We <span>solve your problems based on data</span>",
     "organization": "Organization",
     "techniciansAreWaitingForYouInHcmc": "<span>1000+ Technicians</span> <br/>  are waiting for you in HCMC",
     "weAreGowingWithinFreedomAndResponsibility": "<span>We are growing, within</span> <br/> Freedom and Responsibility",
+    "weProvideITServicesWideTechStack": "<span>We provide IT services</span> wide tech stack",
     "techstacks": "Techstacks",
     "teams": "Teams",
     "contact": "Contact",
@@ -95,13 +99,16 @@
     "dataIntegration": "Data Integration",
     "dataIntegrationDesc": "Data integration combines data from different sources into a unified view, enabling consistent access, analysis, and improved decision-making across systems.",
     "editingVideo": "Editing Video",
-    "editingVideoDesc": "Editing video involves selecting, cutting, arranging, and enhancing footage to create polished visual content.",
+    "digitalContents": "Digital Contents",
+    "digitalContentsDesc": "Preprocessing is the work of editing and manipulating digital content such as video, audio, and images to make them usable by AI.",
     "editingDigitalContents": "Editing Digital Contents",
     "aLargeLanguageModelThatExcelsAtProcessing": "A large language model that excels at processing",
     "visionAI": "Vision AI",
     "integrationOfComputerVisionAndAITechnologies": "Integration of Computer Vision & AI Technologies",
+    "computerVisionRecognition": "Computer Vision Recognition",
     "mlops": "MLOps",
     "machineLearningOperations": "Machine Learning Operations",
+    "continueousModelDevelopment": "Continuous Model Development",
     "rpa": "RPA",
     "roboticProcessAutomation": "Robotic Process Automation",
     "decisionAutomation": "Decision Automation",
@@ -112,5 +119,6 @@
     "linkedDataDesc": "Linked Data is a method of publishing structured data so it can be interlinked and become more useful, enabling seamless connections and integration across diverse datasets on the web using standard formats.",
     "dataLake": "Data Lake",
     "dataLakeDesc": "A data lake is a centralized repository that stores large volumes of raw data in its native format, allowing flexible storage, processing, and analysis across structured, semi-structured, and unstructured data types."
-  }
+  },
+  "A large language model that excels at processing": "A large language model that excels at processing"
 }

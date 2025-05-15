@@ -6,7 +6,6 @@ import { ITechnology } from '@/@core/types/technology';
 import { hexToRGBA } from '@/@core/utils/hex-to-rgba';
 import { Box, Stack, styled, Typography, useTheme } from '@mui/material';
 import { useTranslation } from 'next-i18next';
-import { usePathname } from 'next/navigation';
 import { CSSProperties } from 'react';
 
 type Props = {
@@ -33,11 +32,7 @@ const TechCard = ({ data }: Props) => {
           cursor: 'grab',
         }}
       >
-        {true ? (
-          <Image imgUrl={thumbnail} alt={title} thumbStyles={smallThumbs} />
-        ) : (
-          <Video imgUrl={thumbnail} alt={title} thumbStyles={smallThumbs} />
-        )}
+        <Image imgUrl={thumbnail} alt={title} thumbStyles={smallThumbs} />
         <Content>
           <Typography variant="body1" className="sub-title truncate-text">
             {category}

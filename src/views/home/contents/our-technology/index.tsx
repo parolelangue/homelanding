@@ -2,53 +2,56 @@
 import { WIDTH_MEDIUM } from '@/@core/configs';
 import { Box, Stack, styled, Tab, Tabs, Typography } from '@mui/material';
 import { useTranslation } from 'next-i18next';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 //@ts-ignore
+import LogoShort from '@/@core/components/icons/LogoShort';
 import MainWrapper from '@/@core/components/shared/sections/main-wrapper';
 import { useDevice } from '@/@core/hooks/useDevice';
 import { SectionTitle } from '@/@core/styles/common';
-import { ITechnology } from '@/@core/types/technology';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import type SplideCore from '@splidejs/splide';
+import clsx from 'clsx';
 import gsap from 'gsap';
 import TechCard from './TechCard';
-import LogoShort from '@/@core/components/icons/LogoShort';
 
 const OurTechnologySection = () => {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const [actTab, setActTab] = useState<string>('llm');
   const slideRef = useRef<SplideCore | null>(null);
   const device = useDevice();
+  const [_, setForUpdate] = useState<object>({});
 
-  const technologiesData = useMemo(
-    () => [
-      {
-        title: t('homePage.aLargeLanguageModelThatExcelsAtProcessing'),
-        category: 'LLM',
-        code: 'llm',
-        thumbnail: `/images/pages/home/our-technology/technology-img-1.jpg`,
-      },
-      {
-        title: t('homePage.integrationOfComputerVisionAndAITechnologies'),
-        category: t('homePage.visionAI'),
-        code: 'visionAI',
-        thumbnail: `/images/pages/home/our-technology/technology-img-2.jpg`,
-      },
-      {
-        title: t('homePage.machineLearningOperations'),
-        category: t('homePage.mlops'),
-        code: 'mlops',
-        thumbnail: `/images/pages/home/our-technology/technology-img-3.jpg`,
-      },
-      {
-        title: t('homePage.roboticProcessAutomation'),
-        category: t('homePage.rpa'),
-        code: 'rpa',
-        thumbnail: `/images/pages/home/our-technology/technology-img-4.jpg`,
-      },
-    ],
-    [t],
-  );
+  const technologiesData = [
+    {
+      // title: t('homePage.aLargeLanguageModelThatExcelsAtProcessing'),
+      title: i18n.language === 'kr' ? '대규모 언어모델' : 'Large Language Model',
+      category: 'LLM',
+      code: 'llm',
+      thumbnail: `/images/pages/home/our-technology/technology-img-1.jpg`,
+    },
+    {
+      title: t('homePage.computerVisionRecognition'),
+      category: t('homePage.visionAI'),
+      code: 'visionAI',
+      thumbnail: `/images/pages/home/our-technology/technology-img-2.jpg`,
+    },
+    {
+      title: t('homePage.continueousModelDevelopment'),
+      category: t('homePage.mlops'),
+      code: 'mlops',
+      thumbnail: `/images/pages/home/our-technology/technology-img-3.jpg`,
+    },
+    {
+      title: t('homePage.roboticProcessAutomation'),
+      category: t('homePage.rpa'),
+      code: 'rpa',
+      thumbnail: `/images/pages/home/our-technology/technology-img-4.jpg`,
+    },
+  ];
+
+  useEffect(() => {
+    setForUpdate({});
+  }, [i18n.language]);
 
   const _onChangeTab = (_: unknown, v: string) => {
     setActTab(v);
@@ -96,13 +99,13 @@ const OurTechnologySection = () => {
               sx={{ marginBottom: { xs: '1rem', sm: '0', md: '0' } }}
               maxWidth="850px"
             >
-              <Stack direction="row" alignItems="center" gap="0 0.5rem">
+              <Stack direction="row" alignItems="center" gap="0 0.5rem" mb="0.5rem">
                 <LogoShort />
                 <Typography className="sub-title">{t('homePage.technology')}</Typography>
               </Stack>
               <SectionTitle
                 dangerouslySetInnerHTML={{
-                  __html: t('homePage.ourCoreTechnologyIsSpecializedInArtificialIntelligence'),
+                  __html: t('homePage.weFocusOnTheAIDiffusion'),
                 }}
                 sx={{
                   textTransform: 'initial !important',
@@ -130,6 +133,7 @@ const OurTechnologySection = () => {
               perMove: 1,
               arrows: false,
               pagination: false,
+              lazyLoad: false, // 👈 ensure all slides render
               ...(device.mobile ? { gap: '1rem' } : { gap: '3rem' }),
             }}
             onMoved={(ev) => {
@@ -137,7 +141,7 @@ const OurTechnologySection = () => {
             }}
           >
             {technologiesData?.map((x, index) => (
-              <SplideSlide className="slide" key={index}>
+              <SplideSlide className={clsx('slide', { first: index === 0 })} key={index}>
                 <TechCard data={x} />
               </SplideSlide>
             ))}

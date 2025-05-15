@@ -48,8 +48,8 @@ const ServicesSection = () => {
         },
       },
       {
-        title: t('homePage.editingDigitalContents'),
-        desc: t('homePage.editingVideoDesc'),
+        title: t('homePage.digitalContents'),
+        desc: t('homePage.digitalContentsDesc'),
         path: '',
         img: '/images/pages/home/services/service-img-4.png',
         colSpan: {
@@ -67,7 +67,7 @@ const ServicesSection = () => {
       <MainWrapper>
         <Head>
           <Stack alignItems={'flex-start'} sx={{ marginBottom: { xs: '1rem', sm: '0', md: '0' } }}>
-            <Stack direction="row" alignItems="center" gap="0 0.5rem">
+            <Stack direction="row" alignItems="center" gap="0 0.5rem" mb="0.5rem">
               <LogoShort />
               <Typography className="sub-title">{t('homePage.services')}</Typography>
             </Stack>
