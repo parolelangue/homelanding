@@ -64,7 +64,7 @@ const ConfigLanguage = ({ activeScroll }: Props) => {
   const { t, i18n } = useTranslation('common');
 
   const cachedLang = localStorage.getItem(authConfig.i18nextLng);
-  const currentLang = cachedLang || 'en';
+  const currentLang = cachedLang || 'kr';
 
   const [lang, setLang] = useState('');
 
