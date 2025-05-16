@@ -51,7 +51,6 @@ const Flow = () => {
     const cards = document.querySelectorAll('.card');
     cards.forEach((card: HTMLDivElement, idx: number) => {
       const index = idx;
-      const percentOffset = device.mobile ? 60 : 62;
       const itemSecondOffset = idx === 1 ? 5 : 0;
       const defaultW = device.tablet ? window.innerWidth || window.outerWidth : window.outerWidth;
 
@@ -71,6 +70,7 @@ const Flow = () => {
       const top = genW() + index * (genPercentOffset() + itemSecondOffset);
       const cardHeight = card.getBoundingClientRect().height || 800;
       const offsetTop = cardHeight - 150;
+
       gsap.fromTo(
         card,
         {
@@ -84,7 +84,7 @@ const Flow = () => {
           ease: 'power1.out',
           scrollTrigger: {
             trigger: card,
-            start: `top top+=${offsetTop}`,
+            start: `top top+=${offsetTop + index * -100}`,
             scrub: true,
           },
         },
@@ -104,6 +104,7 @@ const Flow = () => {
           scrollTrigger: {
             trigger: card,
             start: device.mobile ? 'top+=5% center' : 'top+=35% center',
+            // end: device.mobile ? 'top-=5% center' : 'top-=35% center',
             scrub: true,
           },
         },
@@ -187,7 +188,7 @@ const Flow = () => {
 const Section = styled('section')(({ theme }) => ({
   backgroundColor: theme.palette.grey[50],
   '.section-wrap': {
-    height: '350vh',
+    height: '450vh',
     position: 'relative',
     zIndex: 5,
     display: 'flex',
@@ -197,7 +198,7 @@ const Section = styled('section')(({ theme }) => ({
   },
   '.wrap': {
     width: '100%',
-    height: '350vh',
+    height: '450vh',
     position: 'absolute',
     top: 0,
     zIndex: 4,
@@ -368,10 +369,10 @@ const Section = styled('section')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {},
   [theme.breakpoints.down('sm')]: {
     '.section-wrap': {
-      height: '350vh',
+      height: '450vh',
     },
     '.wrap': {
-      height: '350vh',
+      height: '450vh',
       '.content': {
         height: '100vh',
         marginTop: '3rem',

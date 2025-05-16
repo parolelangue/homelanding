@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   images: {
     domains: ['aprotech.com.vn'],
     remotePatterns: [
