@@ -106,7 +106,7 @@ const NavigationSidebar = ({ open, toggleSidebar }: Props) => {
     >
       {renderNavContent()}
       <Link href={'#'} passHref>
-        <GetStarted variant="contained">{t('button.getStarted')}</GetStarted>
+        <GetStarted variant="contained">{t('button.techBlog')}</GetStarted>
       </Link>
     </WrapContent>
   );
