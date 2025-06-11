@@ -10,6 +10,7 @@ import { hexToRGBA } from '@/@core/utils/hex-to-rgba';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { LINKS } from '@/@core/constants/general';
 
 type Props = {
   open: boolean;
@@ -105,8 +106,8 @@ const NavigationSidebar = ({ open, toggleSidebar }: Props) => {
       })}
     >
       {renderNavContent()}
-      <Link href={'#'} passHref>
-        <GetStarted variant="contained">{t('button.techBlog')}</GetStarted>
+      <Link href={LINKS.DOCS_SITE} passHref>
+        <GetStarted variant="contained">{t('navLinks.AiOPS')}</GetStarted>
       </Link>
     </WrapContent>
   );

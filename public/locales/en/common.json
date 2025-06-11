@@ -37,7 +37,8 @@
     "services": "Services",
     "solution": "Solution",
     "organization": "Organization",
-    "contact": "Contact"
+    "contact": "Contact",
+    "AiOPS": "AiOPS"
   },
   "button": {
     "getStarted": "Get Started",

@@ -380,7 +380,7 @@ const Footer = (props: FooterProps) => {
                 },
               }}
             >
-              {t('button.techBlog')}
+              {t('navLinks.AiOPS')}
             </Button>
           </Link>
         </Stack>

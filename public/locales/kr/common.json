@@ -37,7 +37,8 @@
         "services": "서비스",
         "solution": "솔루션",
         "organization": "조직",
-        "contact": "문의하기"
+        "contact": "문의하기",
+        "AiOPS": "AiOPS"
     },
     "button": {
         "getStarted": "시작하기",

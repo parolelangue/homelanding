@@ -20,5 +20,5 @@ export const INSTALL_LINKS = {
 
 export const LINKS = {
   DEMO_SITE: 'https://docs-site-login-a7df168d97ac.herokuapp.com/',
-  DOCS_SITE: 'https://tech.aprotech.kr',
+  DOCS_SITE: 'http://aiops.aprotech.kr/',
 };

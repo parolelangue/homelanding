@@ -244,7 +244,7 @@ const LAppBar = (props: LAppBarProps) => {
       <RightStack>
         <ConfigLanguage activeScroll={activeScroll} />
         <Link href={LINKS.DOCS_SITE} target="_blank" passHref>
-          <ButtonStyle variant="contained">{t('button.techBlog')}</ButtonStyle>
+          <ButtonStyle variant="contained">{t('navLinks.AiOPS')}</ButtonStyle>
         </Link>
       </RightStack>
     </AppBarWrapper>
