@@ -374,6 +374,7 @@ const Footer = (props: FooterProps) => {
                 mt: { xs: '1rem', md: '0' },
                 backgroundColor: theme.palette.common.white,
                 color: theme.palette.grey[900],
+                textTransform: 'none',
                 '&:hover': {
                   color: theme.palette.common.white,
                   backgroundColor: theme.palette.grey[500],
